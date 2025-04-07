@@ -183,6 +183,38 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a7810090b7f053458cc32719c9aa7d5, type: 3}
+--- !u!1 &117847786 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7346975806505124466, guid: 3b87602bc1426864fb5b0239184f73af, type: 3}
+  m_PrefabInstance: {fileID: 7204210595768889089}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &117847792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117847786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65f892647bf05e94cbe3e2a33907e9b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDistanceLoockTarget: 30
+  minDistanceFollowTarget: 20
+  minDistanceAttackTarget: 5
+  timer: 5
+  waitIdle: 3
+  minAngle: 30
+  maxAngle: 120
+  speedMove: 5
+  angleRotate: 3
+  <isLoockTarget>k__BackingField: 0
+  <isFollowTarget>k__BackingField: 0
+  <isAttackTarget>k__BackingField: 0
+  <isIdle>k__BackingField: 0
+  <isRundomMove>k__BackingField: 0
+  <isRundomRotate>k__BackingField: 0
 --- !u!1 &162937397
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,8 +413,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36423f79e27484d4281786007298e611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 2474404045485559290, guid: 4c3c3534e150b664b9cbf8e31f631b3a, type: 3}
-  speed: 8
+  minDistanceLoockTarget: 30
+  minDistanceFollowTarget: 15
+  minDistanceAttackTarget: 3
+  timer: 5
+  waitIdle: 3
+  minAngle: 30
+  maxAngle: 120
+  speedMove: 5
+  angleRotate: 3
+  <isLoockTarget>k__BackingField: 0
+  <isFollowTarget>k__BackingField: 0
+  <isAttackTarget>k__BackingField: 0
+  <isIdle>k__BackingField: 0
+  <isRundomMove>k__BackingField: 0
+  <isRundomRotate>k__BackingField: 0
 --- !u!54 &333117893
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -423,6 +468,7 @@ GameObject:
   - component: {fileID: 405031581}
   - component: {fileID: 405031580}
   - component: {fileID: 405031579}
+  - component: {fileID: 405031584}
   m_Layer: 0
   m_Name: AirEnemy
   m_TagString: Untagged
@@ -442,6 +488,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31aa81f8f88edc84d866829e82aa0de1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minDistanceLoockTarget: 30
+  minDistanceFollowTarget: 15
+  minDistanceAttackTarget: 3
+  timer: 5
+  waitIdle: 3
+  minAngle: 30
+  maxAngle: 120
+  speedMove: 5
+  angleRotate: 3
+  <isLoockTarget>k__BackingField: 0
+  <isFollowTarget>k__BackingField: 0
+  <isAttackTarget>k__BackingField: 0
+  <isIdle>k__BackingField: 0
+  <isRundomMove>k__BackingField: 0
+  <isRundomRotate>k__BackingField: 0
 --- !u!65 &405031580
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -528,6 +589,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &405031584
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 405031578}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2266,7 +2354,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7346975806505124466, guid: 3b87602bc1426864fb5b0239184f73af, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 117847792}
   m_SourcePrefab: {fileID: 100100000, guid: 3b87602bc1426864fb5b0239184f73af, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
