@@ -5,7 +5,7 @@ namespace EnemyAi
 
     public interface IEnemyRotate
     {
-        protected Quaternion targetRotation { get; set; }
-        void Rotating(Quaternion targetRotation);
+        protected Quaternion TargetRotation { get; set; }
+        void Rotating(Quaternion targetRotation); 
     }
 }

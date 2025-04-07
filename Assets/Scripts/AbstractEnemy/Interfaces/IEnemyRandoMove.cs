@@ -6,7 +6,6 @@ namespace EnemyAi
     public interface IEnemyRandoMove
     {
         bool isRundomMove { get; set; }
-        void RandomMove();
-
+        void RandomMove(); 
     }
 }

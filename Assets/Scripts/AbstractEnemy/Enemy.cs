@@ -21,20 +21,18 @@ namespace EnemyAi
 
         [Range(3, 30), SerializeField] private float minDistanceLoockTarget = 30;
         [Range(3, 20), SerializeField] private float minDistanceFollowTarget = 25;
-        [Range(0.5f, 5), SerializeField] private float minDistanceAttackTarget = 6;
-        [Range(3, 8), SerializeField] private float timer = 5f;
-        [Range(3, 8), SerializeField] private float waitIdle = 3f;
+        [Range(0.5f, 5), SerializeField] private float minDistanceAttackTarget = 6; 
         [Range(15, 45), SerializeField] private float minAngle = 30f;
         [Range(60, 120), SerializeField] private float maxAngle = 120f;
         [Range(3, 6), SerializeField] private float speedMove = 5f;
         [Range(1, 45), SerializeField] private float angleRotate = 3f;
-         
-        Vector3 IEnemyMove.targetMove { get => TargetMove; set => TargetMove = value; }
-        Quaternion IEnemyRotate.targetRotation { get => TargetRotation; set => TargetRotation = value; }
+          
+        
+        protected Vector3 _targetMove;
+        Vector3 IEnemyMove.TargetMove { get => _targetMove; set => _targetMove = value; }
 
-        protected Vector3 TargetMove;
-        protected Quaternion TargetRotation;
-
+        protected Quaternion _targetRotation;
+        Quaternion IEnemyRotate.TargetRotation { get => _targetRotation; set => _targetRotation = value; }
 
         [field: SerializeField] public bool isIdle { get; set; }
         [field: SerializeField] public bool isRundomMove { get; set; }
@@ -94,8 +92,8 @@ namespace EnemyAi
                 float turnAmount = Random.Range(minAngle, maxAngle);
                 if (Random.value > 0.5f) turnAmount *= -1;
                 float newY = currentY + turnAmount;
-                TargetRotation = Quaternion.Euler(0, newY, 0);
-                Rotating(TargetRotation);
+                _targetRotation = Quaternion.Euler(0, newY, 0);
+                Rotating(_targetRotation);
             }
         }
 
@@ -103,8 +101,8 @@ namespace EnemyAi
         {
             if (!isIdle && isFollowTarget && !isAttackTarget)
             {
-                TargetMove = (target.position - tr.position).normalized;
-                Moving(TargetMove);
+                _targetMove = (target.position - tr.position).normalized;
+                Moving(_targetMove);
             }
         }
 
@@ -112,9 +110,9 @@ namespace EnemyAi
         {
             if (isLoockTarget)
             {
-                TargetMove = (target.position - tr.position).normalized;
-                TargetRotation = Quaternion.LookRotation(new Vector3(TargetMove.x, 0, TargetMove.z));
-                Rotating(TargetRotation);
+                _targetMove = (target.position - tr.position).normalized;
+                _targetRotation = Quaternion.LookRotation(new Vector3(_targetMove.x, 0, _targetMove.z));
+                Rotating(_targetRotation);
             }
         }
 

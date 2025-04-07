@@ -9,8 +9,7 @@ public class MoveEnemyState :  EnemyStateBase
         IEnemyRandomRotate randomRotate)
 
         : base(null, null, null, randomMove,randomRotate, null, null, null)
-    {
-    }
+    {}
 
     public override void EnterState()
     {

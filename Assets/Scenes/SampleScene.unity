@@ -170,6 +170,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5252696138605755680, guid: 1a7810090b7f053458cc32719c9aa7d5, type: 3}
+      propertyPath: minDistanceLoockTarget
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5252696138605755680, guid: 1a7810090b7f053458cc32719c9aa7d5, type: 3}
+      propertyPath: minDistanceAttackTarget
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5252696138605755680, guid: 1a7810090b7f053458cc32719c9aa7d5, type: 3}
+      propertyPath: minDistanceFollowTarget
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7793686170194032214, guid: 1a7810090b7f053458cc32719c9aa7d5, type: 3}
       propertyPath: m_Name
       value: Enemy_Fire
@@ -209,12 +221,12 @@ MonoBehaviour:
   maxAngle: 120
   speedMove: 5
   angleRotate: 3
-  <isLoockTarget>k__BackingField: 0
-  <isFollowTarget>k__BackingField: 0
-  <isAttackTarget>k__BackingField: 0
   <isIdle>k__BackingField: 0
   <isRundomMove>k__BackingField: 0
   <isRundomRotate>k__BackingField: 0
+  <isFollowTarget>k__BackingField: 0
+  <isLoockTarget>k__BackingField: 0
+  <isAttackTarget>k__BackingField: 0
 --- !u!1 &162937397
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,12 +434,12 @@ MonoBehaviour:
   maxAngle: 120
   speedMove: 5
   angleRotate: 3
-  <isLoockTarget>k__BackingField: 0
-  <isFollowTarget>k__BackingField: 0
-  <isAttackTarget>k__BackingField: 0
   <isIdle>k__BackingField: 0
   <isRundomMove>k__BackingField: 0
   <isRundomRotate>k__BackingField: 0
+  <isFollowTarget>k__BackingField: 0
+  <isLoockTarget>k__BackingField: 0
+  <isAttackTarget>k__BackingField: 0
 --- !u!54 &333117893
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -497,12 +509,12 @@ MonoBehaviour:
   maxAngle: 120
   speedMove: 5
   angleRotate: 3
-  <isLoockTarget>k__BackingField: 0
-  <isFollowTarget>k__BackingField: 0
-  <isAttackTarget>k__BackingField: 0
   <isIdle>k__BackingField: 0
   <isRundomMove>k__BackingField: 0
   <isRundomRotate>k__BackingField: 0
+  <isFollowTarget>k__BackingField: 0
+  <isLoockTarget>k__BackingField: 0
+  <isAttackTarget>k__BackingField: 0
 --- !u!65 &405031580
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -757,6 +769,14 @@ PrefabInstance:
     - target: {fileID: 1563301546795693530, guid: e67c30dfe96401b438e70e4be13c47a5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530110729511802988, guid: e67c30dfe96401b438e70e4be13c47a5, type: 3}
+      propertyPath: minDistanceAttackTarget
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530110729511802988, guid: e67c30dfe96401b438e70e4be13c47a5, type: 3}
+      propertyPath: minDistanceFollowTarget
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6477622523621790804, guid: e67c30dfe96401b438e70e4be13c47a5, type: 3}
       propertyPath: m_Name
@@ -1283,6 +1303,14 @@ PrefabInstance:
     - target: {fileID: 2265859734101569244, guid: bc54188a29ec72c40b3035bae610aec1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990967915064432251, guid: bc54188a29ec72c40b3035bae610aec1, type: 3}
+      propertyPath: minDistanceAttackTarget
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990967915064432251, guid: bc54188a29ec72c40b3035bae610aec1, type: 3}
+      propertyPath: minDistanceFollowTarget
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5675563312283139943, guid: bc54188a29ec72c40b3035bae610aec1, type: 3}
       propertyPath: m_Name
