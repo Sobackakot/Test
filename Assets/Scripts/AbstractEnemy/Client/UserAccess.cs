@@ -5,34 +5,34 @@ using UnityEngine;
  
 public class UserAccess : MonoBehaviour
 {
-    private List<Enemy> enemys = new List<Enemy>();
+    private List<Enemy> enemies = new();
     private Dictionary<Enemy, EnemyStateHandler> handlers = new();
-     
-     
-    private float timer = 5;
+    private float timer = 5f;
 
     private void Awake()
     {
-        enemys.AddRange(FindObjectsOfType<Enemy>()); 
+        enemies.AddRange(FindObjectsOfType<Enemy>());
     }
+
     private void Start()
     {
-        foreach (var enemy in enemys)
+        foreach (var enemy in enemies)
         {
             var handler = new EnemyStateHandler();
-            handler.SetState(new IdleEnemyState(enemy));
+            handler.SetState(new IdleEnemyState(enemy, enemy, enemy));
             handlers[enemy] = handler;
         }
     }
-   
-    void Update()
+
+    private void Update()
     {
-        foreach (var enemy in enemys)
+        foreach (var enemy in enemies)
         {
-            TimerAFC(enemy);
-            ChengeState(enemy);
+            TimerRoutine(enemy);
+            ChangeState(enemy);
         }
     }
+
     private void FixedUpdate()
     {
         foreach (var handler in handlers.Values)
@@ -40,34 +40,44 @@ public class UserAccess : MonoBehaviour
             handler.UpdateState();
         }
     }
-   
-    private void ChengeState(Enemy currentEnemy)
+
+    private void ChangeState(Enemy enemy)
     {
-        var handler = handlers[currentEnemy];
-        if (currentEnemy.isIdle)
-            handler.SetState(new IdleEnemyState(currentEnemy));
-        else if (!currentEnemy.isIdle && !currentEnemy.isFollowTarget)
-            handler.SetState(new MoveEnemyState(currentEnemy)); 
-        else if(currentEnemy.isFollowTarget)
-            handler.SetState(new FollowEnemyState(currentEnemy));
-        else if (currentEnemy.isAttackTarget)
-            handler.SetState(new AttackEnemyState(currentEnemy));
+        var handler = handlers[enemy];
+
+        if (enemy.isAttackTarget)
+        {
+            handler.SetState(new AttackEnemyState(enemy, enemy, enemy));
+        }
+        else if (enemy.isFollowTarget)
+        {
+            handler.SetState(new FollowEnemyState(enemy, enemy));
+        }
+        else if (!enemy.isIdle && !enemy.isFollowTarget)
+        {
+            handler.SetState(new MoveEnemyState(enemy, enemy));
+        }
+        else if (enemy.isIdle)
+        {
+            handler.SetState(new IdleEnemyState(enemy, enemy, enemy));
+        }
     }
-   
-    private void TimerAFC(Enemy currentEnemy)
+
+    private void TimerRoutine(Enemy enemy)
     {
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
-            timer = Random.Range(3, 10);
-            if (!currentEnemy.isFollowTarget)
-                StartCoroutine(IdleWaitTime(currentEnemy));
+            timer = Random.Range(3f, 10f);
+            if (!enemy.isFollowTarget)
+                StartCoroutine(IdleCoroutine(enemy));
         }
     }
-    private IEnumerator IdleWaitTime(Enemy currentEnemy)
+
+    private IEnumerator IdleCoroutine(Enemy enemy)
     {
-        currentEnemy.isIdle = true;
+        enemy.isIdle = true;
         yield return new WaitForSeconds(2.5f);
-        currentEnemy.isIdle = false;
+        enemy.isIdle = false;
     }
 }

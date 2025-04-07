@@ -4,25 +4,30 @@ using UnityEngine;
 
 public class FollowEnemyState : EnemyStateBase
 {
-    public FollowEnemyState(Enemy enemy) : base(enemy)
+    public FollowEnemyState(
+         
+        IEnemyFollowTarget followTarget,
+        IEnemyLoockTarget loockTarget ) 
+
+        : base(null, null, null, null, null, followTarget,loockTarget,null)
     {
     }
 
     public override void EnterState()
-    { 
-        enemy.isFollowTarget = true;
-        enemy.isLoockTarget = true;
+    {
+        followTarget.isFollowTarget = true;
+        loockTarget.isLoockTarget = true;
     }
 
     public override void ExitState()
-    { 
-        enemy.isFollowTarget = false;
-        enemy.isLoockTarget = false;
+    {
+        followTarget.isFollowTarget = false;
+        loockTarget.isLoockTarget = false;
     }
 
     public override void UpdateState()
     {
-        enemy.TargetRotateState();
-        enemy.TargetMoveState(); 
+        loockTarget.LoockTarget();
+        followTarget.FollowTarget(); 
     }
 }

@@ -1,34 +1,47 @@
 
 using System.Collections;
-using UnityEngine;
-
+using UnityEngine; 
+ 
 namespace EnemyAi
 { 
     [RequireComponent(typeof(Rigidbody))]
-    public abstract class Enemy : MonoBehaviour
+    public abstract class Enemy : MonoBehaviour ,
+        IEnemyIdle,
+        IEnemyMove,
+        IEnemyRotate,
+        IEnemyRandoMove,
+        IEnemyRandomRotate,
+        IEnemyFollowTarget,
+        IEnemyLoockTarget,
+        IEnemyAttackTarget
     {
         protected Transform target;
         protected Rigidbody rb;
         protected Transform tr;
 
-        [Range(3, 30), SerializeField] protected float minDistanceLoockTarget = 30;
-        [Range(3, 20), SerializeField] protected float minDistanceFollowTarget = 25;
-        [Range(0.5f, 5), SerializeField] protected float minDistanceAttackTarget = 6;
-        [Range(3, 8), SerializeField] protected float timer = 5f;
-        [Range(3, 8), SerializeField] protected float waitIdle = 3f;
-        [Range(15, 45), SerializeField] protected float minAngle = 30f;
-        [Range(60, 120), SerializeField] protected float maxAngle = 120f;
-        [Range(3, 6), SerializeField] protected float speedMove = 5f;
-        [Range(1, 45), SerializeField] protected float angleRotate = 3f;
-
-        protected Vector3 targetMove;
+        [Range(3, 30), SerializeField] private float minDistanceLoockTarget = 30;
+        [Range(3, 20), SerializeField] private float minDistanceFollowTarget = 25;
+        [Range(0.5f, 5), SerializeField] private float minDistanceAttackTarget = 6;
+        [Range(3, 8), SerializeField] private float timer = 5f;
+        [Range(3, 8), SerializeField] private float waitIdle = 3f;
+        [Range(15, 45), SerializeField] private float minAngle = 30f;
+        [Range(60, 120), SerializeField] private float maxAngle = 120f;
+        [Range(3, 6), SerializeField] private float speedMove = 5f;
+        [Range(1, 45), SerializeField] private float angleRotate = 3f;
          
-        [field: SerializeField] public bool isLoockTarget { get; set; }
-        [field: SerializeField] public bool isFollowTarget { get; set; }
-        [field: SerializeField] public bool isAttackTarget { get; set; }
+        Vector3 IEnemyMove.targetMove { get => TargetMove; set => TargetMove = value; }
+        Quaternion IEnemyRotate.targetRotation { get => TargetRotation; set => TargetRotation = value; }
+
+        protected Vector3 TargetMove;
+        protected Quaternion TargetRotation;
+
+
         [field: SerializeField] public bool isIdle { get; set; }
         [field: SerializeField] public bool isRundomMove { get; set; }
         [field: SerializeField] public bool isRundomRotate { get; set; }
+        [field: SerializeField] public bool isFollowTarget { get; set; }
+        [field: SerializeField] public bool isLoockTarget { get; set; }
+        [field: SerializeField] public bool isAttackTarget { get; set; }
 
         protected virtual void Awake()
         {
@@ -43,47 +56,37 @@ namespace EnemyAi
             isRundomRotate = !isLoockTarget;
             isLoockTarget = IsMinDistance(minDistanceLoockTarget);
             isAttackTarget = IsMinDistance(minDistanceAttackTarget);
-            isFollowTarget = IsMinDistance(minDistanceFollowTarget); 
+            isFollowTarget = IsMinDistance(minDistanceFollowTarget);
         }
-        
-        public void AttackState()
-        {
-            if (isAttackTarget)
-            {
-                Debug.Log("attac state " + gameObject.name); 
-            }
-        }
+
         public void IdleState()
         {
             if (isIdle && !isRundomMove && !isFollowTarget)
             {
-                Debug.Log("Idle state " + gameObject.name); 
+                Debug.Log("Idle state " + gameObject.name);
             }
         }
 
-        public virtual void TargetMoveState()
+        public void Moving(Vector3 targetMove)
         {
-            if (!isIdle && isFollowTarget  && !isAttackTarget)
-                Moving(targetMove);
+            rb.MovePosition(rb.position + targetMove.normalized * speedMove * Time.fixedDeltaTime);
         }
 
-        public virtual void TargetRotateState()
+        public void Rotating(Quaternion targetRotation)
         {
-            if (isLoockTarget)
-            {
-                targetMove = (target.position - tr.position).normalized;
-                Quaternion targetRotation = Quaternion.LookRotation(new Vector3(targetMove.x, 0, targetMove.z));
-                Rotating(targetRotation);
-            }
+            Quaternion newRot = Quaternion.Slerp(tr.rotation, targetRotation, angleRotate * Time.fixedDeltaTime);
+            rb.MoveRotation(newRot);
         }
 
-        public virtual void RandomMoveState()
+        public void RandomMove()
         {
             if (!isIdle && isRundomMove && !isAttackTarget)
+            {
                 Moving(tr.forward);
+            }
         }
 
-        public virtual void RandomRotateState()
+        public void RandomRotate()
         {
             if (isRundomRotate)
             {
@@ -91,25 +94,41 @@ namespace EnemyAi
                 float turnAmount = Random.Range(minAngle, maxAngle);
                 if (Random.value > 0.5f) turnAmount *= -1;
                 float newY = currentY + turnAmount;
-                Quaternion targetRotation = Quaternion.Euler(0, newY, 0);
-                Rotating(targetRotation);
+                TargetRotation = Quaternion.Euler(0, newY, 0);
+                Rotating(TargetRotation);
             }
         }
 
-        protected virtual void Rotating(Quaternion targetRotation)
+        public void FollowTarget()
         {
-            Quaternion newRot = Quaternion.Slerp(tr.rotation, targetRotation, angleRotate * Time.fixedDeltaTime);
-            rb.MoveRotation(newRot);
+            if (!isIdle && isFollowTarget && !isAttackTarget)
+            {
+                TargetMove = (target.position - tr.position).normalized;
+                Moving(TargetMove);
+            }
         }
 
-        protected virtual void Moving(Vector3 targetMove)
+        public void LoockTarget()
         {
-            rb.MovePosition(rb.position + targetMove.normalized * speedMove * Time.fixedDeltaTime);
+            if (isLoockTarget)
+            {
+                TargetMove = (target.position - tr.position).normalized;
+                TargetRotation = Quaternion.LookRotation(new Vector3(TargetMove.x, 0, TargetMove.z));
+                Rotating(TargetRotation);
+            }
         }
 
-        protected bool IsMinDistance(float MinDistance)
+        public void AttackTarget()
         {
-            return Vector3.Distance(tr.position, target.position) <= MinDistance;
+            if (isAttackTarget)
+            {
+                Debug.Log("Attack state " + gameObject.name);
+            }
+        }
+
+        private bool IsMinDistance(float minDistance)
+        {
+            return Vector3.Distance(tr.position, target.position) <= minDistance;
         }
     } 
 }

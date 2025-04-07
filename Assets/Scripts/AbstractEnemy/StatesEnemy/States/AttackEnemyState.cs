@@ -4,23 +4,31 @@ using UnityEngine;
 
 public class AttackEnemyState : EnemyStateBase
 {
-    public AttackEnemyState(Enemy enemy) : base(enemy)
+    public AttackEnemyState( 
+
+        IEnemyFollowTarget followTarget, 
+        IEnemyLoockTarget loockTarget, 
+        IEnemyAttackTarget attackTarget) 
+
+        : base(null, null,null, null, null, followTarget,loockTarget, attackTarget)
     {
     }
 
     public override void EnterState()
-    { 
-        enemy.isAttackTarget = true;
+    {
+        attackTarget.isAttackTarget = true;
     }
 
     public override void ExitState()
-    { 
-        enemy.isAttackTarget =false;
+    {
+        attackTarget.isAttackTarget =false;
     }
 
     public override void UpdateState()
-    { 
-        enemy.AttackState();  
+    {
+        attackTarget.AttackTarget();
+        followTarget.FollowTarget();
+        loockTarget.LoockTarget();
     }
 }
  

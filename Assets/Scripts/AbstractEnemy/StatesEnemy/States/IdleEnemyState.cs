@@ -3,22 +3,30 @@ using State;
 using UnityEngine;
 public class IdleEnemyState : EnemyStateBase
 {
-    public IdleEnemyState(Enemy enemy) : base(enemy)
+    public IdleEnemyState(
+
+        IEnemyIdle idle,
+        IEnemyRandomRotate randomRotate,
+        IEnemyLoockTarget loockTarget) 
+
+        : base(idle, null,null, null, randomRotate, null, loockTarget, null)
     {
     }
 
     public override void EnterState()
-    { 
-        enemy.isIdle = true; 
+    {
+        idle.isIdle = true; 
     }
 
     public override void ExitState()
-    { 
-        enemy.isIdle = false;
+    {
+        idle.isIdle = false;
     }
 
     public override void UpdateState()
     {
-        enemy.IdleState();   
+        idle.IdleState();
+        randomRotate.RandomRotate();
+        loockTarget.LoockTarget();
     }
 }
