@@ -9,18 +9,16 @@ public class IdleEnemyState : EnemyStateBase
         IEnemyRandomRotate randomRotate,
         IEnemyLoockTarget loockTarget) 
 
-        : base(idle, null,null, null, randomRotate, null, loockTarget, null)
+        : base(idle, null, randomRotate, null, loockTarget, null)
     {
     }
 
     public override void EnterState()
-    {
-        idle.isIdle = true; 
+    { 
     }
 
     public override void ExitState()
-    {
-        idle.isIdle = false;
+    { 
     }
 
     public override void UpdateState()

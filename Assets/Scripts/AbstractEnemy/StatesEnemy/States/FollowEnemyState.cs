@@ -9,20 +9,16 @@ public class FollowEnemyState : EnemyStateBase
         IEnemyFollowTarget followTarget,
         IEnemyLoockTarget loockTarget ) 
 
-        : base(null, null, null, null, null, followTarget,loockTarget,null)
+        : base( null, null, null, followTarget,loockTarget,null)
     {
     }
 
     public override void EnterState()
-    {
-        followTarget.isFollowTarget = true;
-        loockTarget.isLoockTarget = true;
+    { 
     }
 
     public override void ExitState()
-    {
-        followTarget.isFollowTarget = false;
-        loockTarget.isLoockTarget = false;
+    { 
     }
 
     public override void UpdateState()

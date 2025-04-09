@@ -10,18 +10,15 @@ public class AttackEnemyState : EnemyStateBase
         IEnemyLoockTarget loockTarget, 
         IEnemyAttackTarget attackTarget) 
 
-        : base(null, null,null, null, null, followTarget,loockTarget, attackTarget)
+        : base(null, null, null, followTarget,loockTarget, attackTarget)
     {
-    }
-
+    } 
     public override void EnterState()
-    {
-        attackTarget.isAttackTarget = true;
+    { 
     }
 
     public override void ExitState()
-    {
-        attackTarget.isAttackTarget =false;
+    { 
     }
 
     public override void UpdateState()

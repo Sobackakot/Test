@@ -1,34 +1,33 @@
-using EnemyAi;
-using System.Collections;
+using EnemyAi; 
 using System.Collections.Generic; 
 using UnityEngine;
  
 public class UserAccess : MonoBehaviour
 {
-    private List<Enemy> enemies = new();
+    private List<Enemy> enemys = new List<Enemy>();
     private Dictionary<Enemy, EnemyStateHandler> handlers = new();
-    private float timer = 5f;
+    private Dictionary<Enemy, EnemyBehaviourHandler> behaviours = new();
 
     private void Awake()
     {
-        enemies.AddRange(FindObjectsOfType<Enemy>());
+        enemys.AddRange(FindObjectsOfType<Enemy>());
     }
-
     private void Start()
-    {
-        foreach (var enemy in enemies)
+    { 
+        foreach (var enemy in enemys)
         {
             var handler = new EnemyStateHandler();
-            handler.SetState(new IdleEnemyState(enemy, enemy, enemy));
+            var behaviour = new EnemyBehaviourHandler(enemy);
+            handler.SetState(new IdleEnemyState(behaviour.Idle, behaviour.Rotate, behaviour.Loock));
             handlers[enemy] = handler;
+            behaviours[enemy] = behaviour;
         }
     }
 
     private void Update()
     {
-        foreach (var enemy in enemies)
-        {
-            TimerRoutine(enemy);
+        foreach (var enemy in enemys)
+        { 
             ChangeState(enemy);
         }
     }
@@ -47,37 +46,21 @@ public class UserAccess : MonoBehaviour
 
         if (enemy.isAttackTarget)
         {
-            handler.SetState(new AttackEnemyState(enemy, enemy, enemy));
+            handler.SetState(new AttackEnemyState(behaviours[enemy].Follow, behaviours[enemy].Loock, behaviours[enemy].Attack));
         }
         else if (enemy.isFollowTarget)
         {
-            handler.SetState(new FollowEnemyState(enemy, enemy));
+            handler.SetState(new FollowEnemyState(behaviours[enemy].Follow, behaviours[enemy].Loock));
         }
         else if (!enemy.isIdle && !enemy.isFollowTarget)
         {
-            handler.SetState(new MoveEnemyState(enemy, enemy));
+            handler.SetState(new MoveEnemyState(behaviours[enemy].RanMove, behaviours[enemy].RanRotate));
         }
         else if (enemy.isIdle)
         {
-            handler.SetState(new IdleEnemyState(enemy, enemy, enemy));
+            handler.SetState(new IdleEnemyState(behaviours[enemy].Idle, behaviours[enemy].RanRotate, behaviours[enemy].Loock));
         }
     }
 
-    private void TimerRoutine(Enemy enemy)
-    {
-        timer -= Time.deltaTime;
-        if (timer <= 0)
-        {
-            timer = Random.Range(3f, 10f);
-            if (!enemy.isFollowTarget)
-                StartCoroutine(IdleCoroutine(enemy));
-        }
-    }
-
-    private IEnumerator IdleCoroutine(Enemy enemy)
-    {
-        enemy.isIdle = true;
-        yield return new WaitForSeconds(2.5f);
-        enemy.isIdle = false;
-    }
+    
 }

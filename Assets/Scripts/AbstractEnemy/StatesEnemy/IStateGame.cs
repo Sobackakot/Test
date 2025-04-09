@@ -1,4 +1,6 @@
 
+using EnemyAi;
+
 namespace State 
 { 
     public interface IStateGame
