@@ -5,10 +5,7 @@ namespace EnemyAi
 {
     public class EnemyFollowTarget : EnemyMove 
     {
-        public EnemyFollowTarget(Enemy enemy) : base(enemy)
-        {
-        }
-
+        public EnemyFollowTarget(Enemy enemy) : base(enemy){ } 
         public override void FollowTarget()
         {
             if (!enemy.isIdle && enemy.isFollowTarget && !enemy.isAttackTarget)

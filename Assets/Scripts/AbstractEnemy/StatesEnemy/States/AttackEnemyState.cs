@@ -10,17 +10,9 @@ public class AttackEnemyState : EnemyStateBase
         IEnemyLoockTarget loockTarget, 
         IEnemyAttackTarget attackTarget) 
 
-        : base(null, null, null, followTarget,loockTarget, attackTarget)
-    {
-    } 
-    public override void EnterState()
-    { 
-    }
-
-    public override void ExitState()
-    { 
-    }
-
+        : base(null, null, null, followTarget,loockTarget, attackTarget) { } 
+    public override void EnterState() { }
+    public override void ExitState() { }
     public override void UpdateState()
     {
         attackTarget.AttackTarget();

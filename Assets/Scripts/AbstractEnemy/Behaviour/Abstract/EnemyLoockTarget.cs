@@ -4,10 +4,7 @@ namespace EnemyAi
 {
     public class EnemyLoockTarget : EnemyRotate 
     {
-        public EnemyLoockTarget(Enemy enemy) : base(enemy)
-        {
-        }
-
+        public EnemyLoockTarget(Enemy enemy) : base(enemy) { }
         public override void LoockTarget()
         {
             if (enemy.isLoockTarget)

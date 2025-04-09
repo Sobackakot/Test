@@ -4,10 +4,7 @@ namespace EnemyAi
 {
     public class EnemyRandomRotate : EnemyRotate 
     {
-        public EnemyRandomRotate(Enemy enemy) : base(enemy)
-        {
-        }
-
+        public EnemyRandomRotate(Enemy enemy) : base(enemy) { }
         public override void RandomRotate()
         {
             if (enemy.isRundomRotate)

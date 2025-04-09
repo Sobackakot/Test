@@ -5,7 +5,6 @@ namespace EnemyAi
     public class AirEenemy : Enemy
     {
         
-    }
-
+    } 
 }
 
