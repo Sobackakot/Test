@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using EnemyAi.Behaviour;
 namespace EnemyAi
 {
     public class EnemyRandomRotate : EnemyRotate 

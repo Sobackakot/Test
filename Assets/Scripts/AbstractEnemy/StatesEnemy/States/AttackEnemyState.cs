@@ -1,5 +1,5 @@
 using EnemyAi;
-using State;
+using EnemyAi.State;
 using UnityEngine;
 
 public class AttackEnemyState : EnemyStateBase

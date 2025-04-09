@@ -1,7 +1,7 @@
 
 using EnemyAi;
 
-namespace State
+namespace EnemyAi.State
 {
     public abstract class EnemyStateBase : IStateGame
     {

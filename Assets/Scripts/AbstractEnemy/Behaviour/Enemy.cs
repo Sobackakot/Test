@@ -32,8 +32,7 @@ namespace EnemyAi
             rb = GetComponent<Rigidbody>();
             tr = GetComponent<Transform>();
             target = FindObjectOfType<TargetMove>().transform; 
-        }
-
+        } 
         private void Update()
         {
             TimerRoutine();
@@ -42,8 +41,7 @@ namespace EnemyAi
             isLoockTarget = IsMinDistance(minDistanceLoockTarget);
             isAttackTarget = IsMinDistance(minDistanceAttackTarget);
             isFollowTarget = IsMinDistance(minDistanceFollowTarget);
-        } 
-   
+        }  
         private bool IsMinDistance(float minDistance)
         {
             return Vector3.Distance(tr.position, target.position) <= minDistance;
@@ -57,8 +55,7 @@ namespace EnemyAi
                 if (!isFollowTarget)
                     StartCoroutine(IdleCoroutine());
             }
-        }
-
+        } 
         private IEnumerator IdleCoroutine()
         {
             isIdle = true;

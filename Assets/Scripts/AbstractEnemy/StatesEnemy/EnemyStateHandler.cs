@@ -1,21 +1,24 @@
-using EnemyAi;
-using State; 
+using EnemyAi; 
 using UnityEngine;
 
-public class EnemyStateHandler 
+namespace EnemyAi.State
 {
-    public IStateGame currentState;
-    public void SetState(IStateGame newState)
+    public class EnemyStateHandler
     {
-        if(currentState != newState)
+        public IStateGame currentState;
+        public void SetState(IStateGame newState)
         {
-            currentState?.ExitState();
-            currentState = newState;
-            currentState?.EnterState();
-        }   
-    }
-    public void UpdateState()
-    {
-        currentState?.UpdateState();
+            if (currentState != newState)
+            {
+                currentState?.ExitState();
+                currentState = newState;
+                currentState?.EnterState();
+            }
+        }
+        public void UpdateState()
+        {
+            currentState?.UpdateState();
+        }
     }
 }
+

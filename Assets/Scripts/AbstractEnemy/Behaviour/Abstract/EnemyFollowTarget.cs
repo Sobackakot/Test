@@ -1,4 +1,5 @@
 using UnityEngine;
+using EnemyAi.Behaviour;
 
 namespace EnemyAi
 {
