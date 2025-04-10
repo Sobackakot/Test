@@ -171,6 +171,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5252696138605755680, guid: 1a7810090b7f053458cc32719c9aa7d5, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 4566c34b54220954ea564b9601e5f86f, type: 2}
+    - target: {fileID: 5252696138605755680, guid: 1a7810090b7f053458cc32719c9aa7d5, type: 3}
       propertyPath: minDistanceLoockTarget
       value: 30
       objectReference: {fileID: 0}
@@ -212,21 +216,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65f892647bf05e94cbe3e2a33907e9b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistanceLoockTarget: 30
-  minDistanceFollowTarget: 20
-  minDistanceAttackTarget: 5
-  timer: 5
-  waitIdle: 3
-  minAngle: 30
-  maxAngle: 120
-  speedMove: 5
-  angleRotate: 3
+  <timeAFC>k__BackingField: 5
   <isIdle>k__BackingField: 0
   <isRundomMove>k__BackingField: 0
   <isRundomRotate>k__BackingField: 0
   <isFollowTarget>k__BackingField: 0
   <isLoockTarget>k__BackingField: 0
   <isAttackTarget>k__BackingField: 0
+  data: {fileID: 11400000, guid: 93a6a5c02a3021a468848aa1fd14d712, type: 2}
 --- !u!1 &162937397
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,21 +422,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36423f79e27484d4281786007298e611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistanceLoockTarget: 30
-  minDistanceFollowTarget: 15
-  minDistanceAttackTarget: 3
-  timer: 5
-  waitIdle: 3
-  minAngle: 30
-  maxAngle: 120
-  speedMove: 5
-  angleRotate: 3
+  <timeAFC>k__BackingField: 5
   <isIdle>k__BackingField: 0
   <isRundomMove>k__BackingField: 0
   <isRundomRotate>k__BackingField: 0
   <isFollowTarget>k__BackingField: 0
   <isLoockTarget>k__BackingField: 0
   <isAttackTarget>k__BackingField: 0
+  data: {fileID: 11400000, guid: 342f6df7ea5f87d4b8412edfb107c7f5, type: 2}
 --- !u!54 &333117893
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -479,8 +469,8 @@ GameObject:
   - component: {fileID: 405031582}
   - component: {fileID: 405031581}
   - component: {fileID: 405031580}
-  - component: {fileID: 405031579}
   - component: {fileID: 405031584}
+  - component: {fileID: 405031579}
   m_Layer: 0
   m_Name: AirEnemy
   m_TagString: Untagged
@@ -500,21 +490,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31aa81f8f88edc84d866829e82aa0de1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistanceLoockTarget: 30
-  minDistanceFollowTarget: 15
-  minDistanceAttackTarget: 3
-  timer: 5
-  waitIdle: 3
-  minAngle: 30
-  maxAngle: 120
-  speedMove: 5
-  angleRotate: 3
+  <timeAFC>k__BackingField: 5
   <isIdle>k__BackingField: 0
   <isRundomMove>k__BackingField: 0
   <isRundomRotate>k__BackingField: 0
   <isFollowTarget>k__BackingField: 0
   <isLoockTarget>k__BackingField: 0
   <isAttackTarget>k__BackingField: 0
+  data: {fileID: 11400000, guid: c397e8c1a4d570842a0d4578e5d613b0, type: 2}
 --- !u!65 &405031580
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -770,6 +753,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4530110729511802988, guid: e67c30dfe96401b438e70e4be13c47a5, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: d404f46b6467b694dabc1853f2f5fc24, type: 2}
     - target: {fileID: 4530110729511802988, guid: e67c30dfe96401b438e70e4be13c47a5, type: 3}
       propertyPath: minDistanceAttackTarget
       value: 5
@@ -1304,6 +1291,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2990967915064432251, guid: bc54188a29ec72c40b3035bae610aec1, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: f036cb67c0dd9c941b9575a82e5dc787, type: 2}
     - target: {fileID: 2990967915064432251, guid: bc54188a29ec72c40b3035bae610aec1, type: 3}
       propertyPath: minDistanceAttackTarget
       value: 5

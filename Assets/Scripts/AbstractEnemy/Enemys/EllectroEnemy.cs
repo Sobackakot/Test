@@ -5,7 +5,8 @@ namespace EnemyAi
 {
     public class EllectroEnemy : Enemy
     {
-        
+        public EnemyData data;
+     
     }
 }
 
