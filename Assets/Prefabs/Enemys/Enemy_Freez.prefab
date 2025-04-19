@@ -121,8 +121,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58c49941a64b9394ab668390558625a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 5960903285117791088, guid: 227e0a6c5b1992d44bc5374ce9cac11a, type: 3}
-  speed: 4
+  <timeAFC>k__BackingField: 5
+  <isIdle>k__BackingField: 0
+  <isRundomMove>k__BackingField: 0
+  <isRundomRotate>k__BackingField: 0
+  <isFollowTarget>k__BackingField: 0
+  <isLoockTarget>k__BackingField: 0
+  <isAttackTarget>k__BackingField: 0
+  data: {fileID: 11400000, guid: 93a6a5c02a3021a468848aa1fd14d712, type: 2}
 --- !u!54 &5056424746408092235
 Rigidbody:
   m_ObjectHideFlags: 0

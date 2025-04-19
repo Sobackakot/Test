@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8965443675027602991}
   - component: {fileID: 4475964028371548721}
   - component: {fileID: 7721285257132931567}
+  - component: {fileID: 2664971554939403204}
   m_Layer: 0
   m_Name: DefaultEnemy
   m_TagString: Untagged
@@ -133,3 +134,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2664971554939403204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7346975806505124466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65f892647bf05e94cbe3e2a33907e9b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <timeAFC>k__BackingField: 5
+  <isIdle>k__BackingField: 0
+  <isRundomMove>k__BackingField: 0
+  <isRundomRotate>k__BackingField: 0
+  <isFollowTarget>k__BackingField: 0
+  <isLoockTarget>k__BackingField: 0
+  <isAttackTarget>k__BackingField: 0
+  data: {fileID: 11400000, guid: c397e8c1a4d570842a0d4578e5d613b0, type: 2}

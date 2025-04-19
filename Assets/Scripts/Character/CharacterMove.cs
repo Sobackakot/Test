@@ -15,11 +15,13 @@ public class CharacterMove : MonoBehaviour
     } 
     private void OnEnable()
     {
-        input.onMoving += Input_OnMoving;
+        if(input!=null)
+            input.onMoving += Input_OnMoving;
     }
     private void OnDisable()
     {
-        input.onMoving -= Input_OnMoving;
+        if (input != null)
+            input.onMoving -= Input_OnMoving;
     }
     private void FixedUpdate()
     {

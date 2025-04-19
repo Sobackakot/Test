@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f571b0b128f7fd5478bfddfda849a61e, type: 3}
-  m_Name: enemy 2
+  m_Name: freez
   m_EditorClassIdentifier: 
-  <id>k__BackingField: 3
-  <EnemyType>k__BackingField: 3
+  <id>k__BackingField: 2
+  <EnemyType>k__BackingField: 2
   <minDistanceLoockTarget>k__BackingField: 30
   <minDistanceFollowTarget>k__BackingField: 20
   <minDistanceAttackTarget>k__BackingField: 5
