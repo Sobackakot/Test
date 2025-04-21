@@ -7,7 +7,7 @@ namespace EnemyAi.Behaviour
         IEnemyIdle,
         IEnemyMove,
         IEnemyRotate,
-        IEnemyRandoMove,
+        IEnemyRandomMove,
         IEnemyRandomRotate,
         IEnemyFollowTarget,
         IEnemyLoockTarget,

@@ -6,7 +6,7 @@ namespace EnemyAi.State
     public abstract class EnemyStateBase : IStateGame
     {
         public EnemyStateBase(IEnemyIdle idle,
-        IEnemyRandoMove randomMove,
+        IEnemyRandomMove randomMove,
         IEnemyRandomRotate randomRotate,
         IEnemyFollowTarget followTarget,
         IEnemyLoockTarget loockTarget,
@@ -21,7 +21,7 @@ namespace EnemyAi.State
         }
 
         public readonly IEnemyIdle idle;
-        public readonly IEnemyRandoMove randomMove;
+        public readonly IEnemyRandomMove randomMove;
         public readonly IEnemyRandomRotate randomRotate;
         public readonly IEnemyFollowTarget followTarget;
         public readonly IEnemyLoockTarget loockTarget;

@@ -5,7 +5,7 @@ public class MoveEnemyState :  EnemyStateBase
 {
     public MoveEnemyState(
 
-        IEnemyRandoMove randomMove,
+        IEnemyRandomMove randomMove,
         IEnemyRandomRotate randomRotate)
 
         : base(null, randomMove,randomRotate, null, null, null) { }

@@ -19,12 +19,25 @@ public class UserAccess : MonoBehaviour
         foreach (var enemy in enemys)
         {
             var handler = new EnemyStateHandler();
-            var behaviour = new EnemyBehaviourHandler(enemy);
-            handler.SetState(new IdleEnemyState(behaviour.Idle, behaviour.Rotate, behaviour.Loock));
+            var behaviour = new EnemyBehaviourHandler();
+
+            InitializeBehaviours(behaviour, enemy);
+            handler.SetState(new IdleEnemyState(behaviour.idle, behaviour.ranRot, behaviour.loockTar));
+
             handlersState[enemy] = handler;
             handlersBehaviour[enemy] = behaviour;
         }
     } 
+    private void InitializeBehaviours(EnemyBehaviourHandler behaviour, Enemy enemy)
+    { 
+        behaviour.InitIdleBehaviour(new EnemyIdle(enemy));
+        behaviour.InitMoveBehaviour(new EnemyMove(enemy));
+        behaviour.InitRotateBehaviour(new EnemyRotate(enemy));
+        behaviour.InitRandomMove(new EnemyRandomMove(enemy));
+        behaviour.InitRandomRotate(new EnemyRandomRotate(enemy));
+        behaviour.InitFollowTarget(new EnemyFollowTarget(enemy));
+        behaviour.InitLoockTarget(new EnemyLoockTarget(enemy));
+    }
     private void Update()
     {
         foreach (var enemy in enemys)
@@ -37,14 +50,14 @@ public class UserAccess : MonoBehaviour
     } 
     private void ChangeState(Enemy enemy)
     {
-        var handler = handlersState[enemy]; 
-        if (enemy.isAttackTarget)
-            handler.SetState(new AttackEnemyState(handlersBehaviour[enemy].Follow, handlersBehaviour[enemy].Loock, handlersBehaviour[enemy].Attack));
-        else if (enemy.isFollowTarget)
-            handler.SetState(new FollowEnemyState(handlersBehaviour[enemy].Follow, handlersBehaviour[enemy].Loock));
+        var state = handlersState[enemy];
+        var behaviour = handlersBehaviour[enemy];
+
+        if (enemy.isFollowTarget)
+            state.SetState(new FollowEnemyState(behaviour.followTar, behaviour.loockTar));
         else if (!enemy.isIdle && !enemy.isFollowTarget)
-            handler.SetState(new MoveEnemyState(handlersBehaviour[enemy].RanMove, handlersBehaviour[enemy].RanRotate));
+            state.SetState(new MoveEnemyState(behaviour.ranMove, behaviour.ranRot));
         else if (enemy.isIdle)
-            handler.SetState(new IdleEnemyState(handlersBehaviour[enemy].Idle, handlersBehaviour[enemy].RanRotate, handlersBehaviour[enemy].Loock));
+            state.SetState(new IdleEnemyState(behaviour.idle, behaviour.ranRot, behaviour.loockTar));
     }  
 }

@@ -9,8 +9,8 @@ namespace EnemyAi
         {
             if (enemy.isLoockTarget)
             {
-                Vector3 targetMove = (enemy.target.position - enemy.tr.position).normalized;
-                Quaternion targetRotation = Quaternion.LookRotation(new Vector3(targetMove.x, 0, targetMove.z));
+                Vector3 loockTarget = (enemy.target.position - enemy.tr.position).normalized;
+                Quaternion targetRotation = Quaternion.LookRotation(new Vector3(loockTarget.x, 0, loockTarget.z));
                 Rotating(targetRotation);
             }
         }

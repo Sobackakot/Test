@@ -2,7 +2,7 @@
 using UnityEngine;
 namespace EnemyAi
 { 
-    public interface IEnemyRandoMove
+    public interface IEnemyRandomMove
     { 
         void RandomMove(); 
     }
