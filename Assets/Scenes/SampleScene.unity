@@ -1153,7 +1153,7 @@ Transform:
   m_GameObject: {fileID: 1162300340}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: -13.6, y: 2, z: -2}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1737,7 +1737,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: LMB/A/S/D
+  m_Text: W/A/S/D
 --- !u!222 &1648410233
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1907,6 +1907,7 @@ MonoBehaviour:
   m_BindingText: {fileID: 1648410232}
   m_RebindOverlay: {fileID: 340790501}
   m_RebindText: {fileID: 1520273739}
+  m_DefaultInputActions: {fileID: -944628639613478452, guid: f2a22b3ab388d0343b7c6c8f7771c0d5, type: 3}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
       m_Calls: []

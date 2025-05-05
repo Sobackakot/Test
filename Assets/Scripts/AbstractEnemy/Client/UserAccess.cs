@@ -30,9 +30,7 @@ public class UserAccess : MonoBehaviour
     } 
     private void InitializeBehaviours(EnemyBehaviourHandler behaviour, Enemy enemy)
     { 
-        behaviour.InitIdleBehaviour(new EnemyIdle(enemy));
-        behaviour.InitMoveBehaviour(new EnemyMove(enemy));
-        behaviour.InitRotateBehaviour(new EnemyRotate(enemy));
+        behaviour.InitIdleBehaviour(new EnemyIdle(enemy)); 
         behaviour.InitRandomMove(new EnemyRandomMove(enemy));
         behaviour.InitRandomRotate(new EnemyRandomRotate(enemy));
         behaviour.InitFollowTarget(new EnemyFollowTarget(enemy));
