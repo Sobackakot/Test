@@ -2,7 +2,7 @@
 using UnityEngine;
 namespace EnemyAi
 { 
-    public interface IEnemyRotate
+    public interface IEnemyRotate: IBehaviourHandler
     { 
         void Rotating(Quaternion targetRotation); 
     }

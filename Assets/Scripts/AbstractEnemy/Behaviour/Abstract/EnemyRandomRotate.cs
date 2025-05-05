@@ -1,11 +1,11 @@
-using UnityEngine;
-using EnemyAi.Behaviour;
+using UnityEngine; 
 namespace EnemyAi
 {
-    public class EnemyRandomRotate : EnemyRotate 
+    public class EnemyRandomRotate : EnemyLoockTarget
     {
         private float time;
         public EnemyRandomRotate(Enemy enemy) : base(enemy) { }
+ 
         public override void RandomRotate()
         {
             if (enemy.isRundomRotate )

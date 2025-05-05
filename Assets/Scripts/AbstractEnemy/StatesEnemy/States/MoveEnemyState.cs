@@ -3,17 +3,11 @@ using EnemyAi.State;
 using UnityEngine;
 public class MoveEnemyState :  EnemyStateBase
 {
-    public MoveEnemyState(
-
-        IEnemyRandomMove randomMove,
-        IEnemyRandomRotate randomRotate)
-
-        : base(null, randomMove,randomRotate, null, null, null) { }
+    public MoveEnemyState(IBehaviourHandler behaviour) : base(behaviour) { }
     public override void EnterState() { }
     public override void ExitState() { }
     public override void UpdateState()
     {
-        randomMove.RandomMove();
-        randomRotate.RandomRotate();
+        behaviour.Update();
     }  
 }

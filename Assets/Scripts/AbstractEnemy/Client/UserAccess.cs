@@ -22,7 +22,7 @@ public class UserAccess : MonoBehaviour
             var behaviour = new EnemyBehaviourHandler();
 
             InitializeBehaviours(behaviour, enemy);
-            handler.SetState(new IdleEnemyState(behaviour.idle, behaviour.ranRot, behaviour.loockTar));
+            handler.SetState(new IdleEnemyState(behaviour.idle));
 
             handlersState[enemy] = handler;
             handlersBehaviour[enemy] = behaviour;
@@ -54,10 +54,10 @@ public class UserAccess : MonoBehaviour
         var behaviour = handlersBehaviour[enemy];
 
         if (enemy.isFollowTarget)
-            state.SetState(new FollowEnemyState(behaviour.followTar, behaviour.loockTar));
+            state.SetState(new FollowEnemyState(behaviour.followTar));
         else if (!enemy.isIdle && !enemy.isFollowTarget)
-            state.SetState(new MoveEnemyState(behaviour.ranMove, behaviour.ranRot));
+            state.SetState(new MoveEnemyState(behaviour.ranMove));
         else if (enemy.isIdle)
-            state.SetState(new IdleEnemyState(behaviour.idle, behaviour.ranRot, behaviour.loockTar));
+            state.SetState(new IdleEnemyState(behaviour.idle));
     }  
 }

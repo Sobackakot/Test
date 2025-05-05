@@ -2,9 +2,10 @@ using UnityEngine;
 using EnemyAi.Behaviour;
 namespace EnemyAi
 {
-    public class EnemyRotate : EnemyBehaviourBase 
+    public class EnemyRotate : EnemyMove
     {
         public EnemyRotate(Enemy enemy) : base(enemy) { }
+ 
         public override void Rotating(Quaternion targetRotation)
         {
             Quaternion newRot = Quaternion.Slerp(enemy.tr.rotation, targetRotation, enemy.angleRotate * Time.fixedDeltaTime);
