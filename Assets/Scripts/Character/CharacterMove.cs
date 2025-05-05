@@ -29,7 +29,9 @@ public class CharacterMove : MonoBehaviour
     }
     private void Input_OnMoving(Vector2 input)
     {
-        inputAxis = new Vector3(input.x, 0, input.y);
+        float x = Input.GetAxis("Horizontal");
+        float y = Input.GetAxis("Vertical");
+        inputAxis = new Vector3(x, 0, y);
     }
     private void Moving(Vector3  input)
     {

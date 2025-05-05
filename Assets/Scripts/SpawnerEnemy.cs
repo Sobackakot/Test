@@ -47,7 +47,8 @@ public class SpawnerEnemy : MonoBehaviour
             }
         }
     }
-    public IEnumerator WaitTimeForSpawn() // call from  class EnemyH after the enemy was turned off
+    // call from  class EnemyH after the enemy was turned off
+    public IEnumerator WaitTimeForSpawn()
     {
         yield return new WaitForSeconds(3);
         RespawnEnemy();
