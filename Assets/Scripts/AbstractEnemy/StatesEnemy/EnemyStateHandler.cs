@@ -54,8 +54,7 @@ namespace State.Enemy
         public void LateUpdateState()
         {
             currentState?.LateUpdateState();
-        }
-
+        } 
         public void FixedUpdateState()
         {
             currentState?.FixedUpdateState();
