@@ -1,4 +1,6 @@
 
+using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine; 
 
@@ -26,6 +28,7 @@ public class CharacterMove : MonoBehaviour
     private void FixedUpdate()
     {
         Moving(inputAxis);
+        Sprint();
     }
     private void Input_OnMoving(Vector2 input)
     {
@@ -37,4 +40,30 @@ public class CharacterMove : MonoBehaviour
     {
         rbChar.MovePosition(rbChar.position + input * speedMove * Time.fixedDeltaTime);
     }
+    bool isSprinting = true; 
+    public void Sprint()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) & isSprinting)
+        {
+            StartCoroutine(SprintWaitTime());
+            speedMove = 15;
+        }
+        else
+        { 
+            StopCoroutine(SprintWaitTime());
+            StartCoroutine(SprintWaitTime2());
+            speedMove = 5;
+        }
+    }
+    public IEnumerator SprintWaitTime()
+    {
+        yield return new WaitForSeconds(7);
+        isSprinting = false; 
+    } 
+    public IEnumerator SprintWaitTime2()
+    {
+        yield return new WaitForSeconds(7);
+        isSprinting = true; 
+    }
+  
 }

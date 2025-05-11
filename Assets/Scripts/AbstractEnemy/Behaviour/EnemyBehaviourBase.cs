@@ -17,7 +17,7 @@ namespace EnemyAi.Behaviour
         {
             this.enemy = enemy;
         }
-        public Enemy enemy { get; private set; }
+        public Enemy enemy { get; set; }
         public virtual void IdleState()
         {
         }
@@ -54,6 +54,12 @@ namespace EnemyAi.Behaviour
 
         public virtual void Update()
         { 
+        }
+        public virtual void LateUpdate()
+        {
+        }
+        public virtual void FixedUpdate()
+        {
         }
     }
 }

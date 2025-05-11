@@ -16,6 +16,14 @@ namespace EnemyAi
         public override void Update()
         {
             IdleState();
+           
+        }
+         public override void LateUpdate()
+        {
+
+        }
+        public override void FixedUpdate()
+        {
             RandomRotate();
             LoockTarget();
         }

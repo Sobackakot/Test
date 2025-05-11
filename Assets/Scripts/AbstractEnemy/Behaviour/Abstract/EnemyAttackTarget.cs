@@ -13,12 +13,20 @@ namespace EnemyAi
         public override void Exit()
         {
         }
-
         public override void Update()
         {
             AttackTarget();
+        }
+        public override void LateUpdate()
+        {
+
+        }
+        public override void FixedUpdate()
+        {
+            
             LoockTarget();
         }
+     
         public override void AttackTarget()
         {
             if (enemy.isAttackTarget)

@@ -13,6 +13,14 @@ namespace EnemyAi
 
         public override void Update()
         {
+           
+        }
+        public override void LateUpdate()
+        {
+
+        }
+        public override void FixedUpdate()
+        {
             RandomMove();
             RandomRotate();
         }

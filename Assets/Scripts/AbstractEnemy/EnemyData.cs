@@ -1,20 +1,17 @@
 
 using EnemyAi;
+using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Enemy data", menuName = "Data/Enemy")]
-public class EnemyData : ScriptableObject
+[Serializable] 
+public class EnemyData  
 {
-    [field: SerializeField] public string id { get; private set; }
-    [field: SerializeField] public EnemyType EnemyType { get; private set; }
-
-    [field: Range(3, 30), SerializeField] public float minDistanceLoockTarget { get; private set; } = 30;
-    [field: Range(3, 20), SerializeField] public float minDistanceFollowTarget { get; private set; } = 25;
-    [field: Range(0.5f, 5), SerializeField] public float minDistanceAttackTarget { get; private set; } = 6;
-    [field: Range(15, 45), SerializeField] public float minAngle { get; private set; } = 30f;
-    [field: Range(60, 120), SerializeField] public float maxAngle { get; private set; } = 120f;
-    [field: Range(3, 6), SerializeField] public  float speedMove { get; private set; } = 5f;
-    [field: Range(1, 45), SerializeField] public float angleRotate { get; private set; } = 3f;
+    [field: SerializeField] public bool isIdle { get; private set; }
+    [field: SerializeField] public bool isRundomMove { get; private set; }
+    [field: SerializeField] public bool isRundomRotate { get; private set; }
+    [field: SerializeField] public bool isFollowTarget { get; private set; }
+    [field: SerializeField] public bool isLoockTarget { get; private set; }
+    [field: SerializeField] public bool isAttackTarget { get; private set; }
 
 }
 public enum EnemyType

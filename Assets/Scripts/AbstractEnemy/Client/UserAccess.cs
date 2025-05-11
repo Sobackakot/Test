@@ -1,9 +1,9 @@
 
 using System.Collections.Generic; 
 using UnityEngine;
-using EnemyAi.Behaviour;
-using EnemyAi.State;
+using EnemyAi.Behaviour; 
 using EnemyAi;
+using State.Enemy;
 
 public class UserAccess : MonoBehaviour
 {
@@ -18,44 +18,48 @@ public class UserAccess : MonoBehaviour
     { 
         foreach (var enemy in enemys)
         {
-            var handler = new EnemyStateHandler();
-            var behaviour = new EnemyBehaviourHandler();
+            var stateHandler = new EnemyStateHandler();
+            var behaviours = new EnemyBehaviourHandler();
 
-            InitializeBehaviours(behaviour, enemy);
-            handler.SetState(new IdleEnemyState(behaviour.idle));
+            InitializeBehaviours(behaviours, enemy);
+            RegisterStates(stateHandler, behaviours);
+            stateHandler.SetState(StateType.Idle);
 
-            handlersState[enemy] = handler;
-            handlersBehaviour[enemy] = behaviour;
+            handlersState[enemy] = stateHandler;
+            handlersBehaviour[enemy] = behaviours;
         }
-    } 
+    }
     private void InitializeBehaviours(EnemyBehaviourHandler behaviour, Enemy enemy)
-    { 
-        behaviour.InitIdleBehaviour(new EnemyIdle(enemy)); 
+    {
+        behaviour.InitIdleBehaviour(new EnemyIdle(enemy));
         behaviour.InitRandomMove(new EnemyRandomMove(enemy));
         behaviour.InitRandomRotate(new EnemyRandomRotate(enemy));
         behaviour.InitFollowTarget(new EnemyFollowTarget(enemy));
         behaviour.InitLoockTarget(new EnemyLoockTarget(enemy));
+        behaviour.InitAttackTarget(new EnemyAttackTarget(enemy));
     }
-    private void Update()
+    public void RegisterStates(EnemyStateHandler stateHandler, EnemyBehaviourHandler behaviour)
     {
-        foreach (var enemy in enemys)
-            ChangeState(enemy);
-    } 
-    private void FixedUpdate()
+        stateHandler.RegisterState(StateType.Idle, new IdleEnemyState(stateHandler, behaviour.idle));
+        stateHandler.RegisterState(StateType.Move, new MoveEnemyState(stateHandler, behaviour.ranMove));
+        stateHandler.RegisterState(StateType.Follow, new FollowEnemyState(stateHandler, behaviour.followTar)); 
+        stateHandler.RegisterState(StateType.Follow, new AttackEnemyState(stateHandler, behaviour.attack)); 
+    }
+
+   
+    private void Update()
     {
         foreach (var handler in handlersState.Values)
             handler.UpdateState();
-    } 
-    private void ChangeState(Enemy enemy)
+    }
+    private void LateUpdate()
     {
-        var state = handlersState[enemy];
-        var behaviour = handlersBehaviour[enemy];
-
-        if (enemy.isFollowTarget)
-            state.SetState(new FollowEnemyState(behaviour.followTar));
-        else if (!enemy.isIdle && !enemy.isFollowTarget)
-            state.SetState(new MoveEnemyState(behaviour.ranMove));
-        else if (enemy.isIdle)
-            state.SetState(new IdleEnemyState(behaviour.idle));
-    }  
+        foreach (var handler in handlersState.Values)
+            handler.LateUpdateState();
+    }
+    private void FixedUpdate()
+    {
+        foreach (var handler in handlersState.Values)
+            handler.FixedUpdateState();
+    }
 }
