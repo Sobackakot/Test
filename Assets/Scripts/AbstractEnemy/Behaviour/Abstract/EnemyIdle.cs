@@ -30,8 +30,7 @@ namespace EnemyAi
         public override void IdleState()
         {
             if (enemy.isIdle && !enemy.isRundomMove && !enemy.isFollowTarget)
-            {
-                Debug.Log("Idle Behaviour ");
+            { 
             }
         } 
     }

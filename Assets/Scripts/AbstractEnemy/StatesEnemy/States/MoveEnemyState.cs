@@ -17,8 +17,7 @@ public class MoveEnemyState :  EnemyStateBase
         stateMachine.AddTransition(type, () => behaviour.enemy.isFollowTarget ? StateType.Follow : type);
     }
     public override void ExitState()
-    {
-        Debug.Log(behaviour.enemy.name +" " +  this.GetType());
+    { 
         behaviour.Exit();
     }
     public override void UpdateState()
