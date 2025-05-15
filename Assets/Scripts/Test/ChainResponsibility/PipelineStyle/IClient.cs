@@ -1,5 +1,5 @@
 
-namespace Chain.Service.Client
+namespace Pipeline.Service.Client
 {
     public interface IClient
     {

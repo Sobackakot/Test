@@ -1,4 +1,4 @@
-namespace Chain.Service.Client
+namespace Pipeline.Service.Client
 {
     public class CarKlient : IClient
     {

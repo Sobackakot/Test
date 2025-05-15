@@ -1,5 +1,5 @@
-using Chain.Service;
-using Chain.Service.Client;
+using Pipeline.Service;
+using Pipeline.Service.Client;
 using UnityEngine;
 
 public class MainChain : MonoBehaviour
@@ -10,22 +10,18 @@ public class MainChain : MonoBehaviour
         var detailer = new DetailerServiceHandler();
         var wheels = new WheelSpecialistServiceHandler();
         var qa = new QualityControlServiceHandler();
-        qa.SetNextServiceHandler(detailer);
-        wheels.SetNextServiceHandler(qa);
+
+
+        mechanic.Service(new CarKlient { Requirements = ServiceRequirements.EngineTune });
         mechanic.SetNextServiceHandler(wheels);
 
-        Debug.Log("Car 1 is dirty");
+        wheels.Service(new CarKlient { Requirements = ServiceRequirements.WheelAlignment });
+        wheels.SetNextServiceHandler(detailer);
+
+        detailer.Service(new CarKlient { Requirements = ServiceRequirements.Dirty });
+        detailer.SetNextServiceHandler(qa);
+
+        qa.Service(new CarKlient { Requirements = ServiceRequirements.TestDrive });
         
-        mechanic.Service(new CarKlient { Requirements = ServiceRequirements.Dirty });
-
-        Debug.Log("Car 2 requires full service");
-
-        mechanic.Service(new CarKlient
-        {
-            Requirements = ServiceRequirements.Dirty |
-            ServiceRequirements.EngineTune |
-            ServiceRequirements.TestDrive |
-            ServiceRequirements.WheelAlignment
-        });
     } 
 }
