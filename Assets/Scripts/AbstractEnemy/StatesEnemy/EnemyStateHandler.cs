@@ -10,8 +10,8 @@ namespace State.Enemy
         public StateType currentStateType;
 
         private readonly Dictionary<StateType, IStateGame> states = new();
-        private readonly Dictionary<StateType, List<Func<StateType>>> transitions = new();
-
+        public readonly Dictionary<StateType, List<Func<StateType>>> transitions = new();
+         
         public void SetState(StateType stateType)
         {
             if (!states.ContainsKey(stateType)) return;
@@ -34,12 +34,11 @@ namespace State.Enemy
                 states[stateType] = state;
         }
        
-
-        public void UpdateState()
+        public void TryTransition()
         {
-            if(transitions.TryGetValue(currentStateType, out List<Func<StateType>> rules))
+            if (transitions.TryGetValue(currentStateType, out List<Func<StateType>> rules))
             {
-                foreach(var rule in rules)
+                foreach (var rule in rules)
                 {
                     StateType newStateType = rule.Invoke();
                     if (!EqualityComparer<StateType>.Default.Equals(newStateType, currentStateType))
@@ -49,6 +48,10 @@ namespace State.Enemy
                     }
                 }
             }
+        }
+
+        public void UpdateState()
+        { 
             currentState?.UpdateState();
         }
         public void LateUpdateState()

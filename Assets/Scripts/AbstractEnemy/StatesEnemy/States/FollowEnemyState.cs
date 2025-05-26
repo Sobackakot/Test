@@ -6,13 +6,14 @@ public class FollowEnemyState : EnemyStateBase
 {
     public FollowEnemyState(IStateMachine stateMachine, IBehaviourHandler behaviour) : base(stateMachine, behaviour)
     {
+        var type = StateType.Follow;
+        stateMachine.AddTransition(type, () => !behaviour.enemy.isFollowTarget ? StateType.Idle : type);
     }
 
     public override void EnterState() 
     { 
         behaviour.Enter();
-        var type = StateType.Follow;
-        stateMachine.AddTransition(type, () => !behaviour.enemy.isFollowTarget ? StateType.Idle : type);
+        
     }
     public override void ExitState() 
     {

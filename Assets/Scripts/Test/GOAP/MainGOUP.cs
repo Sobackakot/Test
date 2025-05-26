@@ -9,12 +9,13 @@ public class MainGOUP : MonoBehaviour
     {
         character = FindObjectOfType<Character>();
         context = new(character);
-        planer = new();
+        planer = new(); 
     }
     private void Update()
     {
         planer.AddAction(new MoveAction());
         planer.AddAction(new AttckAction());
         planer.Run(context);
+        
     }
 }

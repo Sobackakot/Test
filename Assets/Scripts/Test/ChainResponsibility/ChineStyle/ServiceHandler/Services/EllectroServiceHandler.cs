@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
+using Chain.Service;
+using Chain.Service.Client;
 using UnityEngine;
 
-public class EllectroServiceHandler : MonoBehaviour
+public class EllectroServiceHandler : HandlerBotBase
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Handle(IClient client)
     {
-        
+        if(client.elementType == ElementType.Fire)
+        {
+            Debug.Log("Ellecting");
+            return;
+        }
+        base.Handle(client);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

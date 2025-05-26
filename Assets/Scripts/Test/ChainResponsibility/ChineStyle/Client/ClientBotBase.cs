@@ -7,7 +7,13 @@ namespace Chain.Service.Client
 {
     public abstract class ClientBotBase : IClient
     {
-        public ElementType elementType { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public ClientBotBase(ElementType elementType)
+        {
+            this.elementType = elementType;
+        }
+
+        public ElementType elementType { get; set; }
+
     }
 }
 

@@ -8,7 +8,7 @@ namespace EnemyAi
  
         public override void RandomRotate()
         {
-            if (enemy.isRundomRotate )
+            if (enemy.isRandomRotate )
             {
                 float turnAmount = 0;
                 float currentY = enemy.tr.eulerAngles.y; 

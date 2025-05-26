@@ -1,5 +1,6 @@
 
-using System.Collections;
+using System;
+using System.Collections; 
 using UnityEngine; 
  
 namespace EnemyAi
@@ -19,13 +20,82 @@ namespace EnemyAi
         [Range(3, 6), SerializeField] public readonly float speedMove = 5f;
         [Range(1, 45), SerializeField] public readonly float angleRotate = 3f;
 
-        [field: Range(1, 45),SerializeField] public float timeAFC { get; private set; }=5f;  
-        [field: SerializeField] public bool isIdle { get; private set; }
-        [field: SerializeField] public bool isRundomMove { get; private set; }
-        [field: SerializeField] public bool isRundomRotate { get; private set; }
-        [field: SerializeField] public bool isFollowTarget { get; private set; }
-        [field: SerializeField] public bool isLoockTarget { get; private set; }
-        [field: SerializeField] public bool isAttackTarget { get; private set; }
+        [field: Range(1, 45),SerializeField] public float timeAFC { get; private set; }=5f;
+
+        public event Action OnIdle;
+        [field: SerializeField] private bool _isIdle;
+        public bool isIdle 
+        { 
+            get => _isIdle; 
+            private set
+            {
+                if (_isIdle == value) return;
+                _isIdle = value;
+                OnIdle?.Invoke();
+            } 
+        }
+        [field: SerializeField] private bool _isRandomMove;
+        public event Action OnRandomeMove;
+        public bool isRundomMove 
+        {
+            get => _isRandomMove; 
+            private set
+            {
+                if (_isRandomMove == value) return;
+                _isRandomMove = value;
+                OnRandomeMove?.Invoke();
+            }
+        }
+        [field: SerializeField] private bool _isRandomRotate;
+        public event Action OnRandomRotate;
+        public bool isRandomRotate 
+        {
+            get => _isRandomRotate; 
+            private set
+            {
+                if (_isRandomRotate == value) return;
+                _isRandomRotate = value;
+                OnRandomRotate?.Invoke();
+            }
+        }
+
+
+        [field: SerializeField] private bool _isFollowTarget;
+        public event Action OnFollowTarget;
+        public bool isFollowTarget 
+        {
+            get => _isFollowTarget; 
+            private set
+            {
+                if (isFollowTarget == value) return;
+                _isFollowTarget = value;
+                OnFollowTarget?.Invoke();
+            }
+        }
+        [field: SerializeField] private bool _isLoockTarget;
+        public event Action OnLoockTarget;
+        public bool isLoockTarget 
+        {
+            get => _isFollowTarget;
+            private set
+            {
+                if (_isFollowTarget == value) return;
+                _isFollowTarget = value;
+                OnLoockTarget?.Invoke();
+            } 
+        }
+        [field: SerializeField] private bool _isAttackTarget;
+        public event Action OnAttackTarget;
+        public bool isAttackTarget 
+        {
+            get => _isAttackTarget;
+            private set
+            {
+                if (_isAttackTarget == value) return;
+                _isAttackTarget = value;
+                OnAttackTarget?.Invoke();
+            }
+        }
 
         protected virtual void Awake()
         {
@@ -37,7 +107,7 @@ namespace EnemyAi
         {
             TimerRoutine();
             isRundomMove = !isIdle && !isFollowTarget;
-            isRundomRotate = !isLoockTarget;
+            isRandomRotate = !isLoockTarget;
             isLoockTarget = IsMinDistance(minDistanceLoockTarget);
             isAttackTarget = IsMinDistance(minDistanceAttackTarget);
             isFollowTarget = IsMinDistance(minDistanceFollowTarget);
@@ -51,7 +121,7 @@ namespace EnemyAi
             timeAFC -= Time.deltaTime;
             if (timeAFC <= 0)
             {
-                timeAFC = Random.Range(3f, 10f);
+                timeAFC = UnityEngine.Random.Range(3f, 10f);
                 if (!isFollowTarget)
                     StartCoroutine(IdleCoroutine());
             }

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class EnTest : MonoBehaviour
 {
+
     private Rigidbody rbEn;
     private Transform trEnm;
     [Range(3,8), SerializeField]
@@ -42,6 +43,7 @@ public class EnTest : MonoBehaviour
         Quaternion newRot = Quaternion.Slerp(trEnm.rotation, targetRotation, 2 * Time.fixedDeltaTime);
         rbEn.MoveRotation(newRot);
     }
+
 
     void SetRandomRotate()
     { 

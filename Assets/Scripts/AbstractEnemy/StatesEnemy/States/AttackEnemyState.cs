@@ -6,13 +6,14 @@ public class AttackEnemyState : EnemyStateBase
 {
     public AttackEnemyState(IStateMachine stateMachine, IBehaviourHandler behaviour) : base(stateMachine, behaviour)
     {
+        var type = StateType.Attack;
+        stateMachine.AddTransition(type, () => !behaviour.enemy.isAttackTarget ? StateType.Idle : type);
     }
 
     public override void EnterState() 
     { 
         behaviour.Enter();
-        var type = StateType.Attack;
-        stateMachine.AddTransition(type, () => !behaviour.enemy.isAttackTarget ? StateType.Idle : type);
+        
     }
     public override void ExitState() 
     {

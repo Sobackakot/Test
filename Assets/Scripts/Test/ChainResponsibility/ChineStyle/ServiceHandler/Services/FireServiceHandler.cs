@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
+using Chain.Service;
+using Chain.Service.Client;
 using UnityEngine;
 
-public class FireServiceHandler : MonoBehaviour
+public class FireServiceHandler : HandlerBotBase
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Handle(IClient client)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if(client.elementType == ElementType.Fire)
+        {
+            Debug.Log("Firing");
+            return;
+        }
+        base.Handle(client);
     }
 }
