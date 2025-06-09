@@ -1,4 +1,4 @@
-using State.Enemy;
+using State.Enemys;
 using System;
 
 namespace State.Machine 

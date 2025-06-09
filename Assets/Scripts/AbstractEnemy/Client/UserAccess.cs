@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using EnemyAi.Behaviour; 
 using EnemyAi;
-using State.Enemy;
+using State.Enemys;
 
 public class UserAccess : MonoBehaviour
 {
@@ -37,7 +37,7 @@ public class UserAccess : MonoBehaviour
             var behaviours = new EnemyBehaviourHandler();
 
             InitializeBehaviours(behaviours, enemy);
-            RegisterStates(stateHandler, behaviours);
+            RegisterStates(stateHandler, behaviours, enemy);
             stateHandler.SetState(StateType.Idle);
 
             handlersState[enemy] = stateHandler;
@@ -53,31 +53,21 @@ public class UserAccess : MonoBehaviour
         behaviour.InitLoockTarget(new EnemyLoockTarget(enemy));
         behaviour.InitAttackTarget(new EnemyAttackTarget(enemy));
     }
-    public void RegisterStates(EnemyStateHandler stateHandler, EnemyBehaviourHandler behaviour)
+    public void RegisterStates(EnemyStateHandler stateHandler, EnemyBehaviourHandler behaviour, Enemy enemy)
     {
-        stateHandler.RegisterState(StateType.Idle, new IdleEnemyState(stateHandler, behaviour.idle));
-        stateHandler.RegisterState(StateType.Move, new MoveEnemyState(stateHandler, behaviour.ranMove));
-        stateHandler.RegisterState(StateType.Follow, new FollowEnemyState(stateHandler, behaviour.followTar));
-        stateHandler.RegisterState(StateType.Follow, new AttackEnemyState(stateHandler, behaviour.attack));
+        stateHandler.RegisterState(StateType.Idle, new IdleEnemyState(stateHandler, behaviour.idle, enemy));
+        stateHandler.RegisterState(StateType.Move, new MoveEnemyState(stateHandler, behaviour.ranMove, enemy));
+        stateHandler.RegisterState(StateType.Follow, new FollowEnemyState(stateHandler, behaviour.followTar, enemy));
+        stateHandler.RegisterState(StateType.Follow, new AttackEnemyState(stateHandler, behaviour.attack, enemy));
     }
 
     private void SubscribeActions(Enemy enemy, EnemyStateHandler stateHandler)
     {
-        enemy.OnIdle += stateHandler.TryTransition;
-        enemy.OnRandomeMove += stateHandler.TryTransition;
-        enemy.OnRandomRotate += stateHandler.TryTransition;
-        enemy.OnFollowTarget += stateHandler.TryTransition;
-        enemy.OnLoockTarget += stateHandler.TryTransition;
-        enemy.OnAttackTarget += stateHandler.TryTransition;
+        enemy.OnExecuteMoveAction += stateHandler.TryTransition; 
     }
     private void UnsubscribeActions(Enemy enemy, EnemyStateHandler stateHandler)
     {
-        enemy.OnIdle -= stateHandler.TryTransition;
-        enemy.OnRandomeMove -= stateHandler.TryTransition;
-        enemy.OnRandomRotate -= stateHandler.TryTransition;
-        enemy.OnFollowTarget -= stateHandler.TryTransition;
-        enemy.OnLoockTarget -= stateHandler.TryTransition;
-        enemy.OnAttackTarget -= stateHandler.TryTransition;
+        enemy.OnExecuteMoveAction -= stateHandler.TryTransition; 
     }
     
     private void Update()

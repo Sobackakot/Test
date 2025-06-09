@@ -1,13 +1,15 @@
-using State.Enemy;
+using EnemyAi;
+using State.Enemys;
 using State.Machine;
 using UnityEngine;
 
 public class FollowEnemyState : EnemyStateBase
 {
-    public FollowEnemyState(IStateMachine stateMachine, IBehaviourHandler behaviour) : base(stateMachine, behaviour)
+    public FollowEnemyState(IStateMachine stateMachine, IBehaviourHandler behaviour, Enemy enemy) 
+        : base(stateMachine, behaviour, enemy)
     {
         var type = StateType.Follow;
-        stateMachine.AddTransition(type, () => !behaviour.enemy.isFollowTarget ? StateType.Idle : type);
+        stateMachine.AddTransition(type, () => !enemy.isFollowTarget ? StateType.Idle : type);
     }
 
     public override void EnterState() 

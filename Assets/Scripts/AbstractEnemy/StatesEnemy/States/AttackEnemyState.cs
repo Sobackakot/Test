@@ -1,13 +1,15 @@
-using State.Enemy;
+using EnemyAi;
+using State.Enemys;
 using State.Machine;
 using UnityEngine;
 
 public class AttackEnemyState : EnemyStateBase
 {
-    public AttackEnemyState(IStateMachine stateMachine, IBehaviourHandler behaviour) : base(stateMachine, behaviour)
+    public AttackEnemyState(IStateMachine stateMachine, IBehaviourHandler behaviour, Enemy enemy) 
+        : base(stateMachine, behaviour, enemy)
     {
         var type = StateType.Attack;
-        stateMachine.AddTransition(type, () => !behaviour.enemy.isAttackTarget ? StateType.Idle : type);
+        stateMachine.AddTransition(type, () => !enemy.isAttackTarget ? StateType.Idle : type);
     }
 
     public override void EnterState() 

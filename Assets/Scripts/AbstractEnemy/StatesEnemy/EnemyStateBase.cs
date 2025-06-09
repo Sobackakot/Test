@@ -2,15 +2,17 @@
 using EnemyAi;
 using State.Machine;
 
-namespace  State.Enemy
+namespace  State.Enemys
 {
     public abstract class EnemyStateBase : IStateGame
     {
-        public EnemyStateBase(IStateMachine stateMachine,IBehaviourHandler behaviour)
+        public EnemyStateBase(IStateMachine stateMachine,IBehaviourHandler behaviour, Enemy enemy)
         {
             this.stateMachine = stateMachine;
-            this.behaviour = behaviour; 
+            this.behaviour = behaviour;
+            this.enemy = enemy;
         }
+        private protected readonly Enemy enemy;
         private protected readonly IStateMachine stateMachine;
         private protected readonly IBehaviourHandler behaviour; 
         public abstract void EnterState();

@@ -5,7 +5,7 @@ namespace EnemyAi
 {
     public class FreezEnemy : Enemy
     {
-        public EnemyData data;
+        public EnemyStateContext data;
      
     }
 }

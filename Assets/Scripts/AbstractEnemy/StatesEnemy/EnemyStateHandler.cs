@@ -2,7 +2,7 @@ using State.Machine;
 using System;
 using System.Collections.Generic;
 
-namespace State.Enemy
+namespace State.Enemys
 {
     public class EnemyStateHandler : IStateMachine
     {

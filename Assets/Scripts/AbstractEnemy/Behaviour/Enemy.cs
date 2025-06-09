@@ -22,7 +22,7 @@ namespace EnemyAi
 
         [field: Range(1, 45),SerializeField] public float timeAFC { get; private set; }=5f;
 
-        public event Action OnIdle;
+        public event Action OnExecuteMoveAction;
         [field: SerializeField] private bool _isIdle;
         public bool isIdle 
         { 
@@ -31,11 +31,10 @@ namespace EnemyAi
             {
                 if (_isIdle == value) return;
                 _isIdle = value;
-                OnIdle?.Invoke();
+                OnExecuteMoveAction?.Invoke();
             } 
         }
-        [field: SerializeField] private bool _isRandomMove;
-        public event Action OnRandomeMove;
+        [field: SerializeField] private bool _isRandomMove; 
         public bool isRundomMove 
         {
             get => _isRandomMove; 
@@ -43,11 +42,10 @@ namespace EnemyAi
             {
                 if (_isRandomMove == value) return;
                 _isRandomMove = value;
-                OnRandomeMove?.Invoke();
+                OnExecuteMoveAction?.Invoke();
             }
         }
-        [field: SerializeField] private bool _isRandomRotate;
-        public event Action OnRandomRotate;
+        [field: SerializeField] private bool _isRandomRotate; 
         public bool isRandomRotate 
         {
             get => _isRandomRotate; 
@@ -55,13 +53,12 @@ namespace EnemyAi
             {
                 if (_isRandomRotate == value) return;
                 _isRandomRotate = value;
-                OnRandomRotate?.Invoke();
+                OnExecuteMoveAction?.Invoke();
             }
         }
 
 
-        [field: SerializeField] private bool _isFollowTarget;
-        public event Action OnFollowTarget;
+        [field: SerializeField] private bool _isFollowTarget; 
         public bool isFollowTarget 
         {
             get => _isFollowTarget; 
@@ -69,11 +66,10 @@ namespace EnemyAi
             {
                 if (isFollowTarget == value) return;
                 _isFollowTarget = value;
-                OnFollowTarget?.Invoke();
+                OnExecuteMoveAction?.Invoke();
             }
         }
-        [field: SerializeField] private bool _isLoockTarget;
-        public event Action OnLoockTarget;
+        [field: SerializeField] private bool _isLoockTarget; 
         public bool isLoockTarget 
         {
             get => _isFollowTarget;
@@ -81,11 +77,10 @@ namespace EnemyAi
             {
                 if (_isFollowTarget == value) return;
                 _isFollowTarget = value;
-                OnLoockTarget?.Invoke();
+                OnExecuteMoveAction?.Invoke();
             } 
         }
-        [field: SerializeField] private bool _isAttackTarget;
-        public event Action OnAttackTarget;
+        [field: SerializeField] private bool _isAttackTarget; 
         public bool isAttackTarget 
         {
             get => _isAttackTarget;
@@ -93,7 +88,7 @@ namespace EnemyAi
             {
                 if (_isAttackTarget == value) return;
                 _isAttackTarget = value;
-                OnAttackTarget?.Invoke();
+                OnExecuteMoveAction?.Invoke();
             }
         }
 
