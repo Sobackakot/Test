@@ -1,6 +1,6 @@
 using UnityEngine; 
 
-namespace EnemyAi
+namespace EnemyAI
 {
     public class EnemyIdle : EnemyRandomRotate
     {
@@ -29,7 +29,7 @@ namespace EnemyAi
         }
         public override void IdleState()
         {
-            if (enemy.isIdle && !enemy.isRundomMove && !enemy.isFollowTarget)
+            if (enemy.context.isIdle && !enemy.context.isRundomMove && !enemy.context.isFollowTarget)
             { 
             }
         } 

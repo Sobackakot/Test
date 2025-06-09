@@ -1,7 +1,7 @@
 using UnityEngine;
-using EnemyAi.Behaviour;
+using EnemyAI.Behaviour;
 
-namespace EnemyAi
+namespace EnemyAI
 { 
     public class EnemyAttackTarget : EnemyLoockTarget
     {
@@ -29,7 +29,7 @@ namespace EnemyAi
      
         public override void AttackTarget()
         {
-            if (enemy.isAttackTarget)
+            if (enemy.context.isAttackTarget)
             {
                 Debug.Log("Attacke Behaviour");
             }

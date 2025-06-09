@@ -1,6 +1,6 @@
 using UnityEngine;
-using EnemyAi.Behaviour;
-namespace EnemyAi
+using EnemyAI.Behaviour;
+namespace EnemyAI
 {
     public class EnemyMove : EnemyBehaviourBase 
     {

@@ -1,9 +1,19 @@
 using System;
+using EnemyAI.Context;  
+using UnityEngine;
+using EnemyAI;
 
 [Serializable] 
-public class EnemyStateContext  
+public class EnemyStateContext : IContext
 {
+    public EnemyStateContext(Enemy enemy)
+    {
+        this.enemy = enemy;
+    }
     public event Action OnExecuteMoveAction;
+    public Enemy enemy;
+
+
     private bool _isIdle;
     public bool isIdle
     {
@@ -53,11 +63,11 @@ public class EnemyStateContext
     private bool _isLoockTarget;
     public bool isLoockTarget
     {
-        get => _isFollowTarget;
+        get => _isLoockTarget;
         private set
         {
-            if (_isFollowTarget == value) return;
-            _isFollowTarget = value;
+            if (_isLoockTarget == value) return;
+            _isLoockTarget = value;
             OnExecuteMoveAction?.Invoke();
         }
     }
@@ -72,6 +82,40 @@ public class EnemyStateContext
             OnExecuteMoveAction?.Invoke();
         }
     }
-
+    public void UpdateContext()
+    {
+        TimerRoutine();
+        isRundomMove = !isIdle && !isFollowTarget;
+        isRandomRotate = !isLoockTarget;
+        isLoockTarget = IsMinDistance(enemy.minDistanceLoockTarget);
+        isAttackTarget = IsMinDistance(enemy.minDistanceAttackTarget);
+        isFollowTarget = IsMinDistance(enemy.minDistanceFollowTarget);
+    }
+    private bool IsMinDistance(float minDistance)
+    {
+        return Vector3.Distance(enemy.tr.position, enemy.target.position) <= minDistance;
+    }
+    private void TimerRoutine()
+    {
+        timeAFC -= Time.deltaTime;
+        if (timeAFC <= 0)
+        {
+            timeAFC = UnityEngine.Random.Range(3f, 10f);
+            if (!isFollowTarget)
+                IdleWaiteTime();
+        }
+    }
+    private float time;
+    [field: Range(1, 45), SerializeField] public float timeAFC { get; private set; } = 5f; 
+    [field: Range(1, 45), SerializeField]  public float interval { get; private set; } = 5f;
+    private void IdleWaiteTime()
+    {
+        isIdle = true;
+        if(time < Time.time)
+        {
+            isIdle = false;
+            time = Time.time + interval;
+        } 
+    }
 }
  

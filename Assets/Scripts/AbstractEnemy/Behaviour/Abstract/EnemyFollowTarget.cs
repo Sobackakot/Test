@@ -1,7 +1,7 @@
 using UnityEngine;
-using EnemyAi.Behaviour;
+using EnemyAI.Behaviour;
 
-namespace EnemyAi
+namespace EnemyAI
 {
     public class EnemyFollowTarget : EnemyLoockTarget
     {
@@ -29,7 +29,7 @@ namespace EnemyAi
         }
         public override void FollowTarget()
         {
-            if (!enemy.isIdle && enemy.isFollowTarget && !enemy.isAttackTarget)
+            if (!enemy.context.isIdle && enemy.context.isFollowTarget && !enemy.context.isAttackTarget)
             {
                 Vector3 targetMove = (enemy.target.position - enemy.tr.position).normalized;
                 Moving(targetMove);

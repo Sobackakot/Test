@@ -1,5 +1,11 @@
-public interface IAction <in T> where T : IContext
+using Test.Context;
+
+namespace Test.Actions
 {
-    bool CanExecute(T context);
-    void Execute(T context);
+    public interface IAction<in T> where T : IContext
+    {
+        bool CanExecute(T context);
+        void Execute(T context);
+    }
 }
+

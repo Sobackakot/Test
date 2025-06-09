@@ -1,6 +1,6 @@
 using UnityEngine;
-using EnemyAi.Behaviour;
-namespace EnemyAi
+using EnemyAI.Behaviour;
+namespace EnemyAI
 {
     public class EnemyLoockTarget : EnemyRotate 
     {
@@ -8,7 +8,7 @@ namespace EnemyAi
         
         public override void LoockTarget()
         {
-            if (enemy.isLoockTarget)
+            if (enemy.context.isLoockTarget)
             {
                 Vector3 loockTarget = (enemy.target.position - enemy.tr.position).normalized;
                 Quaternion targetRotation = Quaternion.LookRotation(new Vector3(loockTarget.x, 0, loockTarget.z));

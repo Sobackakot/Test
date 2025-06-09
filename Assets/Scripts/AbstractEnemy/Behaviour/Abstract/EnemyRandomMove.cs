@@ -1,4 +1,4 @@
-namespace EnemyAi
+namespace EnemyAI
 {
     public class EnemyRandomMove : EnemyRandomRotate
     {
@@ -26,7 +26,7 @@ namespace EnemyAi
         }
         public override void RandomMove()
         {
-            if (!enemy.isIdle && enemy.isRundomMove && !enemy.isAttackTarget)
+            if (!enemy.context.isIdle && enemy.context.isRundomMove && !enemy.context.isAttackTarget)
             {
                 Moving(enemy.tr.forward);
             }

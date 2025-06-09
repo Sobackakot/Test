@@ -1,13 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using EnemyAI.Context;
+using State.Machine;
 
-namespace EnemyAI.Action
+namespace EnemyAI.Actions
 {
-    public interface IAction<T> where T : class
+    public interface IAction<in T> where T : IContext
     {
-        void Subscribe();
-        void Unsubscribe();
+        IFSM fsm { get; set; }
+        void Subscribe(T context);
+        void Unsubscribe(T context);
+        void Execute(T context);
     }
 }
 

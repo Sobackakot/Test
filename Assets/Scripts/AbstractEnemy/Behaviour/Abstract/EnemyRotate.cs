@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EnemyAi
+namespace EnemyAI
 {
     public class EnemyRotate : EnemyMove
     {

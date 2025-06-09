@@ -1,4 +1,4 @@
-using EnemyAi;
+using EnemyAI;
 using State.Enemys;
 using State.Machine; 
 public class IdleEnemyState : EnemyStateBase
@@ -7,9 +7,9 @@ public class IdleEnemyState : EnemyStateBase
         : base(stateMachine, behaviour, enemy)
     {
         var type = StateType.Idle;
-        stateMachine.AddTransition(type, () => !enemy.isIdle ? StateType.Move : type);
-        stateMachine.AddTransition(type, () => enemy.isRundomMove ? StateType.Move : type);
-        stateMachine.AddTransition(type, () => enemy.isFollowTarget ? StateType.Follow : type);
+        stateMachine.AddTransition(type, () => !enemy.context.isIdle ? StateType.Move : type);
+        stateMachine.AddTransition(type, () => enemy.context.isRundomMove ? StateType.Move : type);
+        stateMachine.AddTransition(type, () => enemy.context.isFollowTarget ? StateType.Follow : type);
     }
 
     public override void EnterState() 

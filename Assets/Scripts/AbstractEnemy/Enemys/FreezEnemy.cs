@@ -1,12 +1,11 @@
- 
+
+using EnemyAI.Context;
 using UnityEngine;
 
-namespace EnemyAi
+namespace EnemyAI
 {
     public class FreezEnemy : Enemy
-    {
-        public EnemyStateContext data;
-     
+    { 
     }
 }
 

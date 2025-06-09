@@ -1,5 +1,5 @@
 
-using EnemyAi;
+using EnemyAI;
 using State.Machine;
 
 namespace  State.Enemys

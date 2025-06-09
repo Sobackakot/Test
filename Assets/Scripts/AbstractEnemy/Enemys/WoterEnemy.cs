@@ -1,12 +1,11 @@
- 
+
+using EnemyAI.Context;
 using UnityEngine;
 
-namespace EnemyAi
+namespace EnemyAI
 {
     public class WoterEnemy : Enemy
-    {
-        public EnemyStateContext data;
-
+    { 
     }
 }
 

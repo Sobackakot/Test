@@ -1,5 +1,5 @@
 using UnityEngine; 
-namespace EnemyAi
+namespace EnemyAI
 {
     public class EnemyRandomRotate : EnemyLoockTarget
     {
@@ -8,7 +8,7 @@ namespace EnemyAi
  
         public override void RandomRotate()
         {
-            if (enemy.isRandomRotate )
+            if (enemy.context.isRandomRotate)
             {
                 float turnAmount = 0;
                 float currentY = enemy.tr.eulerAngles.y; 

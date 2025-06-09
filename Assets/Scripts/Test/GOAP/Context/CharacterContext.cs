@@ -1,3 +1,5 @@
+using Test.Context;
+using Test.Actions;
 public class CharacterContext : IContext
 {
     public CharacterContext(Character character)

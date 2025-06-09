@@ -1,20 +1,25 @@
 using System.Collections.Generic;
-
-public class Planer<T> where T : IContext
+using Test.Context;
+using Test.Actions;
+namespace Test.Plane
 {
-    public readonly List<IAction<T>> actions = new();
-
-    public void AddAction(IAction<T> action) => actions.Add(action);
-
-    public void Run(T context)
+    public class Planer<T> where T : IContext
     {
-        foreach (var action in actions)
+        public readonly List<IAction<T>> actions = new();
+
+        public void AddAction(IAction<T> action) => actions.Add(action);
+
+        public void Run(T context)
         {
-            if (action.CanExecute(context))
+            foreach (var action in actions)
             {
-                action.Execute(context);
-                break;
+                if (action.CanExecute(context))
+                {
+                    action.Execute(context);
+                    break;
+                }
             }
         }
     }
 }
+

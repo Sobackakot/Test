@@ -1,5 +1,9 @@
-public interface IContext  
+namespace Test.Context
 {
-    void Update();
-    IContext Copy();
+    public interface IContext
+    {
+        void Update();
+        IContext Copy();
+    }
 }
+

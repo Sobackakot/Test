@@ -1,4 +1,4 @@
-using EnemyAi;
+using EnemyAI;
 using State.Enemys;
 using State.Machine;
 using UnityEngine;
@@ -9,7 +9,7 @@ public class AttackEnemyState : EnemyStateBase
         : base(stateMachine, behaviour, enemy)
     {
         var type = StateType.Attack;
-        stateMachine.AddTransition(type, () => !enemy.isAttackTarget ? StateType.Idle : type);
+        stateMachine.AddTransition(type, () => !enemy.context.isAttackTarget ? StateType.Idle : type);
     }
 
     public override void EnterState() 
@@ -20,9 +20,7 @@ public class AttackEnemyState : EnemyStateBase
     public override void ExitState() 
     {
         behaviour.Exit();
-    }
-
-
+    } 
     public override void UpdateState()
     {
         behaviour.Update();
@@ -34,8 +32,6 @@ public class AttackEnemyState : EnemyStateBase
     public override void FixedUpdateState()
     {
         behaviour.FixedUpdate();
-    }
-     
-
+    } 
 }
  

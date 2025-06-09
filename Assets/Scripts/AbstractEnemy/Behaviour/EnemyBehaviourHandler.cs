@@ -1,6 +1,6 @@
-using EnemyAi;
+using EnemyAI;
 
-namespace EnemyAi.Behaviour
+namespace EnemyAI.Behaviour
 {
     public class EnemyBehaviourHandler
     { 

@@ -1,7 +1,7 @@
  
 using State.Enemys;
 using State.Machine;
-using EnemyAi;
+using EnemyAI;
 using UnityEngine;
 public class MoveEnemyState :  EnemyStateBase
 {
@@ -9,9 +9,9 @@ public class MoveEnemyState :  EnemyStateBase
         : base(stateMachine, behaviour, enemy)
     {
         var type = StateType.Move;
-        stateMachine.AddTransition(type, () => !enemy.isRundomMove ? StateType.Idle : type);
-        stateMachine.AddTransition(type, () => enemy.isIdle ? StateType.Idle : type);
-        stateMachine.AddTransition(type, () => enemy.isFollowTarget ? StateType.Follow : type);
+        stateMachine.AddTransition(type, () => !enemy.context.isRundomMove ? StateType.Idle : type);
+        stateMachine.AddTransition(type, () => enemy.context.isIdle ? StateType.Idle : type);
+        stateMachine.AddTransition(type, () => enemy.context.isFollowTarget ? StateType.Follow : type);
     }
 
     public override void EnterState() 
