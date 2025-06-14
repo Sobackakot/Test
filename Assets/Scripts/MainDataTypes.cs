@@ -14,16 +14,16 @@ public class MainDataTypes : MonoBehaviour
         Dog dog = new Dog();
         if (dog is Animal anim)
         {
-            print(anim?.name);
+           // print(anim?.name);
         }
         // оператор as
         animal = new Dog();
         var value = animal as Dog;
-        print(value?.name);
+        //print(value?.name);
 
         Animal animal2 = new Animal();
         Dog dog2 = animal2 as Dog;
-        print(dog2?.name);
+        //print(dog2?.name);
 
 
         // typeof, GetType()
@@ -55,7 +55,7 @@ public class MainDataTypes : MonoBehaviour
         
         foreach(var _enemy in enemys.Values)
         {
-            print(_enemy.GetType());
+            //print(_enemy.GetType());
         }
 
     }
@@ -63,8 +63,10 @@ public class MainDataTypes : MonoBehaviour
     void ShowTypeInfo<T>(T gameObject) where T : IPerson
     {
         Type type = gameObject.GetType();
-        if(type == typeof(T))
-        print("Class: " + type.Name); 
+        if (type == typeof(T))
+        {
+            //print("Class: " + type.Name); 
+        }
     }
 
 

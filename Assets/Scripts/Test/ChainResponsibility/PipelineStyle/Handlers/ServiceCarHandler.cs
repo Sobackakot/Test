@@ -15,7 +15,7 @@ namespace Pipeline.Service
         {
             if (_servicesProvided == (client.Requirements & _servicesProvided))
             {
-                Debug.Log($" {this.GetType().Name} providing {this._servicesProvided} services.");
+               // Debug.Log($" {this.GetType().Name} providing {this._servicesProvided} services.");
                 client.Requirements &= ~_servicesProvided;
             }
             if (client.IsServiceComplete() || _nextServiceHandler == null)
