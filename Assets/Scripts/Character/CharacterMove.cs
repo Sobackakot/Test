@@ -1,7 +1,5 @@
 
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Collections; 
 using UnityEngine; 
 
 public class CharacterMove : MonoBehaviour
@@ -65,5 +63,19 @@ public class CharacterMove : MonoBehaviour
         yield return new WaitForSeconds(7);
         isSprinting = true; 
     }
-  
+
+    private float currentHP = 100;
+    public bool isReadyForBattle { get; private set; }
+    public void TakeDamage(float damage)
+    {
+        if (currentHP <= 0)
+        {
+            Debug.Log("Game Over");
+            //turnOff MoveController
+            //playAnim dead
+            //waitTime 4 seconds for stopGame
+            Time.timeScale = 0;
+        }
+        else currentHP -= damage;
+    }
 }

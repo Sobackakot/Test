@@ -19,90 +19,101 @@ public class SelectionBoxController : MonoBehaviour
         selectObject = GetComponent<SelectableRegistry>();
     }
     
-    // OnGUI is called for rendering and handling GUI events.
     private void OnGUI()
     {
-        GUI.skin = GUISkin; // Set the GUI skin.
-        GUI.depth = sortingLayer; // Set the sorting layer.
-        HandleSelectionStart(); // Handle the start of the selection.
-        HandleSelectionUpdate(); // Handle the ongoing selection.
-        HandleSelectionEnd(); // Handle the end of the selection.
+        GUI.skin = GUISkin; 
+        GUI.depth = sortingLayer; 
+        SelectionStart();
+        SelectionStay();
+        if (Event.current.type == EventType.Repaint)
+            SelectionEnd();
     }
-    // Method to start the selection process.
-    private void HandleSelectionStart()
+   
+    private void SelectionStart()
     {
-        if (isPointerEnterUI) return; //checking that the mouse cursor does not fall into ui elements
+        if (isPointerEnterUI) return;
         if (Input.GetMouseButtonDown(0))
         {
-            startPoint = Input.mousePosition; // Record the starting point of the selection.
-            drawFrame = true; // Enable the drawing of the selection frame. 
+            startPoint = Input.mousePosition; 
+            drawFrame = true; 
         }
     }
-
-    // Method to handle the selection process while the mouse button is pressed.
-    private void HandleSelectionUpdate()
+    private void SelectionStay()
     {
         if (Input.GetMouseButton(0) && drawFrame)
         {
-            endPoint = Input.mousePosition; // Update the ending point of the selection.
-            if (Vector2.Distance(startPoint, endPoint) > minDragDistance) //check minimum frame size
+            endPoint = Input.mousePosition; 
+            if (Vector2.Distance(startPoint, endPoint) > minDragDistance) 
             {
-                // Calculate the inverted rectangle for the selection box.
-                screenSpaceRect = GetScreenRect(startPoint, endPoint);
-                DrawBox(screenSpaceRect);
+                screenSpaceRect = GetRectFrame(startPoint, endPoint);
+                DrawFrame(screenSpaceRect);
             }
         }
     }
-
-    // Method to finish the selection process.
-    private void HandleSelectionEnd()
+     
+    private void SelectionEnd()
     {
         if (Input.GetMouseButtonUp(0))
         {
-            endPoint = Input.mousePosition; // Finalize the ending point of the selection.
-            drawFrame = false; // Disable the drawing of the selection frame.   
-            SelectItemsInRect(screenSpaceRect); // Select persons within the selection box.  
+            endPoint = Input.mousePosition; 
+            drawFrame = false; 
+            SelectionFrameFromScreen(screenSpaceRect); 
         }
     }
-    // Method to calculate the inverted rectangle for negative values.
-    private Rect GetScreenRect(Vector2 startPoint, Vector2 endPoint)
-    {
+    //Вычисляет корректный прямоугольник
+    private Rect GetRectFrame(Vector2 startPoint, Vector2 endPoint)
+    { 
+        float posX = Mathf.Min(startPoint.x, endPoint.x);
+        float posY = Mathf.Min(startPoint.y, endPoint.y);
+        float widthX = Mathf.Abs(endPoint.x - startPoint.x);  
+        float heightY = Mathf.Abs(endPoint.y - startPoint.y); 
 
-        float posX = Mathf.Min(startPoint.x, endPoint.x);// This is the left edge of the rectangle. 
-        float posY = Mathf.Min(startPoint.y, endPoint.y);// subtract the top edge value from the screen height. 
-        float widthX = Mathf.Abs(endPoint.x - startPoint.x); // This is the difference between the maximum and minimum x-coordinates. 
-        float heightY = Mathf.Abs(endPoint.y - startPoint.y); // This is the difference between the maximum and minimum y-coordinates.
-
-        // Create and return a new Rect with the calculated x, y, width, and height.
         return new Rect(posX, posY, widthX, heightY);
     }
 
-    private void DrawBox(Rect screenRect)
+    //Отрисовывает GUI.Box — прямоугольник рамки выбора.
+    private void DrawFrame(Rect screenRect)
     {
+        //Unity GUI использует экранные координаты снизу вверх, а в Screen Space Y идёт вниз
+        //Поэтому y координата корректируется: Screen.height - y - height.
+
         float x = screenRect.x;
         float y = Screen.height - screenRect.y - screenRect.height;
-        float height = screenRect.height;
         float width = screenRect.width;
-
+        float height = screenRect.height;
+         
         Rect newBox = new Rect(x, y, width, height);
-        GUI.Box(newBox, ""); // Draw the selection box. 
+        GUI.Box(newBox, ""); 
     }
 
-
-    // Method to select persons within the selection box.
-    private void SelectItemsInRect(Rect screenRect)
+    private void SelectionFrameFromScreen(Rect screen)
     {
-        foreach (var item in selectObject.itemFromScreen)// Iterate over each person in the character system's squad.
-        {
-            Vector2 posScreen = RectTransformUtility.WorldToScreenPoint(null, item.rectTransform.position); // Get the screen position of the person.
-            if (screenRect.Contains(posScreen)) // Check if the person's screen position is within the selection box.
+        foreach (var item in selectObject.itemFromScreen)
+        { 
+            Rect itemRect = GetRectItem(item);
+            //проверяет, пересекаются ли прямоугольники
+            if (screen.Overlaps(itemRect, true))
             {
-                // Enable components for persons inside the selection box.
                 Debug.Log("select " + item.name);
-            } 
+            }
         }
     }
+    
+    //Вычисляет прямоугольник (DraggableItem item) - UI-объекта на экране
+    private Rect GetRectItem(DraggableItem item)
+    {
+        Vector3[] positions = new Vector3[4];
+        item.rectTransform.GetWorldCorners(positions);//возвращает 4 угла RectTransform в мировых координатах.
 
-
-
+        //мы получаем координаты в экранном пространстве.
+        Vector2 bottom_Left = RectTransformUtility.WorldToScreenPoint(null, positions[0]);
+        Vector2 top_Right = RectTransformUtility.WorldToScreenPoint(null, positions[2]);
+         
+        float x = Mathf.Min(bottom_Left.x, top_Right.x);
+        float y = Mathf.Min(bottom_Left.y, top_Right.y);
+        float width = Mathf.Abs(top_Right.y - bottom_Left.y);
+        float height = Mathf.Abs(top_Right.x - bottom_Left.x);
+        
+        return new Rect(x, y, width,height);
+    }
 }
