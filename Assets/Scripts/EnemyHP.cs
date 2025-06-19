@@ -9,7 +9,7 @@ public class EnemyHP : MonoBehaviour
     private SpawnerEnemy spawner;
     private void Awake()
     {
-        spawner = FindObjectOfType<SpawnerEnemy>();
+        spawner = FindObjectOfType<SpawnerEnemy>(); 
     }
     public void ResetEnemy()
     {
