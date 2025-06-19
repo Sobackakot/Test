@@ -3,9 +3,12 @@ using EnemyAI.Behaviour;
 
 namespace EnemyAI
 { 
-    public class EnemyAttackTarget : EnemyLoockTarget
+    public class EnemyAttackTarget : BehaviourBase
     {
-        public EnemyAttackTarget(Enemy enemy) : base(enemy) { }
+        public EnemyAttackTarget(Enemy enemy) : base(enemy)
+        {
+        }
+
         public override void Enter()
         {
         }
@@ -23,8 +26,7 @@ namespace EnemyAI
         }
         public override void FixedUpdate()
         {
-            
-            LoockTarget();
+             
         }
      
         public override void AttackTarget()

@@ -2,7 +2,7 @@
 using UnityEngine;
 namespace EnemyAI
 { 
-    public interface IEnemyIdle: IBehaviourHandler
+    public interface IBehaviourIdle: IBehaviourBase
     { 
         void IdleState(); 
     }

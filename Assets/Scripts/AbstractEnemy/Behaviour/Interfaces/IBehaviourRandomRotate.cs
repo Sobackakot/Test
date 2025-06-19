@@ -2,7 +2,7 @@
 using UnityEngine;
 namespace EnemyAI
 { 
-    public interface IEnemyRandomRotate: IBehaviourHandler
+    public interface IBehaviourRandomRotate: IBehaviourBase
     { 
         void RandomRotate();
     }

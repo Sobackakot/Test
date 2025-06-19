@@ -2,7 +2,7 @@
 using UnityEngine;
 namespace EnemyAI
 { 
-    public interface IEnemyFollowTarget: IBehaviourHandler
+    public interface IBehaviourFollowTarget: IBehaviourBase
     { 
         void FollowTarget();
     }

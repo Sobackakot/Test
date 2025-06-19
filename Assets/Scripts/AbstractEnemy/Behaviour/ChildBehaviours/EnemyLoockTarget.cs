@@ -2,10 +2,32 @@ using UnityEngine;
 using EnemyAI.Behaviour;
 namespace EnemyAI
 {
-    public class EnemyLoockTarget : EnemyRotate 
+    public class EnemyLoockTarget : EnemyRotate
     {
-        public EnemyLoockTarget(Enemy enemy) : base(enemy) { }
-        
+        public EnemyLoockTarget(Enemy enemy) : base(enemy)
+        {
+        }
+
+        public override void Enter()
+        {
+        }
+
+        public override void Exit()
+        {
+        }
+
+        public override void Update()
+        {
+
+        }
+        public override void LateUpdate()
+        {
+
+        }
+        public override void FixedUpdate()
+        {
+            LoockTarget();
+        }
         public override void LoockTarget()
         {
             if (enemy.context.isLoockTarget)

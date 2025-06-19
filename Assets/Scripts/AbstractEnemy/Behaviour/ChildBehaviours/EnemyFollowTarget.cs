@@ -3,9 +3,12 @@ using EnemyAI.Behaviour;
 
 namespace EnemyAI
 {
-    public class EnemyFollowTarget : EnemyLoockTarget
+    public class EnemyFollowTarget : EnemyMove
     {
-        public EnemyFollowTarget(Enemy enemy) : base(enemy){ }
+        public EnemyFollowTarget(Enemy enemy) : base(enemy)
+        {
+        }
+
         public override void Enter()
         {
         }
@@ -24,8 +27,7 @@ namespace EnemyAI
         }
         public override void FixedUpdate()
         {
-            FollowTarget();
-            LoockTarget();
+            FollowTarget(); 
         }
         public override void FollowTarget()
         {

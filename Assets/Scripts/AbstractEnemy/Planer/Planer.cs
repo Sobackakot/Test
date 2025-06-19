@@ -8,7 +8,7 @@ namespace EnemyAI.Plane
     public class Planer<T> where T : IContext
     {
         public readonly List<IAction<T>> actions = new();
-        public void AddAction(IAction<T> action) => actions.Add(action);
+        public void RegisterAction(IAction<T> action) => actions.Add(action);
 
         public void SubscribeActions(T context)
         {

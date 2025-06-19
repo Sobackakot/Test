@@ -1,8 +1,13 @@
+using EnemyAI.Behaviour;
+
 namespace EnemyAI
 {
-    public class EnemyRandomMove : EnemyRandomRotate
+    public class EnemyRandomMove : EnemyMove
     {
-        public EnemyRandomMove(Enemy enemy) : base(enemy) { }
+        public EnemyRandomMove(Enemy enemy) : base(enemy)
+        { 
+        }
+
         public override void Enter()
         {
         }
@@ -21,8 +26,7 @@ namespace EnemyAI
         }
         public override void FixedUpdate()
         {
-            RandomMove();
-            RandomRotate();
+            RandomMove(); 
         }
         public override void RandomMove()
         {

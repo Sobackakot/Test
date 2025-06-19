@@ -3,20 +3,20 @@ using UnityEngine;
 
 namespace EnemyAI.Behaviour
 {
-    public abstract class EnemyBehaviourBase :
-        IEnemyIdle,
-        IEnemyMove,
-        IEnemyRotate,
-        IEnemyRandomMove,
-        IEnemyRandomRotate,
-        IEnemyFollowTarget,
-        IEnemyLoockTarget,
-        IEnemyAttackTarget
+    public abstract class BehaviourBase :
+        IBehaviourIdle,
+        IBehaviourMove,
+        IBehaviourRotate,
+        IBehaviourRandomMove,
+        IBehaviourRandomRotate,
+        IBehaviourFollowTarget,
+        IBehaviourLoockTarget,
+        IBehaviourAttackTarget
     {
-        public EnemyBehaviourBase(Enemy enemy)
+        public BehaviourBase(Enemy enemy)
         {
-            this.enemy = enemy;
-        }
+            this.enemy = enemy; 
+        } 
         public Enemy enemy { get; set; }
         public virtual void IdleState()
         {

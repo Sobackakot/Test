@@ -2,7 +2,7 @@
 using UnityEngine;
 namespace EnemyAI
 { 
-    public interface IEnemyMove: IBehaviourHandler
+    public interface IBehaviourMove: IBehaviourBase
     { 
         void Moving(Vector3 targetMove);
     }

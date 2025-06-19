@@ -1,6 +1,6 @@
 using EnemyAI; 
 
-public interface IBehaviourHandler  
+public interface IBehaviourBase  
 { 
     void Enter();
     void Exit();

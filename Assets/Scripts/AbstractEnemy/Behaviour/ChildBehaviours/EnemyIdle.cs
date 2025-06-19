@@ -1,10 +1,14 @@
+using EnemyAI.Behaviour;
 using UnityEngine; 
 
 namespace EnemyAI
 {
-    public class EnemyIdle : EnemyRandomRotate
+    public class EnemyIdle : BehaviourBase
     {
-        public EnemyIdle(Enemy enemy) : base(enemy) { }
+        public EnemyIdle(Enemy enemy) : base(enemy)
+        {
+        }
+
         public override void Enter()
         {
         }
@@ -23,9 +27,7 @@ namespace EnemyAI
 
         }
         public override void FixedUpdate()
-        {
-            RandomRotate();
-            LoockTarget();
+        { 
         }
         public override void IdleState()
         {
