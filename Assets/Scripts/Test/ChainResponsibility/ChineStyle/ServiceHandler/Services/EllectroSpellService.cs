@@ -2,13 +2,15 @@ using Chain.Service;
 using Chain.Service.Client;
 using UnityEngine;
 
-public class EllectroSpellService : ServiceHandlerBase
+public class EllectroSpellService : DifficultyLevelServiceBase
 {
-    public override void Handle(ISpell client)
+    public override void Handle(IDifficultyLevel client)
     {
-        if(client.spell == SpellType.Ellectro)
+        //Debug.Log("And Middle Update");
+
+        if(client.levelType == DifficultyLevelType.Middle)
         {
-            Debug.Log("Ellectring update");
+            Debug.Log("Only Middle Update ");
             return;
         }
         base.Handle(client);

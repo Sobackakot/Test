@@ -2,13 +2,15 @@ using Chain.Service;
 using Chain.Service.Client;
 using UnityEngine;
 
-public class FireSpellService : ServiceHandlerBase
+public class FireSpellService : DifficultyLevelServiceBase
 {
-    public override void Handle(ISpell client)
+    public override void Handle(IDifficultyLevel client)
     {
-        if(client.spell == SpellType.Fire)
+        //Debug.Log("And Hardcore Update");
+
+        if (client.levelType == DifficultyLevelType.Hardcore)
         {
-            Debug.Log("Firing update");
+            Debug.Log("Only Hardcore Update");
             return;
         }
         base.Handle(client);

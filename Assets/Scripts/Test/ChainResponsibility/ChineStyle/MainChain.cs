@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class MainChain : MonoBehaviour
 {
-    public SpellType spellType;
+    public DifficultyLevelType levelType;
     private IServiceHandler service;
-    private ISpell spell;
+    private IDifficultyLevel difficultyLevel;
     void Start()
     {
-        spell = new Spell(SpellType.Ellectro);
+        difficultyLevel = new DifficultyLevel(DifficultyLevelType.Middle);
         
         service = new FreezSpellService();
 
@@ -19,7 +19,7 @@ public class MainChain : MonoBehaviour
      
     void Update()
     {
-        spell.SetSpell(spellType);
-        service.Handle(spell);
+        difficultyLevel.SetDifficultyLevel(levelType);
+        service.Handle(difficultyLevel);
     }
 }
