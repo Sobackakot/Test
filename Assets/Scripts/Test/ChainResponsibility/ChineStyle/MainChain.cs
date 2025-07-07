@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class MainChain : MonoBehaviour
 {
-    private IHandler handler;
-    private IClient client;
+    public SpellType spellType;
+    private IServiceHandler service;
+    private ISpell spell;
     void Start()
     {
-        client = new EnemyCient();
-        handler = new FreezServiceHandler();
-        handler.SetNext(new FireServiceHandler())
-            .SetNext(new EllectroServiceHandler()); 
+        spell = new Spell(SpellType.Ellectro);
+        
+        service = new FreezSpellService();
+
+        service.SetNext(new FireSpellService()).SetNext(new EllectroSpellService()); 
          
     }
      
     void Update()
     {
-        handler.Handle(client);
+        spell.SetSpell(spellType);
+        service.Handle(spell);
     }
 }

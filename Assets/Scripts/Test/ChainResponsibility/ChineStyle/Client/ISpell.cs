@@ -4,11 +4,12 @@ using UnityEngine;
 
 namespace Chain.Service.Client
 {
-    public interface IClient
+    public interface ISpell
     {
-        ElementType elementType { get; set; }
+        SpellType spell { get;}
+        void SetSpell(SpellType spell);
     }
-    public enum ElementType
+    public enum SpellType
     {
        Freez,
        Ellectro,
