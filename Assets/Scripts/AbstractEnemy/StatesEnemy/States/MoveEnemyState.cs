@@ -1,9 +1,8 @@
- 
+
+using EnemyAI;
+using EnemyAI.Behaviour;
 using State.Enemys;
 using State.Machine;
-using EnemyAI;
-using UnityEngine;
-using EnemyAI.Behaviour;
 using System.Collections.Generic;
 public class MoveEnemyState :  EnemyStateBase
 {

@@ -121,14 +121,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3261ddff2530bfc4a9bd80c2e0fa339e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <timeAFC>k__BackingField: 5
-  <isIdle>k__BackingField: 0
-  <isRundomMove>k__BackingField: 0
-  <isRundomRotate>k__BackingField: 0
-  <isFollowTarget>k__BackingField: 0
-  <isLoockTarget>k__BackingField: 0
-  <isAttackTarget>k__BackingField: 0
-  data: {fileID: 11400000, guid: f036cb67c0dd9c941b9575a82e5dc787, type: 2}
+  <context>k__BackingField:
+    <timeAFC>k__BackingField: 1
+    <interval>k__BackingField: 1
+  <minDistanceLoockTarget>k__BackingField: 30
+  <minDistanceFollowTarget>k__BackingField: 20
+  <minDistanceAttackTarget>k__BackingField: 5
+  <minAngle>k__BackingField: 45
+  <maxAngle>k__BackingField: 120
+  <speedMove>k__BackingField: 5
+  <angleRotate>k__BackingField: 3
 --- !u!54 &5680864802228534621
 Rigidbody:
   m_ObjectHideFlags: 0

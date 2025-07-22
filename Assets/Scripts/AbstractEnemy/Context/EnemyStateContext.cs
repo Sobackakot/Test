@@ -11,7 +11,7 @@ public class EnemyStateContext : IContext
         this.enemy = enemy;
     }
     public event Action OnExecuteMoveAction;
-    public Enemy enemy;
+    public Enemy enemy { get; set; }
 
 
     private bool _isIdle;

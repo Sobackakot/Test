@@ -9,8 +9,7 @@ using System.Collections.Generic;
 using UnityEngine; 
 
 public class MainPoint : MonoBehaviour
-{
-   
+{ 
     private List<Enemy> enemys = new();
     private Dictionary<Enemy, IStateMachine> stateMachines = new();
     private Dictionary<Enemy, IBehaviourHandler> behaviourHandlers = new(); 
@@ -19,7 +18,7 @@ public class MainPoint : MonoBehaviour
      
     private void Awake()
     {
-        enemys.AddRange(FindObjectsOfType<Enemy>());  
+        enemys.AddRange(FindObjectsOfType<Enemy>());
     }
     private void OnEnable()
     {
@@ -31,7 +30,7 @@ public class MainPoint : MonoBehaviour
     {
         foreach (var enemy in enemys)
             planersAction[enemy].UnsubscribeActions(enemy.context);
-    }
+    } 
     private void StartInit()
     { 
         foreach (var enemy in enemys)
