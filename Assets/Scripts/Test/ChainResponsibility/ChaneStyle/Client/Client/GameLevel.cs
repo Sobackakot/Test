@@ -10,7 +10,6 @@ public class GameLevel : GameLevelBase
     {
         if (this.levelType == levelType) return;
         _levelType = levelType;
-
-        Debug.Log("start event change on " + levelType);
+         
     }
 }

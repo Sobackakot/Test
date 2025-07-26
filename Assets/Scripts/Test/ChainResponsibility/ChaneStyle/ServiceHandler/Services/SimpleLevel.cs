@@ -9,8 +9,7 @@ public class SimpleLevel : LevelServiceBase
         //Debug.Log("And Simple Update");
 
         if (client.levelType == LevelType.Simple)
-        {
-            Debug.Log("Simple update " );
+        { 
             return;
         }
         base.Handle(client);
