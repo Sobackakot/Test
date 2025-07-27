@@ -1,5 +1,5 @@
 using EntityAI.Behaviour;
-using Entity;
+using EntityAI;
 using UnityEngine; 
 namespace EntityAI
 {
@@ -36,11 +36,11 @@ namespace EntityAI
             if (enemy.context.isRandomRotate)
             {
                 float turnAmount = 0;
-                float currentY = enemy.tr.eulerAngles.y; 
+                float currentY = enemy.components.tr.eulerAngles.y; 
                 if (time < Time.time)
                 {
                     time = Time.time + Random.Range(0.5f, 1.5f);
-                    turnAmount = Random.Range(enemy.minAngle, enemy.maxAngle);
+                    turnAmount = Random.Range(enemy.config.minAngle, enemy.config.maxAngle);
                     if (Random.value > 0.5f) turnAmount *= -1;
                 }  
                 float newY = currentY + turnAmount;

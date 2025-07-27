@@ -1,5 +1,5 @@
 using EntityAI.Context;
-using Entity;
+using EntityAI;
 using System;
 using UnityEngine;
 
@@ -87,13 +87,13 @@ public class EnemyStateContext : IContext
         TimerRoutine();
         isRundomMove = !isIdle && !isFollowTarget;
         isRandomRotate = !isLoockTarget;
-        isLoockTarget = IsMinDistance(enemy.minDistanceLoockTarget);
-        isAttackTarget = IsMinDistance(enemy.minDistanceAttackTarget);
-        isFollowTarget = IsMinDistance(enemy.minDistanceFollowTarget);
+        isLoockTarget = IsMinDistance(enemy.config.minDistanceLoockTarget);
+        isAttackTarget = IsMinDistance(enemy.config.minDistanceAttackTarget);
+        isFollowTarget = IsMinDistance(enemy.config.minDistanceFollowTarget);
     }
     private bool IsMinDistance(float minDistance)
     {
-        return Vector3.Distance(enemy.tr.position, enemy.target.position) <= minDistance;
+        return Vector3.Distance(enemy.components.tr.position, enemy.components.target.position) <= minDistance;
     }
     private void TimerRoutine()
     {

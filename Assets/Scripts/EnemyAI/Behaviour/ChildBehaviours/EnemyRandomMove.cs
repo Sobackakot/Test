@@ -1,6 +1,3 @@
-using EntityAI.Behaviour;
-using Entity;
-
 namespace EntityAI
 {
     public class EnemyRandomMove : EnemyMove
@@ -33,7 +30,7 @@ namespace EntityAI
         {
             if (!enemy.context.isIdle && enemy.context.isRundomMove && !enemy.context.isAttackTarget)
             {
-                Moving(enemy.tr.forward);
+                Moving(enemy.components.tr.forward);
             }
         }
     }

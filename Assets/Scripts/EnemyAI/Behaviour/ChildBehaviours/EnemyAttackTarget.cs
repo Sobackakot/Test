@@ -1,6 +1,6 @@
 using UnityEngine;
 using EntityAI.Behaviour;
-using Entity;
+using EntityAI;
 
 namespace EntityAI
 { 

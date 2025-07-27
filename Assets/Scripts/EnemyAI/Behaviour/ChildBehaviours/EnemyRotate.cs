@@ -1,5 +1,5 @@
 using EntityAI.Behaviour;
-using Entity;
+using EntityAI;
 using UnityEngine;
 
 namespace EntityAI
@@ -12,8 +12,8 @@ namespace EntityAI
 
         public override void Rotating(Quaternion targetRotation)
         {
-            Quaternion newRot = Quaternion.Slerp(enemy.tr.rotation, targetRotation, enemy.angleRotate * Time.fixedDeltaTime);
-            enemy.rb.MoveRotation(newRot);
+            Quaternion newRot = Quaternion.Slerp(enemy.components.tr.rotation, targetRotation, enemy.config.angleRotate * Time.fixedDeltaTime);
+            enemy.components.rb.MoveRotation(newRot);
         }
     }
 }

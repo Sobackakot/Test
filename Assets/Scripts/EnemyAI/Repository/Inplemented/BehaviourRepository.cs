@@ -1,28 +1,36 @@
+using EntityAI;
 using EntityAI.Behaviour;
-using Entity;
+using EntityAI.React;
 using System.Collections.Generic;
 
 
 namespace EntityAI.Repository
 {
-    public class BehaviourRepository : IBehaviourRepository<IEntity>
+    public class BehaviourRepository : ObserverContextBase<BehaviourHandlerActionType>,IBehaviourRepository
     {
-        public readonly Dictionary<IEntity, IBehaviourHandler> behaviours = new();
-
-        public void RegistryBehaviour(IEntity enemy, IBehaviourHandler handler)
+        public BehaviourRepository(IActionSubject<BehaviourHandlerActionType, IObserverContext<BehaviourHandlerActionType>> subject) : base(subject)
         {
-            if (!behaviours.ContainsKey(enemy))
-            {
-                behaviours.Add(enemy, handler);
-            }
+            Register(BehaviourHandlerActionType.BehaviourHandlerReg, (IEntity enemy, IBehaviourHandler handler) => RegisterBehaviour(enemy, handler));
+            Register(BehaviourHandlerActionType.BehaviourHandlerUnreg, (IEntity enemy) => UnregisterBehaviour(enemy));
+            SubscribeAll();
         }
 
-        public void UnRegistryEnemy(IEntity enemy)
+        Dictionary<IEntity, IBehaviourHandler> _behaviourHandlers = new(); 
+        public Dictionary<IEntity, IBehaviourHandler> behaviourHandlers => _behaviourHandlers;
+
+
+        public void RegisterBehaviour(IEntity enemy, IBehaviourHandler handler)
         {
-            if(behaviours.ContainsKey(enemy))
-            {
-                behaviours.Remove(enemy);
-            }
+            if (!behaviourHandlers.ContainsKey(enemy))
+                _behaviourHandlers.Add(enemy, handler);
+
+        }
+
+        public void UnregisterBehaviour(IEntity enemy)
+        {
+            if(behaviourHandlers.ContainsKey(enemy))
+                _behaviourHandlers.Remove(enemy);
+
         }
     }
 }

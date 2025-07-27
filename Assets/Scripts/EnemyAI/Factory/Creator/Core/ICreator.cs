@@ -1,7 +1,6 @@
-using Entity;
-using Entity.Config;
+using EntityAI;
+using EntityAI.Config;
 using EntityAI.Factory;
-using EntityAI.Repository;
 
 
 
@@ -9,6 +8,6 @@ namespace EntityAI.Creator
 {
     public interface ICreator  
     {
-        void Creating(IFactory factory);
+       void Creating(IFactory factory,IEntityResources config); 
     }
 }

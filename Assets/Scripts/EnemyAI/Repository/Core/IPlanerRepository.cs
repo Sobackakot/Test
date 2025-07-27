@@ -1,13 +1,15 @@
-using EntityAI.Planer;
+using EntityAI;
 using EntityAI.Context;
-using Entity;
+using EntityAI.Planer;
+using System.Collections.Generic;
 
 namespace EntityAI.Repository
 {
-    public interface IPlanerRepository<Entity> where Entity : class, IEntity
-    {
-        void RegistryPlaner(Entity enemy, IPlaner<IContext> planer);
+    public interface IPlanerRepository  
+    { 
+        Dictionary<IEntity, IPlaner<IContext>> planersAction { get; }
+        void RegisterPlaner(IEntity enemy, IPlaner<IContext> planer);
 
-        void UnRegistryEnemy(Entity enemy);
+        void UnregistrerPlaner(IEntity enemy);
     }
 }

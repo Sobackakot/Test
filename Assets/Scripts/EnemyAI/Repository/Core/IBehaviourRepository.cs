@@ -1,11 +1,13 @@
+using EntityAI;
 using EntityAI.Behaviour;
-using Entity;
+using System.Collections.Generic;
 
 namespace EntityAI.Repository
 {
-    public interface IBehaviourRepository<Entity> where Entity : class, IEntity
+    public interface IBehaviourRepository  
     {
-        void RegistryBehaviour(Entity enemy,IBehaviourHandler handler);
-        void UnRegistryEnemy(Entity enemy);
+        Dictionary<IEntity, IBehaviourHandler> behaviourHandlers { get; } 
+        void RegisterBehaviour(IEntity enemy,IBehaviourHandler handler);
+        void UnregisterBehaviour(IEntity enemy);
     }
 }

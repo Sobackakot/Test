@@ -1,5 +1,5 @@
 using EntityAI.Behaviour;
-using Entity;
+using EntityAI;
 using UnityEngine; 
 
 namespace EntityAI

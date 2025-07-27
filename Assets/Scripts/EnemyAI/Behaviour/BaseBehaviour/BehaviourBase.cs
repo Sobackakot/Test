@@ -1,5 +1,3 @@
-using EntityAI;
-using Entity;
 using UnityEngine;
 
 namespace EntityAI.Behaviour

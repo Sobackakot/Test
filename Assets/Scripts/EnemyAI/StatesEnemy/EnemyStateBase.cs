@@ -1,7 +1,6 @@
 
 using EntityAI;
 using EntityAI.Behaviour;
-using Entity;
 using State.Machine;
 using System.Collections.Generic;
 

@@ -1,6 +1,4 @@
 using UnityEngine;
-using EntityAI.Behaviour;
-using Entity;
 namespace EntityAI
 {
     public class EnemyLoockTarget : EnemyRotate
@@ -33,7 +31,7 @@ namespace EntityAI
         {
             if (enemy.context.isLoockTarget)
             {
-                Vector3 loockTarget = (enemy.target.position - enemy.tr.position).normalized;
+                Vector3 loockTarget = (enemy.components.target.position - enemy.components.tr.position).normalized;
                 Quaternion targetRotation = Quaternion.LookRotation(new Vector3(loockTarget.x, 0, loockTarget.z));
                 Rotating(targetRotation);
             }

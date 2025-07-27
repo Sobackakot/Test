@@ -1,27 +1,26 @@
+using EntityAI.Behaviour;
+using EntityAI.Components;
+using EntityAI.Config;
 using EntityAI.Context;
-using UnityEngine;  
+using EntityAI.Planer;
+using State.Machine;
 
-namespace Entity
+namespace EntityAI
 {
-    public interface IEntity
-    {
-        string entityId { get; }
-        Vector3 spawnPoint { get; }
-        Transform tr { get; }
-        Transform target { get; }
-        EntityType entityType { get; }
-        IContext context { get; }
-        Rigidbody rb { get; } 
-        float angleRotate { get; }
-        float minAngle { get; }
-        float maxAngle { get; }
-        float speedMove { get; }
-        float minDistanceLoockTarget { get; }
-        float minDistanceAttackTarget { get; }
-        float minDistanceFollowTarget { get; }
+    public interface IEntity 
+    { 
+        public IContext context { get; }
 
-        GameObject GetEntityPrefab();
-        void SetSpawnPoint(Vector3 point);
+        public IEntityComponent components { get; }
+
+        public IEntityConfig config { get; }
+
+        public IBehaviourHandler behaviourHandler { get; }
+
+        public IStateMachine stateMachine { get; }
+
+        public IPlaner<IContext> planer { get; }
+ 
     }
     public enum EntityType
     {

@@ -3,8 +3,6 @@ using EntityAI.Behaviour;
 using State.Enemys;
 using State.Machine;
 using System.Collections.Generic;
-using System.Collections;
-using Entity;
 
 public class AttackEnemyState : EnemyStateBase
 {

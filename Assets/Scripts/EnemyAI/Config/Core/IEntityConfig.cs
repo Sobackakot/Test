@@ -1,12 +1,29 @@
-using EntityAI;
-using System.Collections.Generic;
+using UnityEngine;
 
-namespace Entity.Config
+namespace EntityAI.Config
 {
     public interface IEntityConfig
-    {
-        Dictionary<EntityType, IEntity> entities { get;}
+    { 
+        public EntityType entityType { get; }
+         
+        public Vector3 spawnPoint { get; }
+         
+        public string entityId { get; }
+         
+        public float minDistanceLoockTarget { get; }
+         
+        public float minDistanceFollowTarget { get; } 
+        public float minDistanceAttackTarget { get; }
+         
+        public float minAngle { get; }
+         
+        public float maxAngle { get; }
+         
+        public float speedMove { get; }
+         
+        public float angleRotate { get; }
 
-        IEntity GetEntity(EntityType type);
-    } 
+        void SetSpawnPoint(Vector3 point);
+    }
+
 }

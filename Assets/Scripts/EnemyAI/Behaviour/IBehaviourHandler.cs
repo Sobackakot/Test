@@ -1,11 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine; 
-
-
 namespace EntityAI.Behaviour
 {
-    public interface IBehaviourHandler
+    public interface IBehaviourHandler 
     { 
         void RegisterBehaviour<T>(T behaviour) 
             where T : class, IBehaviourBase;

@@ -1,10 +1,9 @@
-using EntityAI;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Entity.Config
+namespace EntityAI.Config
 {
-    public abstract class EntityConfigBase : MonoBehaviour, IEntityConfig
+    public abstract class EntityResourcesBase : MonoBehaviour, IEntityResources
     { 
         [field: SerializeField] private List<EnemyBase> entitieTypesPrefab = new();
         [field: SerializeField] private List<Transform> spawnPoints = new();
@@ -17,15 +16,15 @@ namespace Entity.Config
         { 
             for (int i = 0; i < entitieTypesPrefab.Count; i++)
             {
-                entitieTypesPrefab[i].SetSpawnPoint(spawnPoints[i].position);
+                entitieTypesPrefab[i].config.SetSpawnPoint(spawnPoints[i].position);
             }
             foreach (var entity in entitieTypesPrefab)
             {
-                
-                if (!entities.ContainsKey(entity.entityType))
+                var type = entity.config.entityType;
+                 
+                if (!entities.ContainsKey(type))
                 {
-                    _entities.Add(entity.entityType, entity);
-                    Debug.Log(entity.GetType().Name);
+                    _entities.Add(type, entity); 
                 } 
             }
     

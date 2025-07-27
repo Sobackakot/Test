@@ -1,5 +1,5 @@
-using Entity;
-using Entity.Config;
+using EntityAI;
+using EntityAI.Config;
 
 
 namespace EntityAI.Factory

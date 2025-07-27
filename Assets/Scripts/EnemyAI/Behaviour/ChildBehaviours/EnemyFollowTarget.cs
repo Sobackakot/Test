@@ -1,6 +1,4 @@
 using UnityEngine;
-using EntityAI.Behaviour;
-using Entity;
 
 namespace EntityAI
 {
@@ -34,7 +32,7 @@ namespace EntityAI
         {
             if (!enemy.context.isIdle && enemy.context.isFollowTarget && !enemy.context.isAttackTarget)
             {
-                Vector3 targetMove = (enemy.target.position - enemy.tr.position).normalized;
+                Vector3 targetMove = (enemy.components.target.position - enemy.components.tr.position).normalized;
                 Moving(targetMove);
             }
         }

@@ -1,51 +1,82 @@
-using EntityAI.Factory;
-using EntityAI.Repository;
-using Entity;
-using Entity.Config;
-using EntityAI.Creator;
-using UnityEngine;
- 
-public class MainPoint : MonoBehaviour
-{
-    private IEntityConfig config; 
-    private IEntityRepository repository;
-    private ICreator creator;
+using EntityAI;
+using EntityAI.Behaviour;
+using EntityAI.Context;
+using EntityAI.Planer;
+using EntityAI.React;
+using State.Enemys;
+using State.Machine;
 
-    private IFactory factory;
+public class MainPoint : SabjectAction<EntityActionType, IObserverContext<EntityActionType>>
+{ 
 
+    private IStateMachine stateMachine;
+    private IBehaviourHandler behaviourHandler;
+    private IPlaner<IContext> planer;
+  
+    public void InitializeEntity(IEntity entity)
+    { 
+        InvokeAction(EntityActionType.EntityReg, entity.config.entityId, entity);
+        InitActions(planer);
+        InitBehaviours(entity, behaviourHandler);
+        InitStates(entity, stateMachine);
+         
+        stateMachine.SetState(StateType.Idle);
+    }
+     
 
-    private void Awake()
+    private void InitActions(IPlaner<IContext> planer)
     {
-        config = FindObjectOfType<EntityConfig>();
-        repository = new EntityRepository();
-        creator = new EntityCreator(repository, config);  
+        planer.RegisterAction(new EnemyMoveAction(new EnemyStateHandler()));
+    }
+    private void InitBehaviours(IEntity enemy, IBehaviourHandler behHandler)
+    {
+        behHandler.RegisterBehaviour<IBehaviourIdle>(new EnemyIdle(enemy));
+
+        behHandler.RegisterBehaviour<IBehaviourMove>(new EnemyMove(enemy));
+        behHandler.RegisterBehaviour<IBehaviourRotate>(new EnemyRotate(enemy));
+
+        behHandler.RegisterBehaviour<IBehaviourRandomMove>(new EnemyRandomMove(enemy));
+        behHandler.RegisterBehaviour<IBehaviourRandomRotate>(new EnemyRandomRotate(enemy));
+
+        behHandler.RegisterBehaviour<IBehaviourFollowTarget>(new EnemyFollowTarget(enemy));
+        behHandler.RegisterBehaviour<IBehaviourLoockTarget>(new EnemyLoockTarget(enemy));
+
+        behHandler.RegisterBehaviour<IBehaviourAttackTarget>(new EnemyAttackTarget(enemy));
+    }
+    public void InitStates(IEntity enemy, IStateMachine stateHandler)
+    {
+        stateHandler.RegisterState(StateType.Idle, new IdleEnemyState(enemy, stateHandler, new BehaviourHandler()));
+        stateHandler.RegisterState(StateType.Move, new MoveEnemyState(enemy, stateHandler, new BehaviourHandler()));
+        stateHandler.RegisterState(StateType.Follow, new FollowEnemyState(enemy, stateHandler, new BehaviourHandler()));
+        stateHandler.RegisterState(StateType.Follow, new AttackEnemyState(enemy, stateHandler, new BehaviourHandler()));
     }
 
-    private void Update()
+    public void Tick()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            factory = new FireFactory();
-            creator.Creating(factory);
-        }
-        else if (Input.GetKeyDown(KeyCode.G))
-        {
-            factory = new FreezFactory();
-            creator.Creating(factory);
-        }
-        else if (Input.GetKeyDown(KeyCode.H))
-        {
-            factory = new EllectroFactory();
-            creator.Creating(factory);
-        }
-        repository?.Tick();
+        //foreach (var state in stateMachines.Values)
+        //{
+        //    state.UpdateState();
+        //}
     }
-    private void LateUpdate()
+
+    public void LateTick()
     {
-        repository?.LateTick();
+        //foreach (var state in stateMachines.Values)
+        //{
+        //    state.LateUpdateState();
+        //}
     }
-    private void FixedUpdate()
+
+    public void FixedTick()
     {
-        repository?.FixedTick();
+        //foreach (var state in stateMachines.Values)
+        //{
+        //    state.FixedUpdateState();
+        //}
+        //foreach (var entity in entities.Values)
+        //{
+        //    planersAction[entity].UpdateContext(entity.context);
+        //}
     }
+
 }

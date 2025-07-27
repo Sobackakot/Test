@@ -1,12 +1,12 @@
-using Entity;
-using Entity.Config;
+using EntityAI;
+using EntityAI.Config;
 
 
 namespace EntityAI.Factory
 {
     public interface IFactory 
-    {
-        IEntity NewEntity(IEntityConfig config);
+    { 
+        IEntity NewEntity(IEntityResources config);
     }
 }
 

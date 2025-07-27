@@ -1,6 +1,5 @@
-using UnityEngine;
 using EntityAI.Behaviour;
-using Entity;
+using UnityEngine;
 namespace EntityAI
 {
     public class EnemyMove : BehaviourBase 
@@ -11,8 +10,8 @@ namespace EntityAI
 
         public override void Moving(Vector3 targetMove)
         {
-            Rigidbody rb = enemy.rb;
-            rb.MovePosition(rb.position + targetMove.normalized * enemy.speedMove * Time.fixedDeltaTime);
+            Rigidbody rb = enemy.components.rb;
+            rb.MovePosition(rb.position + targetMove.normalized * enemy.config.speedMove * Time.fixedDeltaTime);
         }
     }
 }

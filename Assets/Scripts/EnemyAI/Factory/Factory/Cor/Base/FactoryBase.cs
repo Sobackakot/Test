@@ -1,5 +1,5 @@
-using Entity;
-using Entity.Config;
+using EntityAI;
+using EntityAI.Config;
 using UnityEngine;
 
 namespace EntityAI.Factory
@@ -12,13 +12,13 @@ namespace EntityAI.Factory
         }
          
         protected readonly EntityType type;
-         
-        public IEntity NewEntity(IEntityConfig config)
+          
+        public IEntity NewEntity(IEntityResources config)
         {
             IEntity entity = config.GetEntity(type);
-            GameObject prefab = entity.GetEntityPrefab();
-            GameObject newEnemy = GameObject.Instantiate(prefab, entity.spawnPoint, Quaternion.identity);
-            return newEnemy.GetComponent<EnemyBase>(); 
+            GameObject prefab = entity.components.prefab;
+            GameObject newEnemy = GameObject.Instantiate(prefab, entity.config.spawnPoint, Quaternion.identity);
+            return newEnemy.GetComponent<EnemyBase>();
         }
     }
 
