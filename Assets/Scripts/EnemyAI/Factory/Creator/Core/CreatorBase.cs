@@ -1,23 +1,28 @@
-using EnemyAI.Repository;
-using Entity;
-using Factory;
+using Entity.Config;
+using EntityAI.Factory;
+using EntityAI.Repository;
 
-namespace Creator
+namespace EntityAI.Creator
 {
     public abstract class CreatorBase : ICreator
     {
-        public CreatorBase(IEntityRepository<IEntity> entityRep)
+        public CreatorBase(
+
+            IEntityRepository entityRep, 
+            IEntityConfig config)
         {
-            this.entityRep = entityRep; 
+            this.entityRep = entityRep;
+            this.config = config;
         }
 
-        IEntityRepository<IEntity> entityRep; 
+        IEntityRepository entityRep;
+        IEntityConfig config;
 
         public void Creating(IFactory factory)
         {
-            var entity = factory.GetNewEntity();
+            var entity = factory.NewEntity(config);
             entityRep.RegistryEntity(entity.entityId, entity); 
-        }
+        } 
     }
 }
 

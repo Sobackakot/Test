@@ -1,7 +1,7 @@
-using EnemyAI.Actions;
-using EnemyAI.Context;
+using EntityAI.Actions;
+using EntityAI.Context;
 
-namespace EnemyAI.Planer
+namespace EntityAI.Planer
 {
     public interface IPlaner<T> where T : IContext
     {

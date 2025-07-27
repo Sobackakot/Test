@@ -1,9 +1,9 @@
-using EnemyAI.Actions;
-using EnemyAI.Context;
+using EntityAI.Actions;
+using EntityAI.Context;
 using System.Collections.Generic;
 
 
-namespace EnemyAI.Planer
+namespace EntityAI.Planer
 {
     public class Planer<T> : IPlaner<T> where T : IContext
     {

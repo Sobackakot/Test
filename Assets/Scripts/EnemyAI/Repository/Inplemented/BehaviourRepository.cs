@@ -1,9 +1,9 @@
-using EnemyAI.Behaviour;
+using EntityAI.Behaviour;
 using Entity;
 using System.Collections.Generic;
 
 
-namespace EnemyAI.Repository
+namespace EntityAI.Repository
 {
     public class BehaviourRepository : IBehaviourRepository<IEntity>
     {

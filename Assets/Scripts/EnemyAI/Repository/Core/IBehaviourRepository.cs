@@ -1,7 +1,7 @@
-using EnemyAI.Behaviour;
+using EntityAI.Behaviour;
 using Entity;
 
-namespace EnemyAI.Repository
+namespace EntityAI.Repository
 {
     public interface IBehaviourRepository<Entity> where Entity : class, IEntity
     {

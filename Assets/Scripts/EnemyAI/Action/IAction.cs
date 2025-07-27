@@ -1,7 +1,7 @@
-using EnemyAI.Context;
+using EntityAI.Context;
 using State.Machine;
 
-namespace EnemyAI.Actions
+namespace EntityAI.Actions
 {
     public interface IAction<in T> where T : IContext
     {

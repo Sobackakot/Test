@@ -1,4 +1,4 @@
-using EnemyAI;
+using EntityAI;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,8 +10,8 @@ namespace Entity.Config
         [field: SerializeField] private List<Transform> spawnPoints = new();
 
 
-        private Dictionary<EntityType, EnemyBase> _entities = new() ; 
-        public Dictionary<EntityType, EnemyBase> entities => _entities;
+        private Dictionary<EntityType, IEntity> _entities = new() ; 
+        public Dictionary<EntityType, IEntity> entities => _entities;
          
         private void Awake()
         { 
@@ -31,7 +31,7 @@ namespace Entity.Config
     
         }
 
-        public EnemyBase GetEntity(EntityType type)
+        public IEntity GetEntity(EntityType type)
         { 
             return entities.TryGetValue(type, out var entity) ? entity : default;
         }

@@ -1,5 +1,5 @@
-using EnemyAI.Actions;
-using EnemyAI.Context;
+using EntityAI.Actions;
+using EntityAI.Context;
 using State.Machine;
 
 public class EnemyMoveAction : IAction<IContext>

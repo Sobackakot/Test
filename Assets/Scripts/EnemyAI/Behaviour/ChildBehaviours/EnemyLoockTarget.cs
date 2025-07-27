@@ -1,7 +1,7 @@
 using UnityEngine;
-using EnemyAI.Behaviour;
+using EntityAI.Behaviour;
 using Entity;
-namespace EnemyAI
+namespace EntityAI
 {
     public class EnemyLoockTarget : EnemyRotate
     {

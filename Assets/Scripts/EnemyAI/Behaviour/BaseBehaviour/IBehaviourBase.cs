@@ -1,4 +1,4 @@
-using EnemyAI; 
+using EntityAI; 
 
 public interface IBehaviourBase  
 { 

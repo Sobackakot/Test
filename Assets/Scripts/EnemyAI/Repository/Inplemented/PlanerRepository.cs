@@ -1,10 +1,10 @@
-using EnemyAI.Planer;
-using EnemyAI.Context;
+using EntityAI.Planer;
+using EntityAI.Context;
 using Entity;
 using System.Collections.Generic;
 
 
-namespace EnemyAI.Repository
+namespace EntityAI.Repository
 {
     public class PlanerRepository : IPlanerRepository<IEntity>
     {

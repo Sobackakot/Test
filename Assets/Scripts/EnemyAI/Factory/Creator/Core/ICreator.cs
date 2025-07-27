@@ -1,8 +1,11 @@
-using Factory;
+using Entity;
+using Entity.Config;
+using EntityAI.Factory;
+using EntityAI.Repository;
 
 
 
-namespace Creator
+namespace EntityAI.Creator
 {
     public interface ICreator  
     {

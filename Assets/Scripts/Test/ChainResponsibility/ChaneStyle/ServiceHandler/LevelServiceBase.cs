@@ -1,6 +1,6 @@
 using Chain.Service.Client;
-using Creator;
-using Factory;
+using EntityAI.Creator;
+using EntityAI.Factory;
 
 namespace Chain.Service
 {

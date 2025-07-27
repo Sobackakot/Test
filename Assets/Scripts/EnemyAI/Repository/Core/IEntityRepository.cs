@@ -1,13 +1,13 @@
-using EnemyAI.Behaviour;
-using EnemyAI.Planer;
+using EntityAI.Behaviour;
+using EntityAI.Planer;
 using Entity;
 using State.Machine;
 using System.Collections.Generic;
-using EnemyAI.Context;
+using EntityAI.Context;
 
-namespace EnemyAI.Repository 
+namespace EntityAI.Repository 
 {
-    public interface IEntityRepository<Entity> where Entity : class, IEntity
+    public interface IEntityRepository
     {
         Dictionary<IEntity, IStateMachine> stateMachines { get; }
 
@@ -17,9 +17,9 @@ namespace EnemyAI.Repository
 
         Dictionary<string, IEntity> entities { get; }
 
-        void RegistryEntity(string id, Entity enemy);
+        void RegistryEntity(string id, IEntity enemy);
 
-        void UnRegistryEnemy(string id, Entity enemy);
+        void UnRegistryEnemy(string id, IEntity enemy);
 
         void Tick();
         void LateTick();

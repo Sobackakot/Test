@@ -1,7 +1,7 @@
 using Entity;
 using State.Machine;
 
-namespace EnemyAI.Repository
+namespace EntityAI.Repository
 {
     public interface IFSMRepository<Entity> where Entity : class, IEntity
     {

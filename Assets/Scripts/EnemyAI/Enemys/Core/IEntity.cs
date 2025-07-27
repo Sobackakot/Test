@@ -1,4 +1,4 @@
-using EnemyAI.Context;
+using EntityAI.Context;
 using UnityEngine;  
 
 namespace Entity

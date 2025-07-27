@@ -1,9 +1,9 @@
-using EnemyAI.Context;
+using EntityAI.Context;
 using Entity;
 using System;
 using UnityEngine;
 
-namespace EnemyAI
+namespace EntityAI
 { 
     [RequireComponent(typeof(Rigidbody))]
     public abstract class EnemyBase : MonoBehaviour , IEntity

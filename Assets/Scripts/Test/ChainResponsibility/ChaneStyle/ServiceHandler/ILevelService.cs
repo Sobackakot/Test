@@ -1,5 +1,5 @@
 using Chain.Service.Client;
-using Factory;
+using EntityAI.Factory;
 
 namespace Chain.Service
 {

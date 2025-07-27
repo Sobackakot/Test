@@ -1,5 +1,5 @@
-using EnemyAI;
-using EnemyAI.Behaviour;
+using EntityAI;
+using EntityAI.Behaviour;
 using Entity;
 using State.Enemys;
 using State.Machine;

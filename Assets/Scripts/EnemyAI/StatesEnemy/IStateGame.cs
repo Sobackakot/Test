@@ -1,5 +1,5 @@
 
-using EnemyAI;
+using EntityAI;
 
 namespace State
 { 

@@ -1,6 +1,6 @@
 using System;
 
-namespace EnemyAI.Context
+namespace EntityAI.Context
 {
     public interface IContext
     {

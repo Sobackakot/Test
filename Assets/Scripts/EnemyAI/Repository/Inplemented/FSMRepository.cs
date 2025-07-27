@@ -3,7 +3,7 @@ using State.Machine;
 using System.Collections.Generic;
 
 
-namespace EnemyAI.Repository
+namespace EntityAI.Repository
 {
     public class FSMRepository : IFSMRepository<IEntity>
     {

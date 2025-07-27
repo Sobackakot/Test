@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-namespace EnemyAI.Behaviour
+namespace EntityAI.Behaviour
 {
     public class BehaviourHandler : IBehaviourHandler
     {

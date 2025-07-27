@@ -1,8 +1,8 @@
-using EnemyAI.Planer;
-using EnemyAI.Context;
+using EntityAI.Planer;
+using EntityAI.Context;
 using Entity;
 
-namespace EnemyAI.Repository
+namespace EntityAI.Repository
 {
     public interface IPlanerRepository<Entity> where Entity : class, IEntity
     {

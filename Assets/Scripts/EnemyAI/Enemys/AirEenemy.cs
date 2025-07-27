@@ -1,7 +1,7 @@
-using EnemyAI.Context;
+using EntityAI.Context;
 using UnityEngine;
 
-namespace EnemyAI
+namespace EntityAI
 {
     public class AirEenemy : EnemyBase
     {

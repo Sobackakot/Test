@@ -647,11 +647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91d85a041287ca34187cdd5da8705c2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityPrefabs:
-  - {fileID: 5675563312283139943, guid: bc54188a29ec72c40b3035bae610aec1, type: 3}
-  - {fileID: 7793686170194032214, guid: 1a7810090b7f053458cc32719c9aa7d5, type: 3}
-  - {fileID: 6477622523621790804, guid: e67c30dfe96401b438e70e4be13c47a5, type: 3}
-  entitiesType:
+  entitieTypesPrefab:
   - {fileID: 2990967915064432251, guid: bc54188a29ec72c40b3035bae610aec1, type: 3}
   - {fileID: 5252696138605755680, guid: 1a7810090b7f053458cc32719c9aa7d5, type: 3}
   - {fileID: 4530110729511802988, guid: e67c30dfe96401b438e70e4be13c47a5, type: 3}

@@ -1,6 +1,6 @@
  
 using UnityEngine;
-namespace EnemyAI
+namespace EntityAI
 { 
     public interface IBehaviourIdle: IBehaviourBase
     { 

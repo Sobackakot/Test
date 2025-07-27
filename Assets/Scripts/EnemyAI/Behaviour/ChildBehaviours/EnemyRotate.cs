@@ -1,8 +1,8 @@
-using EnemyAI.Behaviour;
+using EntityAI.Behaviour;
 using Entity;
 using UnityEngine;
 
-namespace EnemyAI
+namespace EntityAI
 {
     public class EnemyRotate : BehaviourBase
     {

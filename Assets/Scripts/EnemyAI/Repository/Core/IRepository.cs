@@ -1,6 +1,6 @@
 using Entity;
 
-namespace EnemyAI.Repository
+namespace EntityAI.Repository
 {
     public interface IRepository<Entity> where Entity : class, IEntity
     {

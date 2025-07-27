@@ -1,8 +1,8 @@
-using EnemyAI;
+using EntityAI;
 using Entity;
 using UnityEngine;
 
-namespace EnemyAI.Behaviour
+namespace EntityAI.Behaviour
 {
     public abstract class BehaviourBase :
         IBehaviourIdle,

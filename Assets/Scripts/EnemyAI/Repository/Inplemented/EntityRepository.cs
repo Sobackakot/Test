@@ -1,14 +1,14 @@
-using EnemyAI.Behaviour;
-using EnemyAI.Context;
-using EnemyAI.Planer;
+using EntityAI.Behaviour;
+using EntityAI.Context;
+using EntityAI.Planer;
 using Entity;
 using State.Enemys;
 using State.Machine;
 using System.Collections.Generic;
 
-namespace EnemyAI.Repository
+namespace EntityAI.Repository
 {
-    public class EntityRepository : IEntityRepository<IEntity>
+    public class EntityRepository : IEntityRepository
     {
 
         Dictionary<string, IEntity> _entities = new();
