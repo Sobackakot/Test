@@ -1,6 +1,6 @@
-using EntityAI;
 using EntityAI.React;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace EntityAI.Repository
 {
@@ -9,24 +9,45 @@ namespace EntityAI.Repository
         public EntityRepository(IActionSubject<EntityActionType, IObserverContext<EntityActionType>> subject) : base(subject)
         {
             Register(EntityActionType.EntityReg, (string id, IEntity entity) => RegisterEntity(id, entity));
-            Register(EntityActionType.EntityUnreg, (string id) => UnregisterEntity(id));
+            Register(EntityActionType.EntityUnreg, (string id, IEntity entity) => UnregisterEntity(id, entity));
             SubscribeAll();
         }
 
-        Dictionary<string, IEntity> _entities = new();
-        public Dictionary<string, IEntity>  entities => _entities; 
+        Dictionary<string, IEntity> _entitiesAI = new(); 
+        public Dictionary<string, IEntity>  entitiesAI => _entitiesAI;
 
-         
-        public void RegisterEntity(string id, IEntity enemy)
+        private List<IEntity> _entities = new();
+        public List<IEntity> entities => _entities;
+
+        public void Enter()
         {
-            if (!entities.ContainsKey(id))
-                _entities.Add(id, enemy); 
+            Register(EntityActionType.EntityReg, (string id, IEntity entity) => RegisterEntity(id, entity));
+            Register(EntityActionType.EntityUnreg, (string id, IEntity entity) => UnregisterEntity(id, entity));
+            SubscribeAll();
         }
 
-        public void UnregisterEntity(string id)
+        public void Exit()
         {
-            if (entities.ContainsKey(id))
-                _entities.Remove(id);
-        } 
+            UnsubscribeAll();
+        }
+        public void RegisterEntity(string id, IEntity entity)
+        {
+            if (!entitiesAI.ContainsKey(id))
+            { 
+                _entitiesAI.Add(id, entity); 
+                _entities.Add(entity);
+            }
+        }
+
+        public void UnregisterEntity(string id, IEntity entity)
+        {
+            if (entitiesAI.ContainsKey(id))
+            {
+                _entitiesAI.Remove(id);
+                _entities.Remove(entity);
+            }
+        }
+
+    
     }
 }

@@ -21,9 +21,10 @@ namespace EntityAI.Components
         public Rigidbody rb => _rb;
 
 
-        private void Awake()
+        private void Start()
         {
-            _prefab = gameObject;
+            _prefab = this.gameObject;
+        
             _tr = transform;
             _rb = GetComponent<Rigidbody>();
             _target = FindObjectOfType<TargetMove>().transform;

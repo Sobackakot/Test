@@ -6,7 +6,7 @@ namespace EntityAI.Factory
 {
     public class FireFactory : FactoryBase
     {
-        public FireFactory() : base(EntityType.Fire)
+        public FireFactory( IGameResources gameResources) : base(EntityType.Fire, gameResources)
         {
         }
     }

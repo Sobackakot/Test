@@ -1,24 +1,24 @@
+using EntityAI;
 using EntityAI.Actions;
 using EntityAI.Context;
-using State.Machine;
 
 public class EnemyMoveAction : IAction<IContext>
 {
-    public EnemyMoveAction(IFSM fsm)
+    public EnemyMoveAction(IEntity entity)
     {
-        this.fsm = fsm;
+        this.entity = entity;
     }
 
-    public IFSM fsm { get ; set; }
+    public IEntity entity { get ; private set; }
 
     public void Subscribe(IContext context)
     {
-        context.OnExecuteMoveAction += fsm.TryTransition;
+        context.OnExecuteMoveAction += entity.stateMachine.TryTransition;
     }
 
     public void Unsubscribe(IContext context)
     {
-        context.OnExecuteMoveAction -= fsm.TryTransition;
+        context.OnExecuteMoveAction -= entity.stateMachine.TryTransition;
     }
     public void Execute(IContext context)
     {

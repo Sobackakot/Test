@@ -1,6 +1,10 @@
+using EntityAI.Components;
+using EntityAI.Config;
+using UnityEngine;
+
 namespace EntityAI
-{
-    public class EllectroEnemy : EnemyBase
+{ 
+    public class EllectroEnemy : EntityAIBase
     { 
     }
 }

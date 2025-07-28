@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 3250555489979601533}
   - component: {fileID: 7815487974905062678}
   - component: {fileID: 7280421757586164261}
-  - component: {fileID: 4530110729511802988}
   - component: {fileID: 5056424746408092235}
+  - component: {fileID: 4530110729511802988}
+  - component: {fileID: 8480539678998602271}
   m_Layer: 0
   m_Name: Enemy_Freez
   m_TagString: Untagged
@@ -109,27 +110,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4530110729511802988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6477622523621790804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58c49941a64b9394ab668390558625a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _entityType: 1
-  _spawnPoint: {x: 0, y: 1, z: -45}
-  _minDistanceLoockTarget: 30
-  _minDistanceFollowTarget: 20
-  _minDistanceAttackTarget: 5
-  _minAngle: 45
-  _maxAngle: 120
-  _speedMove: 5
-  _angleRotate: 3
 --- !u!54 &5056424746408092235
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -157,3 +137,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &4530110729511802988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6477622523621790804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58c49941a64b9394ab668390558625a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _config: {fileID: 11400000, guid: aad1617d36659dd419a2392dbce7048f, type: 2}
+--- !u!114 &8480539678998602271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6477622523621790804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de9fe72928cbfa24ebd17e99bb2fbac0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

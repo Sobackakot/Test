@@ -1,15 +1,16 @@
-using EntityAI;
 using System.Collections.Generic;
 
 namespace EntityAI.Repository 
 {
-    public interface IEntityRepository  
+    public interface IEntityRepository  : IRepository
     {  
-        Dictionary<string, IEntity> entities { get; }
+        Dictionary<string, IEntity> entitiesAI { get; }
+        List<IEntity> entities { get; }
 
-        void RegisterEntity(string id, IEntity enemy);
+        void RegisterEntity(string id, IEntity entity);
 
-        void UnregisterEntity(string id); 
+        void UnregisterEntity(string id, IEntity entity);
+    
     }
 }
 

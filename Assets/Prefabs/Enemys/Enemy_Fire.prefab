@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 3557990669580747701}
   - component: {fileID: 2260978153423435418}
   - component: {fileID: 774725827776906639}
+  - component: {fileID: 5680864802228534621}
   - component: {fileID: 4165996629715102298}
   - component: {fileID: 5252696138605755680}
-  - component: {fileID: 5680864802228534621}
+  - component: {fileID: 4384856745765138645}
   m_Layer: 0
   m_Name: Enemy_Fire
   m_TagString: Untagged
@@ -86,6 +87,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &5680864802228534621
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7793686170194032214}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!136 &4165996629715102298
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -121,39 +149,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3261ddff2530bfc4a9bd80c2e0fa339e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entityType: 0
-  _spawnPoint: {x: 0, y: 1, z: -16}
-  _minDistanceLoockTarget: 30
-  _minDistanceFollowTarget: 20
-  _minDistanceAttackTarget: 5
-  _minAngle: 45
-  _maxAngle: 120
-  _speedMove: 5
-  _angleRotate: 3
---- !u!54 &5680864802228534621
-Rigidbody:
+  _config: {fileID: 11400000, guid: 07ca3d265ef9d0e4490b3460dca7215e, type: 2}
+--- !u!114 &4384856745765138645
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7793686170194032214}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de9fe72928cbfa24ebd17e99bb2fbac0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

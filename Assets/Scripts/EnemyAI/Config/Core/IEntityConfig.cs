@@ -3,7 +3,7 @@ using UnityEngine;
 namespace EntityAI.Config
 {
     public interface IEntityConfig
-    { 
+    {
         public EntityType entityType { get; }
          
         public Vector3 spawnPoint { get; }

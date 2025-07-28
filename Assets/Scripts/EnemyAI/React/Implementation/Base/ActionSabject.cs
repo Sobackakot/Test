@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace EntityAI.React
 {
-    public abstract class SabjectAction<TEnum, IObserver> :
+    public abstract class ActionSabject<TEnum, IObserver> :
         IActionSubject<TEnum, IObserver>
         where TEnum : Enum
         where IObserver : class, IObserverContext<TEnum>
@@ -104,25 +104,7 @@ namespace EntityAI.React
     { 
         EntityReg,
         EntityUnreg
-    }
-    public enum StateMachineActionType
-    {
-        StateMachineReg,
-        StateMachineUnreg,
-        SetState
-    }
-    public enum BehaviourHandlerActionType 
-    { 
-        BehaviourHandlerReg,
-        BehaviourHandlerUnreg
-    }
-    public enum PlanerActionType
-    {
-        PlanerReg,
-        PlanerUnreg,
-        Subscribe,
-        Unsibsribe
-    }
+    } 
     public enum CreatorActionType
     {
         Creator

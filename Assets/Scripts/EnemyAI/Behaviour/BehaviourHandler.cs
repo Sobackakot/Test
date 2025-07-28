@@ -7,7 +7,8 @@ namespace EntityAI.Behaviour
 {
     public class BehaviourHandler : IBehaviourHandler
     {
-        private readonly Dictionary<Type, IBehaviourBase> behaviours = new();
+        private Dictionary<Type, IBehaviourBase> _behaviours = new();
+        public Dictionary<Type, IBehaviourBase> behaviours => _behaviours;
         
         T IBehaviourHandler.GetBehaviour<T>()
         {

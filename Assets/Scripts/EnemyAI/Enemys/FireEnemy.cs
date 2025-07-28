@@ -1,6 +1,6 @@
 namespace EntityAI
 {
-    public class FireEnemy : EnemyBase
+    public class FireEnemy : EntityAIBase
     {
          
     }

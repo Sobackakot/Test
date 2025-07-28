@@ -6,12 +6,12 @@ using System.Collections.Generic;
 
 public class FollowEnemyState : EnemyStateBase
 {
-    public FollowEnemyState(
-        IEntity enemy, 
-        IStateMachine stateMachine, 
-        IBehaviourHandler behaviourHandler) : base(enemy, stateMachine, behaviourHandler)
+    public FollowEnemyState(IEntity enemy) : base(enemy)
     {
         var type = StateType.Follow;
+        var stateMachine = enemy.stateMachine;
+        var behaviourHandler = enemy.behaviourHandler;
+
         stateMachine.AddTransition(type, () => !enemy.context.isFollowTarget ? StateType.Idle : type);
         behaviours = new List<IBehaviourBase>()
         { 

@@ -6,7 +6,7 @@ namespace EntityAI.Factory
 {
     public class EllectroFactory : FactoryBase
     {
-        public EllectroFactory() : base(EntityType.Ellectro)
+        public EllectroFactory(IGameResources gameResources) : base(EntityType.Ellectro, gameResources)
         {
         }
     }

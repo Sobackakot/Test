@@ -1,6 +1,6 @@
 namespace EntityAI
 {
-    public class DefaultEnemy : EnemyBase
+    public class DefaultEnemy : EntityAIBase
     {
          
     }

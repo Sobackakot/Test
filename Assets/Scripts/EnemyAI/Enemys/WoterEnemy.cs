@@ -1,6 +1,6 @@
 namespace EntityAI
 {
-    public class WoterEnemy : EnemyBase
+    public class WoterEnemy : EntityAIBase
     { 
     }
 }

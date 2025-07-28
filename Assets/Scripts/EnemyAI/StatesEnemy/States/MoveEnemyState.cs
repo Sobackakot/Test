@@ -1,17 +1,16 @@
 
 using EntityAI;
-using EntityAI.Behaviour;
 using State.Enemys;
-using State.Machine;
 using System.Collections.Generic;
 public class MoveEnemyState :  EnemyStateBase
 {
-    public MoveEnemyState(
-        IEntity enemy, 
-        IStateMachine stateMachine, 
-        IBehaviourHandler behaviourHandler) : base(enemy, stateMachine, behaviourHandler)
+    public MoveEnemyState(IEntity enemy) : base(enemy)
     {
         var type = StateType.Move;
+
+        var stateMachine = enemy.stateMachine;
+        var behaviourHandler = enemy.behaviourHandler;
+
         stateMachine.AddTransition(type, () => !enemy.context.isRundomMove ? StateType.Idle : type);
         stateMachine.AddTransition(type, () => enemy.context.isIdle ? StateType.Idle : type);
         stateMachine.AddTransition(type, () => enemy.context.isFollowTarget ? StateType.Follow : type);

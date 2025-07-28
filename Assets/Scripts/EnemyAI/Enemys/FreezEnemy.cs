@@ -1,6 +1,6 @@
 namespace EntityAI
 {
-    public class FreezEnemy : EnemyBase
+    public class FreezEnemy : EntityAIBase
     { 
     }
 }

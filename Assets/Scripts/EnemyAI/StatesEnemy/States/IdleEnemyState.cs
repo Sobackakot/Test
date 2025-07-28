@@ -1,26 +1,25 @@
 using EntityAI;
-using EntityAI.Behaviour;
 using State.Enemys;
-using State.Machine;
 using System.Collections.Generic;
 
 public class IdleEnemyState : EnemyStateBase
 {
-    public IdleEnemyState(
-        IEntity enemy, 
-        IStateMachine stateMachine, 
-        IBehaviourHandler behaviourHandler) : base(enemy, stateMachine, behaviourHandler)
+    public IdleEnemyState(IEntity entity) : base(entity)
     {
         var type = StateType.Idle;
-        stateMachine.AddTransition(type, () => !enemy.context.isIdle ? StateType.Move : type);
-        stateMachine.AddTransition(type, () => enemy.context.isRundomMove ? StateType.Move : type);
-        stateMachine.AddTransition(type, () => enemy.context.isFollowTarget ? StateType.Follow : type);
+
+        var fsm = entity.stateMachine;
+        var behHandler = entity.behaviourHandler;
+
+        fsm.AddTransition(type, () => !entity.context.isIdle ? StateType.Move : type);
+        fsm.AddTransition(type, () => entity.context.isRundomMove ? StateType.Move : type);
+        fsm.AddTransition(type, () => entity.context.isFollowTarget ? StateType.Follow : type);
 
         behaviours = new List<IBehaviourBase>()
         {
-            behaviourHandler.GetBehaviour<IBehaviourIdle>(),
-            behaviourHandler.GetBehaviour<IBehaviourLoockTarget>(),
-            behaviourHandler.GetBehaviour<IBehaviourRandomRotate>()
+            behHandler.GetBehaviour<IBehaviourIdle>(),
+            behHandler.GetBehaviour<IBehaviourLoockTarget>(),
+            behHandler.GetBehaviour<IBehaviourRandomRotate>()
         };
     }
 

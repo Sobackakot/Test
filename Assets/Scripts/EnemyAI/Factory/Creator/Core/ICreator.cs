@@ -8,6 +8,6 @@ namespace EntityAI.Creator
 {
     public interface ICreator  
     {
-       void Creating(IFactory factory,IEntityResources config); 
+       void Creating(IFactory factory); 
     }
 }

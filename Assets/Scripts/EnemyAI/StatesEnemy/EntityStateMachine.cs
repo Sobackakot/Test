@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace State.Enemys
 {
-    public class EnemyStateHandler : IStateMachine
+    public class EntityStateMachine : IStateMachine
     {
         public IStateGame currentState;
         public StateType currentStateType;

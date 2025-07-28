@@ -600,8 +600,9 @@ GameObject:
   m_Component:
   - component: {fileID: 966259262}
   - component: {fileID: 966259264}
+  - component: {fileID: 966259265}
   m_Layer: 0
-  m_Name: Confige
+  m_Name: GameResources
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -634,14 +635,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91d85a041287ca34187cdd5da8705c2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entitieTypesPrefab:
-  - {fileID: 2990967915064432251, guid: bc54188a29ec72c40b3035bae610aec1, type: 3}
-  - {fileID: 5252696138605755680, guid: 1a7810090b7f053458cc32719c9aa7d5, type: 3}
-  - {fileID: 4530110729511802988, guid: e67c30dfe96401b438e70e4be13c47a5, type: 3}
+  entityConfigs:
+  - {fileID: 11400000, guid: c8e2a73e531ac6c48923cd0e346a4ea9, type: 2}
+  - {fileID: 11400000, guid: 07ca3d265ef9d0e4490b3460dca7215e, type: 2}
+  - {fileID: 11400000, guid: aad1617d36659dd419a2392dbce7048f, type: 2}
   spawnPoints:
   - {fileID: 1809199774}
   - {fileID: 1733684168}
   - {fileID: 777737317}
+--- !u!114 &966259265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966259260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efca0acc426cf49469cc6aa4ce81cd88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1081102358
 GameObject:
   m_ObjectHideFlags: 0

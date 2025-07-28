@@ -8,16 +8,12 @@ namespace  State.Enemys
 {
     public abstract class EnemyStateBase : IStateGame
     {
-        public EnemyStateBase(IEntity enemy,IStateMachine stateMachine, IBehaviourHandler behaviourHandler)
+        public EnemyStateBase(IEntity entity)
         {
-            this.enemy = enemy;
-            this.stateMachine = stateMachine;
-            this.behaviourHandler = behaviourHandler; 
+            this.enemy = entity;
         }
         private protected List<IBehaviourBase> behaviours = new();
         private protected readonly IEntity enemy;
-        private protected readonly IStateMachine stateMachine;
-        private protected readonly IBehaviourHandler behaviourHandler; 
         public abstract void EnterState();
         public abstract void ExitState();
         public abstract void UpdateState();

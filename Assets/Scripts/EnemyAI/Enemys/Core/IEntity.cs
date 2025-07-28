@@ -3,11 +3,12 @@ using EntityAI.Components;
 using EntityAI.Config;
 using EntityAI.Context;
 using EntityAI.Planer;
+using EntityAI.React;
 using State.Machine;
 
 namespace EntityAI
 {
-    public interface IEntity 
+    public interface IEntity: IEntityCommon
     { 
         public IContext context { get; }
 
@@ -20,7 +21,9 @@ namespace EntityAI
         public IStateMachine stateMachine { get; }
 
         public IPlaner<IContext> planer { get; }
- 
+
+        public IRepositorySubject repositorySubject { get; }
+
     }
     public enum EntityType
     {

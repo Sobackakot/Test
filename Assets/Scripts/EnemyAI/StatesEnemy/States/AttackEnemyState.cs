@@ -1,17 +1,15 @@
 using EntityAI;
-using EntityAI.Behaviour;
 using State.Enemys;
-using State.Machine;
 using System.Collections.Generic;
 
 public class AttackEnemyState : EnemyStateBase
 {
-    public AttackEnemyState(
-        IEntity enemy, 
-        IStateMachine stateMachine, 
-        IBehaviourHandler behaviourHandler) : base(enemy, stateMachine, behaviourHandler)
+    public AttackEnemyState(IEntity enemy) : base(enemy)
     {
         var type = StateType.Attack;
+        var stateMachine = enemy.stateMachine;
+        var behaviourHandler = enemy.behaviourHandler;
+
         stateMachine.AddTransition(type, () => !enemy.context.isAttackTarget ? StateType.Idle : type);
         behaviours = new List<IBehaviourBase>()
         {
