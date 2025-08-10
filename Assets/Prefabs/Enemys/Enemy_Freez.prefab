@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5056424746408092235}
   - component: {fileID: 4530110729511802988}
   - component: {fileID: 8480539678998602271}
+  - component: {fileID: -4469747868817936212}
   m_Layer: 0
   m_Name: Enemy_Freez
   m_TagString: Untagged
@@ -162,3 +163,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de9fe72928cbfa24ebd17e99bb2fbac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!195 &-4469747868817936212
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6477622523621790804}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

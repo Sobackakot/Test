@@ -12,13 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bd11abd5b00eb549a91429ad1bce7ae, type: 3}
   m_Name: Freez
   m_EditorClassIdentifier: 
+  _maxDistanceRaycast: 25
+  _targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  _directionTarget: {x: 0, y: 0, z: 0}
+  <timeAFC>k__BackingField: 5
+  _interval: 5
   _entityType: 1
   _prefab: {fileID: 6477622523621790804, guid: e67c30dfe96401b438e70e4be13c47a5, type: 3}
   _spawnPoint: {x: 0, y: 1, z: -42.2}
   _minDistanceLoockTarget: 30
   _minDistanceFollowTarget: 20
   _minDistanceAttackTarget: 5
-  _minAngle: 45
-  _maxAngle: 120
+  _minAngleRotate: 45
+  _maxAngleRotate: 120
   _speedMove: 5
   _angleRotate: 3
+  _minRadiusTrigger: 2
+  _visionRadius: 25
+  _viewAngle: 125

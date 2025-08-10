@@ -1,5 +1,5 @@
-using EntityAI.Context;
 using EntityAI;
+using EntityAI.Context;
 using System;
 using UnityEngine;
 
@@ -12,7 +12,25 @@ public class EnemyStateContext : IContext
     }
     public event Action OnExecuteMoveAction;
     public IEntity enemy { get; set; }
+     
+    public bool _isHasInteract = false;
+    public bool isHasInteract => _isHasInteract;
 
+    public bool _isFocus = false;
+    public bool isFocus => _isFocus;
+
+
+    bool _isHasRaycastHitTarget = false;
+    public bool isHasRaycastHitTarget
+    {
+        get => _isHasRaycastHitTarget;
+        private set
+        {
+            if (_isHasRaycastHitTarget == value) return;
+            _isHasRaycastHitTarget = value;
+            OnExecuteMoveAction?.Invoke();
+        }
+    }
 
     private bool _isIdle;
     public bool isIdle
@@ -82,6 +100,7 @@ public class EnemyStateContext : IContext
             OnExecuteMoveAction?.Invoke();
         }
     }
+     
     public void UpdateContext()
     {
         TimerRoutine();
@@ -90,32 +109,56 @@ public class EnemyStateContext : IContext
         isLoockTarget = IsMinDistance(enemy.config.minDistanceLoockTarget);
         isAttackTarget = IsMinDistance(enemy.config.minDistanceAttackTarget);
         isFollowTarget = IsMinDistance(enemy.config.minDistanceFollowTarget);
+        UpdateInteract();
+    }
+    private void UpdateInteract()
+    {
+        if (isFocus && !isHasInteract)
+        {
+            float distance = Vector3.Distance(enemy.components.target.position, enemy.components.tr.position);
+            if (distance <= enemy.config.minDistanceInteract)
+            {
+                _isHasInteract = true;
+                OnExecuteMoveAction?.Invoke();
+            }
+        }
     }
     private bool IsMinDistance(float minDistance)
-    {
-        return Vector3.Distance(enemy.components.tr.position, enemy.components.target.position) <= minDistance;
+    { 
+        return Vector3.Distance(enemy.components.tr.position, enemy.components.target.position) <= minDistance; 
     }
     private void TimerRoutine()
     {
-        timeAFC -= Time.deltaTime;
-        if (timeAFC <= 0)
+        var timer = enemy.config.timeAFC;
+        timer -= Time.deltaTime;
+        if (timer <= 0)
         {
-            timeAFC = UnityEngine.Random.Range(3f, 10f);
+            timer = UnityEngine.Random.Range(3f, 10f);
             if (!isFollowTarget)
                 IdleWaiteTime();
         }
-    }
-    private float time;
-    [field: Range(1, 45), SerializeField] public float timeAFC { get; private set; } = 5f; 
-    [field: Range(1, 45), SerializeField]  public float interval { get; private set; } = 5f;
+    } 
+     
     private void IdleWaiteTime()
     {
+        var time = enemy.config.time;
         isIdle = true;
         if(time < Time.time)
         {
             isIdle = false;
-            time = Time.time + interval;
+            time = Time.time + enemy.config.interval;
         } 
+    }
+
+    public void OnSetInteract()
+    {
+        _isHasInteract = false;
+        _isFocus = true;
+    }
+    public void OnResetInteract()
+    { 
+        _isHasInteract = true;
+        _isFocus = false;
     }
 }
  

@@ -4,25 +4,27 @@ using EntityAI.Config;
 using EntityAI.Context;
 using EntityAI.Planer;
 using EntityAI.React;
+using EntityAI.Repository;
 using State.Machine;
 
 namespace EntityAI
 {
     public interface IEntity: IEntityCommon
-    { 
-        public IContext context { get; }
+    {
+        ITargetTransientRepository repository { get; }
+        IContext context { get; }
 
-        public IEntityComponent components { get; }
+        IEntityComponent components { get; }
 
-        public IEntityConfig config { get; }
+        IEntityConfig config { get; }
 
-        public IBehaviourHandler behaviourHandler { get; }
+        IBehaviourHandler behaviourHandler { get; }
 
-        public IStateMachine stateMachine { get; }
+        IStateMachine stateMachine { get; }
 
-        public IPlaner<IContext> planer { get; }
+        IPlaner<IContext> planer { get; }
 
-        public IRepositorySubject repositorySubject { get; }
+        IRepositorySubject repositorySubject { get; }
 
     }
     public enum EntityType

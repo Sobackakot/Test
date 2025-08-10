@@ -4,24 +4,38 @@ namespace EntityAI.Config
 {
     public interface IEntityConfig
     {
-        public EntityType entityType { get; }
+        float minDistanceInteract { get; }
+        float maxDistanceRaycast { get; } 
+        LayerMask targetLayerMask { get;}
+        Ray ray { get; }
+        Vector3 directionTarget { get; }
+
+        float time { get; }
+        float timeAFC { get; set; }
+        float interval { get;  } 
+
+        EntityType entityType { get; }
          
-        public Vector3 spawnPoint { get; }
+        Vector3 spawnPoint { get; }
          
-        public string entityId { get; }
+        string entityId { get; }
+
+        float minRadiusTrigger { get; }
+        float visionRadius { get; }
+        float viewAngle { get; }
+
+        float minDistanceLoockTarget { get; }
          
-        public float minDistanceLoockTarget { get; }
+        float minDistanceFollowTarget { get; } 
+        float minDistanceAttackTarget { get; }
+
+        float minAngleRotate { get; }
          
-        public float minDistanceFollowTarget { get; } 
-        public float minDistanceAttackTarget { get; }
+        float maxAngleRotate { get; }
          
-        public float minAngle { get; }
+        float speedMove { get; }
          
-        public float maxAngle { get; }
-         
-        public float speedMove { get; }
-         
-        public float angleRotate { get; }
+        float angleRotate { get; }
 
         void SetSpawnPoint(Vector3 point);
     }

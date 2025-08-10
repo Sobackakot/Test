@@ -10,7 +10,10 @@ namespace EntityAI.Behaviour
         IBehaviourRandomRotate,
         IBehaviourFollowTarget,
         IBehaviourLoockTarget,
-        IBehaviourAttackTarget
+        IBehaviourAttackTarget,
+        IBehaviourSearchTarget,
+        IBehaviourInteract,
+        IBehaviourRaycast
     {
         public BehaviourBase(IEntity enemy)
         {
@@ -42,7 +45,10 @@ namespace EntityAI.Behaviour
         public virtual void AttackTarget()
         {
         }
-
+        public virtual bool RaycastForward(Vector3 targetPos)
+        {
+            return false;
+        }
         public virtual void Enter()
         { 
         }
@@ -60,5 +66,7 @@ namespace EntityAI.Behaviour
         public virtual void FixedUpdate()
         {
         }
+
+      
     }
 }

@@ -1,6 +1,4 @@
- 
-using UnityEngine;
-namespace EntityAI
+namespace EntityAI.Behaviour
 { 
     public interface IBehaviourRandomRotate: IBehaviourBase
     { 

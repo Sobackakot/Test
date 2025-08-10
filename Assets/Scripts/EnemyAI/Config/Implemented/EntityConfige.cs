@@ -7,55 +7,84 @@ namespace EntityAI.Config
     [CreateAssetMenu(fileName = "EntityAI_Config", menuName = "Config/EntityAI" )]
     public class EntityConfige : ScriptableObject, IEntityConfig
     {
+        [Range(1, 4), SerializeField] float _minDistanceInteract =2;
+        public float minDistanceInteract => _minDistanceInteract;
+
+        [Range(10, 50), SerializeField] float _maxDistanceRaycast =25;
+        public float maxDistanceRaycast => _maxDistanceRaycast;
+
+        [SerializeField] LayerMask _targetLayerMask;
+        public LayerMask targetLayerMask => _targetLayerMask;
+
+        [SerializeField] Ray _ray;
+        public Ray ray => _ray;
+
+        [SerializeField] Vector3 _directionTarget;
+        public Vector3 directionTarget => _directionTarget;
+
+
+
+        float _time;
+        public float time=> _time;
+
+
+        [field: Range(1, 15), SerializeField] public float timeAFC { get ; set; }
+
+        [Range(1, 15), SerializeField] float _interval = 5f;
+        public float interval => _interval;
+
 
         [SerializeField] private EntityType _entityType;
         public EntityType entityType => _entityType;
 
-        [SerializeField] private GameObject _prefab; // <-- ƒќЅј¬Ћ≈Ќќ: —сылка на префаб
-        public GameObject prefab => _prefab; // <-- ƒќЅј¬Ћ≈Ќќ
+        [SerializeField] private GameObject _prefab;  
+        public GameObject prefab => _prefab;  
 
-        [SerializeField] private Vector3 _spawnPoint; // ћожно удалить, если спавн-поинт будет передаватьс€ в фабрику
+        [SerializeField] private Vector3 _spawnPoint;  
         public Vector3 spawnPoint => _spawnPoint;
 
-        private string _entityId = Guid.NewGuid().ToString(); // »дентификатор дл€ экземпл€ра сущности
-        public string entityId => _entityId; // Ётот ID должен генерироватьс€ при создании экземпл€ра, а не в SO
-
-        // ... (остальные ваши пол€ конфигурации) ...
-
-        // ћетод SetSpawnPoint, если spawnPoint не будет передаватьс€ в фабрику, а будет частью конфига SO
-        public void SetSpawnPoint(Vector3 point) => _spawnPoint = point;
-
-        // ћетод дл€ установки ID экземпл€ра (если ID должен быть уникальным дл€ каждого экземпл€ра)
-        public void SetEntityInstanceId(string id) => _entityId = id;
-
-
-        [field: Range(3, 30), SerializeField] float _minDistanceLoockTarget = 30;
+        private string _entityId = Guid.NewGuid().ToString();  
+        public string entityId => _entityId;  
+         
+        [Range(3, 30), SerializeField] float _minDistanceLoockTarget = 30;
         public float minDistanceLoockTarget => _minDistanceLoockTarget;
 
 
-        [field: Range(3, 20), SerializeField] float _minDistanceFollowTarget = 25;
+        [Range(3, 20), SerializeField] float _minDistanceFollowTarget = 25;
         public float minDistanceFollowTarget => _minDistanceFollowTarget;
 
 
-        [field: Range(0.5f, 5), SerializeField] float _minDistanceAttackTarget = 6;
+        [Range(0.5f, 5), SerializeField] float _minDistanceAttackTarget = 6;
         public float minDistanceAttackTarget => _minDistanceAttackTarget;
 
 
-        [field: Range(15, 45), SerializeField] float _minAngle = 45f;
-        public float minAngle => _minAngle;
+        [Range(15, 45), SerializeField] float _minAngleRotate = 45f;
+        public float minAngleRotate => _minAngleRotate;
 
 
-        [field: Range(60, 120), SerializeField] float _maxAngle = 125f;
-        public float maxAngle => _maxAngle;
+        [Range(60, 120), SerializeField] float _maxAngleRotate = 125f;
+        public float maxAngleRotate => _maxAngleRotate;
 
 
-        [field: Range(3, 6), SerializeField] float _speedMove = 5f;
+        [Range(3, 6), SerializeField] float _speedMove = 5f;
         public float speedMove => _speedMove;
 
 
 
         [field: Range(1, 45), SerializeField] float _angleRotate = 3f;
         public float angleRotate => _angleRotate;
+
+        [field: Range(1, 5), SerializeField] float _minRadiusTrigger = 2;
+        public float minRadiusTrigger => _minRadiusTrigger;
+
+        [field: Range(3, 30), SerializeField] float _visionRadius = 25;
+        public float visionRadius => _visionRadius;
+
+        [field: Range(90, 160), SerializeField] float _viewAngle =125;
+        public float viewAngle => _viewAngle;
+
          
+        public void SetSpawnPoint(Vector3 point) => _spawnPoint = point; 
+        public void SetEntityInstanceId(string id) => _entityId = id;
     }
 }

@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 7294130360687113929}
   - component: {fileID: 9078918306157060849}
   - component: {fileID: 5583412776975737038}
+  - component: {fileID: 112331508720529499}
+  - component: {fileID: 6175027006015149019}
   m_Layer: 0
   m_Name: AirEnemy
   m_TagString: Untagged
@@ -146,11 +148,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31aa81f8f88edc84d866829e82aa0de1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <timeAFC>k__BackingField: 5
-  <isIdle>k__BackingField: 0
-  <isRundomMove>k__BackingField: 0
-  <isRundomRotate>k__BackingField: 0
-  <isFollowTarget>k__BackingField: 0
-  <isLoockTarget>k__BackingField: 0
-  <isAttackTarget>k__BackingField: 0
-  data: {fileID: 11400000, guid: 342f6df7ea5f87d4b8412edfb107c7f5, type: 2}
+  _config: {fileID: 0}
+--- !u!114 &112331508720529499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332394502782039138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de9fe72928cbfa24ebd17e99bb2fbac0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!195 &6175027006015149019
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332394502782039138}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

@@ -1,5 +1,6 @@
 using EntityAI.Behaviour;
 using UnityEngine;
+
 namespace EntityAI
 {
     public class EnemyMove : BehaviourBase 

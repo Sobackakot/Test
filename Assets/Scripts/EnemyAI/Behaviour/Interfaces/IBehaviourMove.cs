@@ -1,6 +1,6 @@
  
 using UnityEngine;
-namespace EntityAI
+namespace EntityAI.Behaviour
 { 
     public interface IBehaviourMove: IBehaviourBase
     { 

@@ -40,7 +40,7 @@ namespace EntityAI
                 if (time < Time.time)
                 {
                     time = Time.time + Random.Range(0.5f, 1.5f);
-                    turnAmount = Random.Range(enemy.config.minAngle, enemy.config.maxAngle);
+                    turnAmount = Random.Range(enemy.config.minAngleRotate, enemy.config.maxAngleRotate);
                     if (Random.value > 0.5f) turnAmount *= -1;
                 }  
                 float newY = currentY + turnAmount;

@@ -1,11 +1,12 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 
 namespace EntityAI.Components
 {
+    [RequireComponent(typeof(Rigidbody), typeof(NavMeshAgent))] 
     public class EntityConponent : MonoBehaviour , IEntityComponent
-    {
-
+    { 
         private GameObject _prefab;
         public GameObject prefab => _prefab;
 
@@ -13,13 +14,15 @@ namespace EntityAI.Components
         private Transform _tr;
         public Transform tr => _tr;
 
-
-        Transform _target;
-        public Transform target => _target;
+         
+        public Transform target { get ; set ; }
 
         Rigidbody _rb;
         public Rigidbody rb => _rb;
 
+        NavMeshAgent _agent;
+        public NavMeshAgent agent => _agent;
+         
 
         private void Start()
         {
@@ -27,7 +30,8 @@ namespace EntityAI.Components
         
             _tr = transform;
             _rb = GetComponent<Rigidbody>();
-            _target = FindObjectOfType<TargetMove>().transform;
+            target = FindObjectOfType<TargetMove>().transform;
+            _agent = GetComponent<NavMeshAgent>();
         }
 
     }

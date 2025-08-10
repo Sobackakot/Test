@@ -4,16 +4,19 @@ using EntityAI.Config;
 using EntityAI.Context;
 using EntityAI.Planer;
 using EntityAI.React;
+using EntityAI.Repository;
 using State.Enemys;
 using State.Machine;
 using UnityEngine;
 
 namespace EntityAI
 {
-    [RequireComponent(typeof(Rigidbody))]  
     [RequireComponent(typeof(EntityConponent))]
     public abstract class EntityAIBase : MonoBehaviour, IEntity
     {
+        ITargetTransientRepository _repository;
+        public ITargetTransientRepository repository => _repository;
+
         [SerializeField] private EntityConfige _config;
         public IEntityConfig config => _config;
 
@@ -40,7 +43,8 @@ namespace EntityAI
         private IPlaner<IContext> _planer;
         public IPlaner<IContext> planer => _planer;
 
-   
+
+
         public void InitializeEntityAI(
 
             IRepositorySubject entityRepository,

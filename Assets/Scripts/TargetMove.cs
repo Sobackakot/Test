@@ -1,6 +1,7 @@
 
+using EntityAI.Repository;
 using UnityEngine;
 
-public class TargetMove : MonoBehaviour
+public class TargetMove : MonoBehaviour, ITargetable
 { 
 }
