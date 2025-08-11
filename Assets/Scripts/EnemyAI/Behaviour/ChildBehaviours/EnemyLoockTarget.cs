@@ -29,9 +29,9 @@ namespace EntityAI
         }
         public override void LoockTarget()
         {
-            if (enemy.context.isLoockTarget)
+            if (entity.context.isLoockTarget)
             {
-                Vector3 loockTarget = (enemy.components.target.position - enemy.components.tr.position).normalized;
+                Vector3 loockTarget = (entity.components.trTarget.position - entity.components.trEntity.position).normalized;
                 Quaternion targetRotation = Quaternion.LookRotation(new Vector3(loockTarget.x, 0, loockTarget.z));
                 Rotating(targetRotation);
             }

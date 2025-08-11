@@ -11,26 +11,29 @@ namespace EntityAI.Components
         public GameObject prefab => _prefab;
 
 
-        private Transform _tr;
-        public Transform tr => _tr;
+        private Transform _trEntity;
+        public Transform trEntity => _trEntity;
 
          
-        public Transform target { get ; set ; }
+        public Transform trTarget { get ; set ; }
 
-        Rigidbody _rb;
-        public Rigidbody rb => _rb;
+        Rigidbody _rbEntity;
+        public Rigidbody rbEntity => _rbEntity;
 
         NavMeshAgent _agent;
         public NavMeshAgent agent => _agent;
-         
+
+        Transform _raycastPoint;
+        public Transform raycastPoint => _raycastPoint;
 
         private void Start()
         {
             _prefab = this.gameObject;
         
-            _tr = transform;
-            _rb = GetComponent<Rigidbody>();
-            target = FindObjectOfType<TargetMove>().transform;
+            _trEntity = transform;
+            _raycastPoint = transform;
+            _rbEntity = GetComponent<Rigidbody>();
+            trTarget = FindObjectOfType<TargetMove>().transform;
             _agent = GetComponent<NavMeshAgent>();
         }
 

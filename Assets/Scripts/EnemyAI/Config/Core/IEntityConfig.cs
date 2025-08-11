@@ -7,9 +7,9 @@ namespace EntityAI.Config
         float minDistanceInteract { get; }
         float maxDistanceRaycast { get; } 
         LayerMask targetLayerMask { get;}
-        Ray ray { get; }
-        Vector3 directionTarget { get; }
 
+        Vector3 directionTarget { get; }
+        Vector3[] patrolPoints { get; }
         float time { get; }
         float timeAFC { get; set; }
         float interval { get;  } 
@@ -38,6 +38,8 @@ namespace EntityAI.Config
         float angleRotate { get; }
 
         void SetSpawnPoint(Vector3 point);
+        void SetEntityInstanceId(string id);
+        void SetDirection(Vector3 direction);
     }
 
 }

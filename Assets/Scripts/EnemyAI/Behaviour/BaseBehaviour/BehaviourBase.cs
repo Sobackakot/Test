@@ -15,11 +15,11 @@ namespace EntityAI.Behaviour
         IBehaviourInteract,
         IBehaviourRaycast
     {
-        public BehaviourBase(IEntity enemy)
+        public BehaviourBase(IEntity entity)
         {
-            this.enemy = enemy; 
+            this.entity = entity; 
         } 
-        public IEntity enemy { get; set; }
+        public IEntity entity { get; set; }
         public virtual void IdleState()
         {
         }

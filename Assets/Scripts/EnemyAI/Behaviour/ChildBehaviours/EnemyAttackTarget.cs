@@ -32,7 +32,7 @@ namespace EntityAI
      
         public override void AttackTarget()
         {
-            if (enemy.context.isAttackTarget)
+            if (entity.context.isAttackTarget)
             {
                 Debug.Log("Attacke Behaviour");
             }

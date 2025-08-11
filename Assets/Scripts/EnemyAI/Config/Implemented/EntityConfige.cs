@@ -16,13 +16,11 @@ namespace EntityAI.Config
         [SerializeField] LayerMask _targetLayerMask;
         public LayerMask targetLayerMask => _targetLayerMask;
 
-        [SerializeField] Ray _ray;
-        public Ray ray => _ray;
-
-        [SerializeField] Vector3 _directionTarget;
+        Vector3 _directionTarget;
         public Vector3 directionTarget => _directionTarget;
 
-
+        [SerializeField] Vector3[] _patrolPoints;
+        public Vector3[] patrolPoints => _patrolPoints;
 
         float _time;
         public float time=> _time;
@@ -54,7 +52,7 @@ namespace EntityAI.Config
         public float minDistanceFollowTarget => _minDistanceFollowTarget;
 
 
-        [Range(0.5f, 5), SerializeField] float _minDistanceAttackTarget = 6;
+        [Range(0.5f, 5), SerializeField] float _minDistanceAttackTarget = 3;
         public float minDistanceAttackTarget => _minDistanceAttackTarget;
 
 
@@ -86,5 +84,6 @@ namespace EntityAI.Config
          
         public void SetSpawnPoint(Vector3 point) => _spawnPoint = point; 
         public void SetEntityInstanceId(string id) => _entityId = id;
+        public void SetDirection(Vector3 direction) => _directionTarget = direction;
     }
 }

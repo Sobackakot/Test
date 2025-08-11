@@ -12,13 +12,31 @@ public class EnemyStateContext : IContext
     }
     public event Action OnExecuteMoveAction;
     public IEntity enemy { get; set; }
-     
+
+    bool _isHasTarget =false;
+    public bool isHasTarget => _isHasTarget;
+
+    bool _isInAttackRange =false;
+    public bool isInAttackRange => _isInAttackRange;
+
+
     public bool _isHasInteract = false;
     public bool isHasInteract => _isHasInteract;
 
     public bool _isFocus = false;
     public bool isFocus => _isFocus;
-
+    public void OnSetInteract()
+    {
+        _isHasTarget = true;
+        _isHasInteract = false;
+        _isFocus = true;
+    }
+    public void OnResetInteract()
+    {
+        _isHasTarget = false;
+        _isHasInteract = true;
+        _isFocus = false;
+    }
 
     bool _isHasRaycastHitTarget = false;
     public bool isHasRaycastHitTarget
@@ -109,23 +127,12 @@ public class EnemyStateContext : IContext
         isLoockTarget = IsMinDistance(enemy.config.minDistanceLoockTarget);
         isAttackTarget = IsMinDistance(enemy.config.minDistanceAttackTarget);
         isFollowTarget = IsMinDistance(enemy.config.minDistanceFollowTarget);
-        UpdateInteract();
+        _isInAttackRange = isAttackTarget;
     }
-    private void UpdateInteract()
-    {
-        if (isFocus && !isHasInteract)
-        {
-            float distance = Vector3.Distance(enemy.components.target.position, enemy.components.tr.position);
-            if (distance <= enemy.config.minDistanceInteract)
-            {
-                _isHasInteract = true;
-                OnExecuteMoveAction?.Invoke();
-            }
-        }
-    }
+
     private bool IsMinDistance(float minDistance)
     { 
-        return Vector3.Distance(enemy.components.tr.position, enemy.components.target.position) <= minDistance; 
+        return Vector3.Distance(enemy.components.trEntity.position, enemy.components.trTarget.position) <= minDistance; 
     }
     private void TimerRoutine()
     {
@@ -148,17 +155,7 @@ public class EnemyStateContext : IContext
             isIdle = false;
             time = Time.time + enemy.config.interval;
         } 
-    }
+    } 
 
-    public void OnSetInteract()
-    {
-        _isHasInteract = false;
-        _isFocus = true;
-    }
-    public void OnResetInteract()
-    { 
-        _isHasInteract = true;
-        _isFocus = false;
-    }
 }
  

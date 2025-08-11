@@ -1,6 +1,4 @@
-using EntityAI.Repository;
 using System;
-using System.Collections.Generic;
 
 namespace EntityAI.Context
 {
@@ -15,10 +13,15 @@ namespace EntityAI.Context
         bool isRundomMove { get; }
         bool isRandomRotate { get; }
         bool isHasRaycastHitTarget { get;}
+        bool isHasTarget { get;}
+        bool isInAttackRange { get; }
+       
         bool isFollowTarget { get; } 
         bool isLoockTarget { get; } 
         bool isAttackTarget { get; }
         void UpdateContext();
+        void OnSetInteract();
+        void OnResetInteract();
     }
 }
 

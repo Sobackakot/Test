@@ -4,15 +4,17 @@ using UnityEngine.AI;
 namespace EntityAI.Components
 {
     public interface IEntityComponent
-    {
+    { 
         NavMeshAgent agent { get; }
         GameObject prefab { get; }
 
-        Transform tr { get; }
+        Transform trEntity { get; }
 
-        Transform target { get; set; }
+        Transform raycastPoint { get; }
 
-        Rigidbody rb { get; }
+        Transform trTarget { get; set; }
+
+        Rigidbody rbEntity { get; }
     }
 
 }

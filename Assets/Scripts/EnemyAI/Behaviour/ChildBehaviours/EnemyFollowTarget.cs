@@ -30,9 +30,9 @@ namespace EntityAI
         }
         public override void FollowTarget()
         {
-            if (!enemy.context.isIdle && enemy.context.isFollowTarget && !enemy.context.isAttackTarget)
+            if (!entity.context.isIdle && entity.context.isFollowTarget && !entity.context.isAttackTarget)
             {
-                Vector3 targetMove = (enemy.components.target.position - enemy.components.tr.position).normalized;
+                Vector3 targetMove = (entity.components.trTarget.position - entity.components.trEntity.position).normalized;
                 Moving(targetMove);
             }
         }

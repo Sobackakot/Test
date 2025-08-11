@@ -12,8 +12,8 @@ namespace EntityAI
 
         public override void Rotating(Quaternion targetRotation)
         {
-            Quaternion newRot = Quaternion.Slerp(enemy.components.tr.rotation, targetRotation, enemy.config.angleRotate * Time.fixedDeltaTime);
-            enemy.components.rb.MoveRotation(newRot);
+            Quaternion newRot = Quaternion.Slerp(entity.components.trEntity.rotation, targetRotation, entity.config.angleRotate * Time.fixedDeltaTime);
+            entity.components.rbEntity.MoveRotation(newRot);
         }
     }
 }

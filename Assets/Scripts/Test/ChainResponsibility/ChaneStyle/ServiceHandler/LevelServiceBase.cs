@@ -1,6 +1,4 @@
 using Chain.Service.Client;
-using EntityAI.Creator;
-using EntityAI.Factory;
 
 namespace Chain.Service
 {

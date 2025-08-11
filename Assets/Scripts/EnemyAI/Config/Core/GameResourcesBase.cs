@@ -13,7 +13,6 @@ namespace EntityAI.Config
 
         public Dictionary<EntityType, EntityConfige> entities => _configsMap;
          
-
         private void Awake()
         {
             // Инициализация spawnPoints (если вы их храните здесь и назначаете конфигам)

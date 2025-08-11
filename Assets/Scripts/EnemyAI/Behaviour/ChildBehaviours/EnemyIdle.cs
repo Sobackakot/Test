@@ -32,7 +32,7 @@ namespace EntityAI
         }
         public override void IdleState()
         {
-            if (enemy.context.isIdle && !enemy.context.isRundomMove && !enemy.context.isFollowTarget)
+            if (entity.context.isIdle && !entity.context.isRundomMove && !entity.context.isFollowTarget)
             { 
             }
         } 

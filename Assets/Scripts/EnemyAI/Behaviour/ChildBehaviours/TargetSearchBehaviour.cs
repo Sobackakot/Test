@@ -1,3 +1,7 @@
+using EntityAI.Repository;
+using System.Collections.Generic;
+using UnityEngine;
+
 namespace EntityAI.Behaviour
 {
     public class TargetSearchBehaviour : BehaviourBase
@@ -22,5 +26,6 @@ namespace EntityAI.Behaviour
         public override void FixedUpdate()
         { 
         }
+      
     }
 }

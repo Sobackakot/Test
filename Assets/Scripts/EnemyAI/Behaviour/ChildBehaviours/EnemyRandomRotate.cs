@@ -33,14 +33,14 @@ namespace EntityAI
         }
         public override void RandomRotate()
         {
-            if (enemy.context.isRandomRotate)
+            if (entity.context.isRandomRotate)
             {
                 float turnAmount = 0;
-                float currentY = enemy.components.tr.eulerAngles.y; 
+                float currentY = entity.components.trEntity.eulerAngles.y; 
                 if (time < Time.time)
                 {
                     time = Time.time + Random.Range(0.5f, 1.5f);
-                    turnAmount = Random.Range(enemy.config.minAngleRotate, enemy.config.maxAngleRotate);
+                    turnAmount = Random.Range(entity.config.minAngleRotate, entity.config.maxAngleRotate);
                     if (Random.value > 0.5f) turnAmount *= -1;
                 }  
                 float newY = currentY + turnAmount;

@@ -11,8 +11,8 @@ namespace EntityAI
 
         public override void Moving(Vector3 targetMove)
         {
-            Rigidbody rb = enemy.components.rb;
-            rb.MovePosition(rb.position + targetMove.normalized * enemy.config.speedMove * Time.fixedDeltaTime);
+            Rigidbody rb = entity.components.rbEntity;
+            rb.MovePosition(rb.position + targetMove.normalized * entity.config.speedMove * Time.fixedDeltaTime);
         }
     }
 }

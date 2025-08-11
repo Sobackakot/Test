@@ -28,9 +28,9 @@ namespace EntityAI
         }
         public override void RandomMove()
         {
-            if (!enemy.context.isIdle && enemy.context.isRundomMove && !enemy.context.isAttackTarget)
+            if (!entity.context.isIdle && entity.context.isRundomMove && !entity.context.isAttackTarget)
             {
-                Moving(enemy.components.tr.forward);
+                Moving(entity.components.trEntity.forward);
             }
         }
     }

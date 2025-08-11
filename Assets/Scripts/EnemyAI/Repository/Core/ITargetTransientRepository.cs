@@ -7,7 +7,17 @@ namespace EntityAI.Repository
         List<ITargetable> nearTargets { get; }
         List<ITargetable> detectedTargets { get; }
         List<ITargetable> rayHitTargets { get; }
-        ITargetable CurrentTarget { get; }
+        ITargetable currentTarget { get; }
+
+        void AddNearTarget(ITargetable target);
+        void AddDetectedTarget(ITargetable target);
+        void AddRayHitTargets(ITargetable target);
+        void SetCurrentTarget(ITargetable target);
+
+        List<ITargetable> GetNearbyTargets();
+        List<ITargetable> GetDetectedTargets();
+        List<ITargetable> GetRaycastHitTargets();
+
     }
 }
 
