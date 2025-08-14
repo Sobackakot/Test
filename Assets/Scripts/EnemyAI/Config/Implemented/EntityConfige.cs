@@ -15,9 +15,7 @@ namespace EntityAI.Config
 
         [SerializeField] LayerMask _targetLayerMask;
         public LayerMask targetLayerMask => _targetLayerMask;
-
-        Vector3 _directionTarget;
-        public Vector3 directionTarget => _directionTarget;
+         
 
         [SerializeField] Vector3[] _patrolPoints;
         public Vector3[] patrolPoints => _patrolPoints;
@@ -83,7 +81,6 @@ namespace EntityAI.Config
 
          
         public void SetSpawnPoint(Vector3 point) => _spawnPoint = point; 
-        public void SetEntityInstanceId(string id) => _entityId = id;
-        public void SetDirection(Vector3 direction) => _directionTarget = direction;
+        public void SetEntityInstanceId(string id) => _entityId = id; 
     }
 }

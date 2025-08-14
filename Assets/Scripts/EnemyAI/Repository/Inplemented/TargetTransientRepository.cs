@@ -1,5 +1,7 @@
 
 using System.Collections.Generic;
+using UnityEngine;
+
 
 namespace EntityAI.Repository
 {
@@ -28,24 +30,24 @@ namespace EntityAI.Repository
         public void AddNearTarget(ITargetable target)
         {
             if (nearTargets.Contains(target)) return;
-            nearTargets.Add(target);
+            nearTargets.Add(target); 
         }
 
         public void AddDetectedTarget(ITargetable target)
         {
             if (detectedTargets.Contains(target)) return;
-            nearTargets.Add(target);
+            nearTargets.Add(target); 
         }
 
         public void AddRayHitTargets(ITargetable target)
         {
             if (detectedTargets.Contains(target)) return;
-            detectedTargets.Add(target);
+            detectedTargets.Add(target); 
         }
 
         public void SetCurrentTarget(ITargetable target)
         {
-            _currentTarget = target;
+            _currentTarget = target; 
         }
 
         public List<ITargetable> GetNearbyTargets()

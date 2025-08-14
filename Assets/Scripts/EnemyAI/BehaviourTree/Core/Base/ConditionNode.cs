@@ -1,10 +1,10 @@
 namespace BehaviourFree.Node
 {
-    public abstract class Condition : NodeBase
+    public abstract class ConditionNode : NodeBase
     {
         private readonly NodeBase _child;
 
-        protected Condition(NodeBase child)
+        protected ConditionNode(NodeBase child)
         {
             _child = child;
         }

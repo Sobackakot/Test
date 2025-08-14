@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace EntityAI.Repository
 {
-    public class TargetSingleRepository : ITargetSingleRepository
+    public class TargetSingleRepository : MonoBehaviour, ITargetSingleRepository
     {
         public List<ITargetable> _activeTargets =new();
         public List<ITargetable> activeTargets => _activeTargets;
@@ -21,7 +22,7 @@ namespace EntityAI.Repository
         {
             if (!activeTargets.Contains(target))
             {
-                activeTargets?.Add(target);
+                activeTargets?.Add(target); 
             }
         }
 

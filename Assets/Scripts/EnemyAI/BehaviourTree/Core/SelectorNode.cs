@@ -1,8 +1,8 @@
 namespace BehaviourFree.Node
 {
-    public class Selector : CompositeNode
+    public class SelectorNode : CompositeNode
     {
-        public Selector(params NodeBase[] nodes) : base(nodes) { }
+        public SelectorNode(params NodeBase[] nodes) : base(nodes) { }
 
         public override Status Evaluate()
         {

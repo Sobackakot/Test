@@ -9,31 +9,15 @@ namespace EntityAI
         public RaycastBehaviour(IEntity entity) : base(entity)
         {
         }
-        public override void Enter()
-        { 
-        }
-
-        public override void Exit()
-        {
-        }
-        public override void Update()
-        {
-        }
-        public override void LateUpdate()
-        {
-        }
-        public override void FixedUpdate()
-        {
-        }
-        
-
+        public bool isHit { get; private set; }
         public override bool RaycastForward(Vector3 targetPos)
         {
-            entity.config.SetDirection(GetDirectionTarget(targetPos));
-            var ray = GetRayForward(entity.config.directionTarget);
-            if (Physics.Raycast(ray, out RaycastHit hit, entity.config.maxDistanceRaycast, entity.config.targetLayerMask))
-                return true;
-            else return false;
+            Vector3 direction = GetDirectionTarget(targetPos); 
+            var ray = GetRayForward(direction);
+            isHit = Physics.Raycast(ray, out RaycastHit hit, entity.config.maxDistanceRaycast, entity.config.targetLayerMask);
+            Debug.DrawRay(entity.components.raycastPoint.position, direction * entity.config.maxDistanceRaycast, isHit ? Color.red : Color.white);
+            Debug.Log("isHit " + isHit);
+            return isHit;
         }
         private Vector3 GetDirectionTarget(Vector3 targetPos)
         {

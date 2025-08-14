@@ -2,7 +2,7 @@ using EntityAI.Context;
 
 namespace BehaviourFree.Node
 {
-    public class HasTargetCondition : Condition
+    public class HasTargetCondition : ConditionNode
     {
         private readonly IContext _context;
 

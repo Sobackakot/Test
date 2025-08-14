@@ -12,16 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bd11abd5b00eb549a91429ad1bce7ae, type: 3}
   m_Name: Fire
   m_EditorClassIdentifier: 
+  _minDistanceInteract: 2
   _maxDistanceRaycast: 24.6
   _targetLayerMask:
     serializedVersion: 2
-    m_Bits: 8
-  _directionTarget: {x: 0, y: 0, z: 0}
+    m_Bits: 72
+  _patrolPoints:
+  - {x: 20, y: 0, z: 40}
+  - {x: 40, y: 0, z: 20}
+  - {x: 60, y: 0, z: 30}
+  - {x: 30, y: 0, z: 60}
+  - {x: 10, y: 0, z: 5}
+  - {x: 5, y: 0, z: 10}
   <timeAFC>k__BackingField: 5
   _interval: 5
   _entityType: 0
   _prefab: {fileID: 7793686170194032214, guid: 1a7810090b7f053458cc32719c9aa7d5, type: 3}
-  _spawnPoint: {x: 0, y: 1, z: 0}
+  _spawnPoint: {x: 8.040001, y: 1, z: -33.44}
   _minDistanceLoockTarget: 30
   _minDistanceFollowTarget: 20
   _minDistanceAttackTarget: 5

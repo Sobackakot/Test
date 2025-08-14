@@ -10,26 +10,31 @@ namespace BehaviourFree.Node
         ITargetSingleRepository repository;
         private readonly RaycastBehaviour _raycast;
         private readonly IEntity entity;
-        public FindTargetNode(RaycastBehaviour raycast)
+        public FindTargetNode(IEntity entity,RaycastBehaviour raycast, ITargetSingleRepository repository)
         { 
             _raycast = raycast;
+            this.entity = entity;
+            this.repository = repository;
         }
 
         public override Status Evaluate()
         {
             if (entity.context.isHasTarget) return Status.Failure;
             var position = entity.components.trEntity.position;
+            var direction = entity.components.trEntity.forward;
             SearchNearbyTargets(position, entity.config.visionRadius);
-            SearchDetectedTargets(position, entity.config.directionTarget, entity.config.viewAngle);
+            SearchDetectedTargets(position, direction, entity.config.viewAngle);
             SearchRaycastHitTargets();
             SearchBestTarget(position);
             if (entity.repository.currentTarget == null)
             {
+                Debug.Log("Not target");
                 entity.context.OnResetInteract();
                 return Status.Running;
             } 
             else
-            { 
+            {
+                Debug.Log("Has target");
                 entity.context.OnSetInteract();
                 return Status.Success;
             }
@@ -54,6 +59,7 @@ namespace BehaviourFree.Node
         {
             foreach (var target in entity.repository.nearTargets)
             {
+                 
                 if (IsMinAngle(target, npcPosition, npcDirection, viewAngle))
                 {
                     if (entity.repository.detectedTargets.Contains(target)) return;
@@ -63,12 +69,12 @@ namespace BehaviourFree.Node
             entity.repository.nearTargets.Clear();
         }
         public void SearchRaycastHitTargets()
-        {
+        { 
             foreach (var target in entity.repository.detectedTargets)
             {
                 if (!entity.repository.rayHitTargets.Contains(target) && _raycast != null && _raycast.RaycastForward(target.targetTr.position))
                 {
-                    entity.repository.rayHitTargets.Add(target);  
+                    entity.repository.rayHitTargets.Add(target); 
                 }
             }
             entity.repository.detectedTargets.Clear();
@@ -85,8 +91,8 @@ namespace BehaviourFree.Node
                     bestScore = score;
                     best = target;
                 }
-            }
-            entity.repository.SetCurrentTarget(best);
+            } 
+            entity.repository.SetCurrentTarget(best); 
         }
         private bool IsEnemy(TargetType targetType)
         {
@@ -96,11 +102,12 @@ namespace BehaviourFree.Node
         {
             Vector3 direction = (target.targetTr.position - npcPosition).normalized;
             float angle = Vector3.Angle(npcDirection, direction);
-            return angle < viewAngle / 2f;
+            bool isMinAngle = angle < viewAngle / 2f; 
+            return isMinAngle;
         }
         private bool IsMinRadius(Vector3 npcPosition, ITargetable target, float visionRadius)
         {
-            return Vector3.Distance(npcPosition, target.targetTr.position) <= visionRadius;
+            return Vector3.Distance(npcPosition, target.targetTr.position) <= visionRadius; 
         }
         private float GetPriorityWeight(TargetType type)
         {

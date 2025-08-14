@@ -9,6 +9,7 @@ namespace EntityAI.Repository
         void OnFocused(Transform npcTr);
         void OnDefocus();
         void InteractOnNewPoint();
+        ITargetSingleRepository registry { get; }
         TargetType TargetType { get; set; }
     }
     public enum TargetType

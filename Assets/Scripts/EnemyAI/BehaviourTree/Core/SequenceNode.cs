@@ -1,8 +1,8 @@
 namespace BehaviourFree.Node
 {
-    public class Sequence : CompositeNode
+    public class SequenceNode : CompositeNode
     {
-        public Sequence(params NodeBase[] nodes) : base(nodes) { }
+        public SequenceNode(params NodeBase[] nodes) : base(nodes) { }
 
         public override Status Evaluate()
         {

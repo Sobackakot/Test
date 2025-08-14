@@ -1,3 +1,4 @@
+using BehaviourFree;
 using EntityAI.Config;
 using EntityAI.Creator;
 using EntityAI.Factory;
@@ -9,7 +10,7 @@ public class MainEntityAITick : MonoBehaviour
     public IEntityRepository entityAIRepository { get; private set; }  
     public ICreatorEntityAISubject creatorEntityAISubject { get; private set; }
     public ICreator creator { get; private set; }
-
+ 
     public MainInitialize mainInit { get; private set; }
     public IGameResources resources { get; private set; }
     private void Awake()
@@ -20,6 +21,7 @@ public class MainEntityAITick : MonoBehaviour
         entityAIRepository = new EntityRepository(mainInit.repositorySubject);
         creator = new EntityCreator(creatorEntityAISubject);
         resources = FindObjectOfType<GameResources>();
+      
     }
     private void OnEnable()
     {

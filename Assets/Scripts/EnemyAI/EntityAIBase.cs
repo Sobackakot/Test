@@ -1,3 +1,4 @@
+using BehaviourFree;
 using EntityAI.Behaviour;
 using EntityAI.Components;
 using EntityAI.Config;
@@ -14,6 +15,9 @@ namespace EntityAI
     [RequireComponent(typeof(EntityConponent))]
     public abstract class EntityAIBase : MonoBehaviour, IEntity
     {
+        ITargetSingleRepository _registry;
+        public ITargetSingleRepository registry => _registry;
+        BehaviorTreeAI tree;
         ITargetTransientRepository _repository;
         public ITargetTransientRepository repository => _repository;
 
@@ -57,10 +61,12 @@ namespace EntityAI
             _context = context; 
             _behaviourHandler = behaviourHandler;
             _stateMachine = stateMachine;
-            _planer = planer; 
+            _planer = planer;
+            _repository = new TargetTransientRepository();
         }
         private void Awake()
-        { 
+        {
+            _registry = FindObjectOfType<TargetSingleRepository>();
             _components = GetComponent<EntityConponent>(); 
         }
         private void Start()
@@ -76,6 +82,7 @@ namespace EntityAI
         {
             repositorySubject?.InvokeAction(EntityActionType.EntityReg, config.entityId, this);
             planer?.SubscribeActions(context);
+            tree = new BehaviorTreeAI(context, this,registry);
         }
 
         public void Disposable()
@@ -86,6 +93,7 @@ namespace EntityAI
         public void Tick()
         {
             stateMachine?.UpdateState();
+            tree.Tick();
         }
         public void LateTick()
         {

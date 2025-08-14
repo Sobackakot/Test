@@ -5,14 +5,13 @@ namespace EntityAI
 {
     public class EnemyMove : BehaviourBase 
     {
-        public EnemyMove(IEntity enemy) : base(enemy)
+        public EnemyMove(IEntity entity) : base(entity)
         { 
         }
 
         public override void Moving(Vector3 targetMove)
         {
-            Rigidbody rb = entity.components.rbEntity;
-            rb.MovePosition(rb.position + targetMove.normalized * entity.config.speedMove * Time.fixedDeltaTime);
+            entity.components.agent.SetDestination(targetMove);
         }
     }
 }

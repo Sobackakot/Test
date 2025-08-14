@@ -1,6 +1,7 @@
 using EntityAI;
 using EntityAI.Behaviour;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace State.Enemys
 {
@@ -13,12 +14,13 @@ namespace State.Enemys
             var behaviourHandler = enemy.behaviourHandler;
 
             stateMachine.AddTransition(type, () => !enemy.context.isAttackTarget ? StateType.Idle : type);
-            behaviours = new List<IBehaviourBase>()
-        {
-            behaviourHandler.GetBehaviour<IBehaviourAttackTarget>(),
-            behaviourHandler.GetBehaviour<IBehaviourFollowTarget>(),
-            behaviourHandler.GetBehaviour<IBehaviourLoockTarget>()
-        };
+                behaviours = new List<IBehaviourBase>()
+            {
+                behaviourHandler.GetBehaviour<IBehaviourAttackTarget>(),
+                behaviourHandler.GetBehaviour<IBehaviourFollowTarget>(),
+                behaviourHandler.GetBehaviour<IBehaviourLoockTarget>()
+            };
+
         }
 
         public override void EnterState()
@@ -33,7 +35,7 @@ namespace State.Enemys
                 behaviour.Exit();
         }
         public override void UpdateState()
-        {
+        { 
             foreach (var behaviour in behaviours)
                 behaviour.Update();
         }

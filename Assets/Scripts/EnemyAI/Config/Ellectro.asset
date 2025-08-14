@@ -12,16 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bd11abd5b00eb549a91429ad1bce7ae, type: 3}
   m_Name: Ellectro
   m_EditorClassIdentifier: 
+  _minDistanceInteract: 2
   _maxDistanceRaycast: 25
   _targetLayerMask:
     serializedVersion: 2
-    m_Bits: 8
-  _directionTarget: {x: 0, y: 0, z: 0}
+    m_Bits: 72
+  _patrolPoints:
+  - {x: 20, y: 0, z: 40}
+  - {x: 40, y: 0, z: 20}
+  - {x: 60, y: 0, z: 30}
+  - {x: 30, y: 0, z: 60}
+  - {x: 10, y: 0, z: 5}
+  - {x: 5, y: 0, z: 10}
   <timeAFC>k__BackingField: 5
   _interval: 5
   _entityType: 2
   _prefab: {fileID: 5675563312283139943, guid: bc54188a29ec72c40b3035bae610aec1, type: 3}
-  _spawnPoint: {x: 0, y: 1, z: 25.58}
+  _spawnPoint: {x: 7.5, y: 1, z: 17.8}
   _minDistanceLoockTarget: 30
   _minDistanceFollowTarget: 20
   _minDistanceAttackTarget: 5

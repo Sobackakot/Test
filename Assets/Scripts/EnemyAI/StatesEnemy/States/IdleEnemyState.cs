@@ -1,6 +1,7 @@
 using EntityAI;
 using System.Collections.Generic;
 using EntityAI.Behaviour;
+using UnityEngine;
 
 
 
@@ -39,7 +40,7 @@ namespace State.Enemys
                 behaviour.Exit();
         }
         public override void UpdateState()
-        {
+        { 
             foreach (var behaviour in behaviours)
                 behaviour.Update();
         }

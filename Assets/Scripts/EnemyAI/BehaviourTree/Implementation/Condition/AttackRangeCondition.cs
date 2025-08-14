@@ -2,7 +2,7 @@ using EntityAI.Context;
 
 namespace BehaviourFree.Node
 {
-    public class AttackRangeCondition : Condition
+    public class AttackRangeCondition : ConditionNode
     {
         private readonly IContext _context;
 

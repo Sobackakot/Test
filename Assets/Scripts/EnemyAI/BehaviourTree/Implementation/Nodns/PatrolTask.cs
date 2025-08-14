@@ -1,14 +1,15 @@
 using EntityAI;
+using UnityEngine;
 
 namespace BehaviourFree.Node
 {
-    public class PatrolNode : NodeBase
+    public class PatrolTask : NodeBase
     {
         private readonly IEntity entity;
        
         private int _currentPointIndex = 0;
 
-        public PatrolNode(IEntity entity)
+        public PatrolTask(IEntity entity)
         {
             this.entity = entity;
         }
@@ -17,10 +18,12 @@ namespace BehaviourFree.Node
         { 
             if (entity.context.isHasTarget) return Status.Failure; // Ќачинаем патрулировать, только если нет цели
 
-            if (!entity.components.agent.pathPending && entity.components.agent.remainingDistance < 0.5f)
+            if (entity.components.agent.remainingDistance <= entity.components.agent.stoppingDistance)
             {
+                Debug.Log("patrule");
                 _currentPointIndex = (_currentPointIndex + 1) %  entity.config.patrolPoints.Length;
                 entity.components.agent.SetDestination(entity.config.patrolPoints[_currentPointIndex]);
+                return Status.Success;
             }
 
             return Status.Running;

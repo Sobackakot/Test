@@ -23,15 +23,14 @@ namespace EntityAI.Components
         NavMeshAgent _agent;
         public NavMeshAgent agent => _agent;
 
-        Transform _raycastPoint;
+        [SerializeField] Transform _raycastPoint;
         public Transform raycastPoint => _raycastPoint;
 
         private void Start()
         {
             _prefab = this.gameObject;
         
-            _trEntity = transform;
-            _raycastPoint = transform;
+            _trEntity = transform; 
             _rbEntity = GetComponent<Rigidbody>();
             trTarget = FindObjectOfType<TargetMove>().transform;
             _agent = GetComponent<NavMeshAgent>();
