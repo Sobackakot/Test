@@ -6,7 +6,8 @@ namespace EntityAI.Config
     {
         float minDistanceInteract { get; }
         float maxDistanceRaycast { get; } 
-        LayerMask targetLayerMask { get;}
+        LayerMask targetLayer { get;} 
+        LayerMask raycastLayers { get;} 
          
         Vector3[] patrolPoints { get; }
         float time { get; }

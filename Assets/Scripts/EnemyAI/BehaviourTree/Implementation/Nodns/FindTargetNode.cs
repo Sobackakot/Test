@@ -18,27 +18,33 @@ namespace BehaviourFree.Node
         }
 
         public override Status Evaluate()
-        {
-            if (entity.context.isHasTarget) return Status.Failure;
+        { 
+            entity.repository.nearTargets.Clear();
+            entity.repository.detectedTargets.Clear();
+            entity.repository.rayHitTargets.Clear();
+            entity.repository.SetCurrentTarget(null);  
+            entity.context.OnResetInteract();  
+             
             var position = entity.components.trEntity.position;
             var direction = entity.components.trEntity.forward;
             SearchNearbyTargets(position, entity.config.visionRadius);
             SearchDetectedTargets(position, direction, entity.config.viewAngle);
             SearchRaycastHitTargets();
             SearchBestTarget(position);
+             
             if (entity.repository.currentTarget == null)
             {
                 Debug.Log("Not target");
-                entity.context.OnResetInteract();
-                return Status.Running;
-            } 
+                return Status.Failure;  
+            }
             else
             {
                 Debug.Log("Has target");
-                entity.context.OnSetInteract();
+                entity.context.OnSetInteract();  
                 return Status.Success;
             }
         }
+         
         public void SearchNearbyTargets(Vector3 npcPosition, float visionRadius)
         {
             List<ITargetable> targets = repository?.GetTargets();
@@ -46,38 +52,32 @@ namespace BehaviourFree.Node
             {
                 if (target != null && target.IsAlive() && IsMinRadius(npcPosition, target, visionRadius))
                 {
-                    if (entity.repository.nearTargets.Contains(target)) return;
                     if (IsEnemy(target.TargetType))
                     {
                         entity.repository.nearTargets.Add(target);
                     }
-
                 }
-            } 
+            }
         }
         public void SearchDetectedTargets(Vector3 npcPosition, Vector3 npcDirection, float viewAngle)
         {
             foreach (var target in entity.repository.nearTargets)
             {
-                 
                 if (IsMinAngle(target, npcPosition, npcDirection, viewAngle))
                 {
-                    if (entity.repository.detectedTargets.Contains(target)) return;
-                    entity.repository.detectedTargets.Add(target); 
+                    entity.repository.detectedTargets.Add(target);
                 }
-            }
-            entity.repository.nearTargets.Clear();
+            } 
         }
         public void SearchRaycastHitTargets()
-        { 
+        {
             foreach (var target in entity.repository.detectedTargets)
             {
-                if (!entity.repository.rayHitTargets.Contains(target) && _raycast != null && _raycast.RaycastForward(target.targetTr.position))
+                if (target != null && _raycast.RaycastForward(target.targetTr.position))
                 {
-                    entity.repository.rayHitTargets.Add(target); 
+                    entity.repository.rayHitTargets.Add(target);
                 }
-            }
-            entity.repository.detectedTargets.Clear();
+            } 
         }
         public void SearchBestTarget(Vector3 npcPosition)
         {
@@ -91,8 +91,8 @@ namespace BehaviourFree.Node
                     bestScore = score;
                     best = target;
                 }
-            } 
-            entity.repository.SetCurrentTarget(best); 
+            }
+            entity.repository.SetCurrentTarget(best);
         }
         private bool IsEnemy(TargetType targetType)
         {
@@ -102,12 +102,11 @@ namespace BehaviourFree.Node
         {
             Vector3 direction = (target.targetTr.position - npcPosition).normalized;
             float angle = Vector3.Angle(npcDirection, direction);
-            bool isMinAngle = angle < viewAngle / 2f; 
-            return isMinAngle;
+            return angle < viewAngle / 2f;
         }
         private bool IsMinRadius(Vector3 npcPosition, ITargetable target, float visionRadius)
         {
-            return Vector3.Distance(npcPosition, target.targetTr.position) <= visionRadius; 
+            return Vector3.Distance(npcPosition, target.targetTr.position) <= visionRadius;
         }
         private float GetPriorityWeight(TargetType type)
         {

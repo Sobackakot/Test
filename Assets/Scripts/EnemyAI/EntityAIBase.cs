@@ -82,7 +82,7 @@ namespace EntityAI
         {
             repositorySubject?.InvokeAction(EntityActionType.EntityReg, config.entityId, this);
             planer?.SubscribeActions(context);
-            tree = new BehaviorTreeAI(context, this,registry);
+            tree = new BehaviorTreeAI(context, this, registry); 
         }
 
         public void Disposable()

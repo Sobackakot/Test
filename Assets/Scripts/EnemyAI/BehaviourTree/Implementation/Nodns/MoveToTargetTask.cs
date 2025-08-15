@@ -13,27 +13,23 @@ namespace BehaviourFree.Node
         }
 
         public override Status Evaluate()
-        {
-            // 1. Проверяем, что цель существует
+        { 
             if (entity.repository.currentTarget == null)
-            {
-                return Status.Failure; // Задача провалена
+            { 
+                return Status.Failure;  
             }
-
-            // 2. Устанавливаем цель движения
-
-            Debug.Log("moveTarget " + entity.repository.currentTarget);
-            entity.components.agent.SetDestination(entity.repository.currentTarget.targetTr.position);
-            StoppedDestination();
-
-            // 3. Проверяем, достигнута ли цель
+              
             if (entity.components.agent.remainingDistance <= entity.components.agent.stoppingDistance)
             {
-                return Status.Success; // Задача выполнена
+                Debug.Log("stop move target");
+                StoppedDestination(); 
+                return Status.Success; 
             }
             else
             {
-                return Status.Running; // Задача ещё в процессе
+                Debug.Log("move target");
+                entity.components.agent.SetDestination(entity.repository.currentTarget.targetTr.position); 
+                return Status.Running;  
             } 
         }
         public void StoppedDestination()
@@ -41,15 +37,9 @@ namespace BehaviourFree.Node
             float distance = Vector3.Distance(entity.components.trEntity.position, entity.repository.currentTarget.targetTr.position);
             if (distance <= 2)
             {
-                entity.components.agent.velocity = Vector3.zero;
-                ResetFocus();
+                entity.components.agent.velocity = Vector3.zero; 
             }
         }
-     
-        public void ResetFocus()
-        {
-            entity.context.OnResetInteract();
-            entity.repository.SetCurrentTarget(null); 
-        }
+      
     }
 }

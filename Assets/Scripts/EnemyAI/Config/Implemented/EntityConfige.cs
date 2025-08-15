@@ -13,9 +13,12 @@ namespace EntityAI.Config
         [Range(10, 50), SerializeField] float _maxDistanceRaycast =25;
         public float maxDistanceRaycast => _maxDistanceRaycast;
 
-        [SerializeField] LayerMask _targetLayerMask;
-        public LayerMask targetLayerMask => _targetLayerMask;
-         
+        [SerializeField] LayerMask _targetLayer;
+        public LayerMask targetLayer => _targetLayer;
+
+        [SerializeField] LayerMask _raycastLayers;
+        public LayerMask raycastLayers => _raycastLayers;
+
 
         [SerializeField] Vector3[] _patrolPoints;
         public Vector3[] patrolPoints => _patrolPoints;
@@ -78,8 +81,7 @@ namespace EntityAI.Config
 
         [field: Range(90, 160), SerializeField] float _viewAngle =125;
         public float viewAngle => _viewAngle;
-
-         
+          
         public void SetSpawnPoint(Vector3 point) => _spawnPoint = point; 
         public void SetEntityInstanceId(string id) => _entityId = id; 
     }

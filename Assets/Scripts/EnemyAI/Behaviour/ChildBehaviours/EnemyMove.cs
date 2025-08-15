@@ -11,7 +11,7 @@ namespace EntityAI
 
         public override void Moving(Vector3 targetMove)
         {
-            entity.components.agent.SetDestination(targetMove);
+            //entity.components.agent.SetDestination(targetMove);
         }
     }
 }

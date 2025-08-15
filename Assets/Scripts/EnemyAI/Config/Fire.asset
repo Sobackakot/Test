@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _minDistanceInteract: 2
   _maxDistanceRaycast: 24.6
-  _targetLayerMask:
+  _targetLayer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 64
+  _raycastLayers:
+    serializedVersion: 2
+    m_Bits: 73
   _patrolPoints:
   - {x: 20, y: 0, z: 40}
   - {x: 40, y: 0, z: 20}

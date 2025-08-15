@@ -29,8 +29,9 @@ namespace EntityAI.Components
         private void Start()
         {
             _prefab = this.gameObject;
-        
-            _trEntity = transform; 
+
+            _trEntity = GetComponent<Transform>();
+            Debug.Log("init " + _trEntity.name);
             _rbEntity = GetComponent<Rigidbody>();
             trTarget = FindObjectOfType<TargetMove>().transform;
             _agent = GetComponent<NavMeshAgent>();
