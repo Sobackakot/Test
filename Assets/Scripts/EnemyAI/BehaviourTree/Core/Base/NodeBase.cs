@@ -1,8 +1,7 @@
 
 namespace BehaviourFree.Node
 {
-    public abstract class NodeBase
-
+    public abstract class NodeBase 
     {
         public enum Status
         {

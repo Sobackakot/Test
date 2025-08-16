@@ -33,13 +33,11 @@ namespace BehaviourFree.Node
             SearchBestTarget(position);
              
             if (entity.repository.currentTarget == null)
-            {
-                Debug.Log("Not target");
+            { 
                 return Status.Failure;  
             }
             else
-            {
-                Debug.Log("Has target");
+            { 
                 entity.context.OnSetInteract();  
                 return Status.Success;
             }

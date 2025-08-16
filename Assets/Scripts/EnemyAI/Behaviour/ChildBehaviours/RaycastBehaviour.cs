@@ -7,10 +7,8 @@ namespace EntityAI
 {
     public class RaycastBehaviour : BehaviourBase
     { 
-        public RaycastBehaviour(IEntity entity) : base(entity)
-        { 
-        }
-        LayerMask layer;
+        public RaycastBehaviour(IEntity entity) : base(entity) { }
+  
         public override bool RaycastForward(Vector3 targetPos)
         {
             Vector3 origin = entity.components.raycastPoint.position;

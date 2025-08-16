@@ -20,14 +20,12 @@ namespace BehaviourFree.Node
             }
               
             if (entity.components.agent.remainingDistance <= entity.components.agent.stoppingDistance)
-            {
-                Debug.Log("stop move target");
+            { 
                 StoppedDestination(); 
                 return Status.Success; 
             }
             else
-            {
-                Debug.Log("move target");
+            { 
                 entity.components.agent.SetDestination(entity.repository.currentTarget.targetTr.position); 
                 return Status.Running;  
             } 

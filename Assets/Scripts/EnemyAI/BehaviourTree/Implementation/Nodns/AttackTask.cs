@@ -14,8 +14,7 @@ namespace BehaviourFree.Node
         public override Status Evaluate()
         {
             if (entity.context.isHasTarget && entity.context.isInAttackRange)
-            {
-                Debug.Log("attack");
+            { 
                 if (UpdateInteract()) return Status.Success; 
                 return Status.Running;
             }
@@ -28,8 +27,7 @@ namespace BehaviourFree.Node
             {
                 float distance = Vector3.Distance(entity.components.trTarget.position, entity.components.trEntity.position);
                 if (distance <= entity.config.minDistanceInteract)
-                {
-                    Debug.Log("interact");
+                { 
                     entity.context.OnResetInteract();
                     return true;
                 }

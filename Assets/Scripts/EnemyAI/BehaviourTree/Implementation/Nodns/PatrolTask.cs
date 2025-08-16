@@ -17,11 +17,9 @@ namespace BehaviourFree.Node
         public override Status Evaluate()
         { 
             if (entity.config.patrolPoints == null || entity.config.patrolPoints.Length == 0)
-            {
-                Debug.LogWarning("Patrol points are not set. The agent cannot patrol.");
+            { 
                 return Status.Failure;
-            } 
-            Debug.Log("Patrolling..."); 
+            }  
             if (entity.components.agent.remainingDistance <= entity.components.agent.stoppingDistance)
             { 
                 _currentPointIndex = (_currentPointIndex + 1) % entity.config.patrolPoints.Length; 
