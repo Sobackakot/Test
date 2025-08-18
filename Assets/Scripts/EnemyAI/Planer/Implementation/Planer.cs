@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace EntityAI.Planer
 {
-    public class Planer<T> : IPlaner<T> where T : IContext
+    public class Planer<T> : IPlaner<T> where T : Context.EntityAI
     {
         public readonly List<IAction<T>> actions = new();
         public void RegisterAction(IAction<T> action) => actions.Add(action);

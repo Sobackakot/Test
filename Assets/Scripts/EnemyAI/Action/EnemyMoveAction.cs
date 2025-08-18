@@ -2,7 +2,7 @@ using EntityAI;
 using EntityAI.Actions;
 using EntityAI.Context;
 
-public class EnemyMoveAction : IAction<IContext>
+public class EnemyMoveAction : IAction<EntityAI.Context.EntityAI>
 {
     public EnemyMoveAction(IEntity entity)
     {
@@ -11,16 +11,16 @@ public class EnemyMoveAction : IAction<IContext>
 
     public IEntity entity { get ; private set; }
 
-    public void Subscribe(IContext context)
+    public void Subscribe(EntityAI.Context.EntityAI context)
     {
         context.OnExecuteMoveAction += entity.stateMachine.TryTransition;
     }
 
-    public void Unsubscribe(IContext context)
+    public void Unsubscribe(EntityAI.Context.EntityAI context)
     {
         context.OnExecuteMoveAction -= entity.stateMachine.TryTransition;
     }
-    public void Execute(IContext context)
+    public void Execute(EntityAI.Context.EntityAI context)
     {
         context.UpdateContext();
     }

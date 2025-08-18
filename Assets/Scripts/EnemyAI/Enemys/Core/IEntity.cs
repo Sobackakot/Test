@@ -11,8 +11,9 @@ namespace EntityAI
 {
     public interface IEntity: IEntityCommon
     {
-        ITargetTransientRepository repository { get; }
-        IContext context { get; }
+        ITargetSingleRepository repTarSingl { get; }
+        ITargetTransientRepository repTarTrans { get; }
+        Context.EntityAI context { get; }
 
         IEntityComponent components { get; }
 
@@ -22,7 +23,7 @@ namespace EntityAI
 
         IStateMachine stateMachine { get; }
 
-        IPlaner<IContext> planer { get; }
+        IPlaner<Context.EntityAI> planer { get; }
 
         IRepositorySubject repositorySubject { get; }
 

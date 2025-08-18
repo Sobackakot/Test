@@ -1,19 +1,24 @@
-using EntityAI.Context;
+using EntityAI;
+using UnityEngine;
 
 namespace BehaviourFree.Node
 {
     public class AttackRangeCondition : ConditionNode
     {
-        private readonly IContext _context;
+        private readonly IEntity entity;
 
-        public AttackRangeCondition(IContext context, NodeBase child) : base(child)
+        public AttackRangeCondition(IEntity entity, NodeBase child) : base(child)
         {
-            _context = context;
+            this.entity = entity;
         }
 
         protected override bool CanEvaluate()
         {
-            return _context.isInAttackRange;
+            return IsMinDistance(entity.config.minDistanceAttackTarget);
+        }
+        private bool IsMinDistance(float minDistance)
+        {
+            return Vector3.Distance(entity.components.trEntity.position, entity.components.trTarget.position) <= minDistance;
         }
     }
 

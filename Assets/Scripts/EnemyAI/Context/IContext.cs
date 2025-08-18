@@ -2,7 +2,7 @@ using System;
 
 namespace EntityAI.Context
 {
-    public interface IContext
+    public interface EntityAI
     {
         event Action OnExecuteMoveAction;
           
@@ -20,8 +20,8 @@ namespace EntityAI.Context
         bool isLoockTarget { get; } 
         bool isAttackTarget { get; }
         void UpdateContext();
-        void OnSetInteract();
-        void OnResetInteract();
+        void SetStateTarget();
+        void ResetStateTarget();
     }
 }
 

@@ -2,7 +2,7 @@ using EntityAI.Context;
 
 namespace EntityAI.Actions
 {
-    public interface IAction<in T> where T : IContext
+    public interface IAction<in T> where T : Context.EntityAI
     {
         IEntity entity { get;}
         void Subscribe(T context);

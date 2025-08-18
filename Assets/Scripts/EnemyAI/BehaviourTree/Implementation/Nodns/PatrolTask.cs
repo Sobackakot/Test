@@ -21,10 +21,13 @@ namespace BehaviourFree.Node
                 return Status.Failure;
             }  
             if (entity.components.agent.remainingDistance <= entity.components.agent.stoppingDistance)
-            { 
+            {
+                Debug.Log("Set new point");
                 _currentPointIndex = (_currentPointIndex + 1) % entity.config.patrolPoints.Length; 
                 entity.components.agent.SetDestination(entity.config.patrolPoints[_currentPointIndex]);
+                return Status.Success;
             }
+            Debug.Log("Patrol");
             return Status.Running;
         }
     }

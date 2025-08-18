@@ -3,7 +3,7 @@ using EntityAI.Context;
 
 namespace EntityAI.Planer
 {
-    public interface IPlaner<T> where T : IContext
+    public interface IPlaner<T> where T : Context.EntityAI
     {
         void SubscribeActions(T context);
         void UnsubscribeActions(T context);

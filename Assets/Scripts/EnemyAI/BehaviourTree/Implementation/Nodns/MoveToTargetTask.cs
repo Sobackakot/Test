@@ -13,26 +13,19 @@ namespace BehaviourFree.Node
         }
 
         public override Status Evaluate()
-        { 
-            if (entity.repository.currentTarget == null)
-            { 
-                return Status.Failure;  
-            }
-              
+        {  
             if (entity.components.agent.remainingDistance <= entity.components.agent.stoppingDistance)
             { 
-                StoppedDestination(); 
+                StoppedDestination();
+                Debug.Log("Finish Follow");
                 return Status.Success; 
             }
-            else
-            { 
-                entity.components.agent.SetDestination(entity.repository.currentTarget.targetTr.position); 
-                return Status.Running;  
-            } 
+            entity.components.agent.SetDestination(entity.repTarTrans.currentTarget.targetTr.position);
+            return Status.Running;
         }
         public void StoppedDestination()
         {
-            float distance = Vector3.Distance(entity.components.trEntity.position, entity.repository.currentTarget.targetTr.position);
+            float distance = Vector3.Distance(entity.components.trEntity.position, entity.repTarTrans.currentTarget.targetTr.position);
             if (distance <= 2)
             {
                 entity.components.agent.velocity = Vector3.zero; 

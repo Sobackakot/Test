@@ -35,7 +35,9 @@ namespace EntityAI.Components
             _rbEntity = GetComponent<Rigidbody>();
             trTarget = FindObjectOfType<TargetMove>().transform;
             _agent = GetComponent<NavMeshAgent>();
+            _agent.updatePosition = true;
+            _agent.updateRotation = true;
         }
-
+      
     }
 }

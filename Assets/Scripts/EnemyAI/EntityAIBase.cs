@@ -15,11 +15,11 @@ namespace EntityAI
     [RequireComponent(typeof(EntityConponent))]
     public abstract class EntityAIBase : MonoBehaviour, IEntity
     {
-        ITargetSingleRepository _registry;
-        public ITargetSingleRepository registry => _registry;
+        ITargetSingleRepository _repTarSingl;
+        public ITargetSingleRepository repTarSingl => _repTarSingl;
         BehaviorTreeAI tree;
-        ITargetTransientRepository _repository;
-        public ITargetTransientRepository repository => _repository;
+        ITargetTransientRepository _repTarTrans;
+        public ITargetTransientRepository repTarTrans => _repTarTrans;
 
         [SerializeField] private EntityConfige _config;
         public IEntityConfig config => _config;
@@ -28,8 +28,8 @@ namespace EntityAI
         public IRepositorySubject repositorySubject => _repositorySubject;
 
 
-        private IContext _context;
-        public IContext context => _context;
+        private Context.EntityAI _context;
+        public Context.EntityAI context => _context;
          
 
         private IEntityComponent _components;
@@ -44,29 +44,29 @@ namespace EntityAI
         public IStateMachine stateMachine => _stateMachine;
 
 
-        private IPlaner<IContext> _planer;
-        public IPlaner<IContext> planer => _planer;
+        private IPlaner<Context.EntityAI> _planer;
+        public IPlaner<Context.EntityAI> planer => _planer;
 
 
 
         public void InitializeEntityAI(
 
             IRepositorySubject entityRepository,
-            IContext context, 
+            Context.EntityAI context, 
             IBehaviourHandler behaviourHandler,
             IStateMachine stateMachine,
-            IPlaner<IContext> planer)
+            IPlaner<Context.EntityAI> planer)
         {
             _repositorySubject = entityRepository;
             _context = context; 
             _behaviourHandler = behaviourHandler;
             _stateMachine = stateMachine;
             _planer = planer;
-            _repository = new TargetTransientRepository();
+            _repTarTrans = new TargetTransientRepository();
         }
         private void Awake()
         {
-            _registry = FindObjectOfType<TargetSingleRepository>();
+            _repTarSingl = FindObjectOfType<TargetSingleRepository>();
             _components = GetComponent<EntityConponent>(); 
         }
         private void Start()
@@ -82,7 +82,7 @@ namespace EntityAI
         {
             repositorySubject?.InvokeAction(EntityActionType.EntityReg, config.entityId, this);
             planer?.SubscribeActions(context);
-            tree = new BehaviorTreeAI(context, this, registry); 
+            tree = new BehaviorTreeAI(this); 
         }
 
         public void Disposable()

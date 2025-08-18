@@ -29,7 +29,7 @@ public class MainInitialize : ObserverContextBase<CreatorActionType>
             new EnemyStateContext(entity),  
             new BehaviourHandler(),
             new EntityStateMachine(),
-            new Planer<IContext>());
+            new Planer<EntityAI.Context.EntityAI>());
 
         InitActions(entity);
         InitBehaviours(entity);

@@ -1,19 +1,19 @@
-using EntityAI.Context;
+using EntityAI;
 
 namespace BehaviourFree.Node
 {
     public class HasTargetCondition : ConditionNode
     {
-        private readonly IContext _context;
+        private readonly IEntity entity;
 
-        public HasTargetCondition(IContext context, NodeBase child) : base(child)
+        public HasTargetCondition(IEntity entity, NodeBase child) : base(child)
         {
-            _context = context;
+            this.entity = entity;
         }
 
         protected override bool CanEvaluate()
         { 
-            return _context.isHasTarget;
+            return entity.context.isHasTarget;
         }
     } 
 }

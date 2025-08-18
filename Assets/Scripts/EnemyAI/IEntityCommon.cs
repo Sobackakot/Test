@@ -11,10 +11,10 @@ namespace EntityAI
         void InitializeEntityAI(
 
             IRepositorySubject entityRepository,
-            IContext context,  
+            Context.EntityAI context,  
             IBehaviourHandler behaviourHandler,
             IStateMachine stateMachine,
-            IPlaner<IContext> planer);
+            IPlaner<Context.EntityAI> planer);
 
         void Initializable();
         void Disposable();

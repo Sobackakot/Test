@@ -13,26 +13,16 @@ namespace BehaviourFree.Node
 
         public override Status Evaluate()
         {
-            if (entity.context.isHasTarget && entity.context.isInAttackRange)
-            { 
-                if (UpdateInteract()) return Status.Success; 
-                return Status.Running;
-            }
-            entity.context.OnResetInteract();
-            return Status.Failure;
+            if (UpdateInteract()) return Status.Success;
+            return Status.Failure; 
         }
         private bool UpdateInteract()
         {
-            if (entity.context.isFocus && !entity.context.isHasInteract)
+            float distance = Vector3.Distance(entity.components.trTarget.position, entity.components.trEntity.position);
+            if (distance <= entity.config.minDistanceInteract)
             {
-                float distance = Vector3.Distance(entity.components.trTarget.position, entity.components.trEntity.position);
-                if (distance <= entity.config.minDistanceInteract)
-                { 
-                    entity.context.OnResetInteract();
-                    return true;
-                }
-                else return false;
-
+                entity.context.ResetStateTarget();
+                return true;
             }
             else return false;
         }

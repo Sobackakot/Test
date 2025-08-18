@@ -4,7 +4,7 @@ using System;
 using UnityEngine;
 
 [Serializable] 
-public class EnemyStateContext : IContext
+public class EnemyStateContext : EntityAI.Context.EntityAI
 {
     public EnemyStateContext(IEntity enemy)
     {
@@ -25,17 +25,13 @@ public class EnemyStateContext : IContext
 
     public bool _isFocus = false;
     public bool isFocus => _isFocus;
-    public void OnSetInteract()
+    public void SetStateTarget()
     {
-        _isHasTarget = true;
-        _isHasInteract = false;
-        _isFocus = true;
+        _isHasTarget = true; 
     }
-    public void OnResetInteract()
+    public void ResetStateTarget()
     {
-        _isHasTarget = false;
-        _isHasInteract = true;
-        _isFocus = false;
+        _isHasTarget = false; 
     }
 
     bool _isHasRaycastHitTarget = false;

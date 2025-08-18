@@ -1,8 +1,6 @@
 using BehaviourFree.Node;
 using EntityAI;
-using EntityAI.Context;
-using EntityAI.Repository;
-using UnityEngine;
+using EntityAI.Behaviour;
 
 
 namespace BehaviourFree
@@ -11,15 +9,13 @@ namespace BehaviourFree
     {
         private NodeBase _rootNode;
         RaycastBehaviour ray;
-        IContext ctx;
-        IEntity entity;
-        ITargetSingleRepository repository;
-        public BehaviorTreeAI(IContext ctx, IEntity entity, ITargetSingleRepository repository)
-        {
-            this.ctx = ctx;
-            this.entity = entity;
-            this.repository = repository;
+        TargetSearchBehaviour search; 
+        IEntity entity; 
+        public BehaviorTreeAI(IEntity entity)
+        { 
+            this.entity = entity; 
             ray = new RaycastBehaviour(entity);
+            search = new TargetSearchBehaviour(entity, ray);
             Enter();
         }
         public void Enter()
@@ -28,18 +24,22 @@ namespace BehaviourFree
         }
         private NodeBase BuildTree()
         { 
-            var attackSequence = new SequenceNode(new AttackRangeCondition(ctx, new AttackTask(entity)));
+            var attackSequence = new SequenceNode(
+                    new HasTargetCondition(entity,
+                        new AttackRangeCondition(entity, 
+                            new AttackTask(entity))));
              
             var chaseEnemySequence = new SequenceNode(
-                new FindTargetNode(entity, ray, repository),
-            new MoveToTargetTask(entity));
+                    new FindTargetNode(entity, search),
+                    new HasTargetCondition(entity, 
+                        new MoveToTargetTask(entity)));
              
             var patrolTask = new PatrolTask(entity);
              
             _rootNode = new SelectorNode(
                 attackSequence,
-            chaseEnemySequence,
-            patrolTask);
+                chaseEnemySequence,
+                patrolTask);
 
             return _rootNode;
         }
