@@ -1,6 +1,7 @@
 ﻿using BehaviourFree.Node;
 using BehaviourFree;
 using UnityEngine;
+using TMPro;
 
 public class NewBehaviourTree : MonoBehaviour
 {
@@ -43,13 +44,13 @@ public class NewBehaviourTree : MonoBehaviour
         var findFoodSequence = new SequenceNode(
             new HangerCondition(searchFood, ctx),
             new Not(
-                new HasFoodCondition(useFood, ctx)),
+                new HasFoodCondition(searchFood, ctx)),
             searchFood
         );
          
         var workSequence = new SequenceNode(
             new Not(
-                new HangerCondition(useFood, ctx)),
+                new HangerCondition(work, ctx)),
             new EnergyCondition(work, ctx),
             work
         );
@@ -87,7 +88,12 @@ public class ContextTest
     {
         this.isFoodFound = isFoodFound;
     }
- 
+    public void AddEnergy(int energyAmount)
+    {
+        this.energyAmount += energyAmount;
+        UpdateHungryState();
+        UpdateEnergyState();
+    }
     public void RemoveEnergy(int energyAmount)
     {
         if(isHasEnergy)
@@ -95,10 +101,12 @@ public class ContextTest
         UpdateHungryState();
         UpdateEnergyState();
     }
-    public void AddEnergy(int energyAmount)
-    { 
-        this.energyAmount += energyAmount;
-        UpdateHungryState();
+ 
+    public void AddFood(int foodAmount)
+    {
+        if (isFoodFound)
+            this.foodAmount += foodAmount;
+        UpdateFoodState();
         UpdateEnergyState();
     }
     public void RemoveFood(int foodAmount)
@@ -106,30 +114,20 @@ public class ContextTest
         if (isHasFood)
             this.foodAmount -= foodAmount;
         UpdateFoodState();
+        UpdateEnergyState();
     }
-    public void AddFood(int foodAmount)
-    {
-        if(isFoodFound)
-            this.foodAmount += foodAmount;
-        UpdateFoodState();
-    }
+
     private void UpdateFoodState()
-    {
-        if (foodAmount >= 1)
-            isHasFood = true;
-        else isHasFood = false;
+    { 
+        isHasFood = foodAmount >= 1;
     }
     private void UpdateHungryState()
     {
-        if (energyAmount < 2 || foodAmount == 0)
-            isHungry = false;
-        else isHungry = true;
+        isHungry = energyAmount < 2 || foodAmount < 1;
     }
     private void UpdateEnergyState()
     {
-        if (energyAmount >= 1)
-           isHasEnergy = true;
-        else isHasEnergy = false;
+        isHasEnergy = energyAmount > 1;
     }
 }
 public class EnergyCondition : ConditionNode
@@ -183,12 +181,12 @@ public class SearchFoodNode : NodeBase
     public override Status Evaluate()
     {
         Debug.Log("Searching Food Task");
-        ctx.SetStateFindFood(Random.value > 0.5f ? true : false);
+        ctx.SetStateFindFood(Random.value > 0.5f);
         if (ctx.isFoodFound && timer <= Time.time) 
         {
             Debug.Log("Search Food Found Success");
             timer = Time.time + interfalSearch;
-            ctx.AddFood(6); 
+            ctx.AddFood(Random.Range(6, 15)); 
             return Status.Success;
         } 
         else return Status.Running;
