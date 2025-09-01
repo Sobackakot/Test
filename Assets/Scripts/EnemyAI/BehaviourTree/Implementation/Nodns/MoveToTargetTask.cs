@@ -16,8 +16,7 @@ namespace BehaviourFree.Node
         {  
             if (entity.components.agent.remainingDistance <= entity.components.agent.stoppingDistance)
             { 
-                StoppedDestination();
-                Debug.Log("Finish Follow");
+                StoppedDestination(); 
                 return Status.Success; 
             }
             entity.components.agent.SetDestination(entity.repTarTrans.currentTarget.targetTr.position);
