@@ -23,6 +23,17 @@ public class MainEntityAITick : MonoBehaviour
         resources = FindObjectOfType<GameResources>();
       
     }
+
+    private void Start()
+    {
+        var fireConf = resources.GetEntityConfig(EntityAI.EntityType.Fire);
+        var freezConf = resources.GetEntityConfig(EntityAI.EntityType.Freez);
+        var ellectrConf = resources.GetEntityConfig(EntityAI.EntityType.Ellectro);
+
+        creator.CreatingPool(fireConf.prefab, fireConf.entityType, 3, fireConf.spawnPoint, Quaternion.identity);
+        creator.CreatingPool(freezConf.prefab, freezConf.entityType, 3, freezConf.spawnPoint, Quaternion.identity);
+        creator.CreatingPool(ellectrConf.prefab, ellectrConf.entityType, 3, ellectrConf.spawnPoint, Quaternion.identity);
+    }
     private void OnEnable()
     {
         entityAIRepository?.Enter(); 

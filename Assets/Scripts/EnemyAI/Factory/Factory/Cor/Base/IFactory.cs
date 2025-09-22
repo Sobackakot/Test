@@ -7,7 +7,7 @@ namespace EntityAI.Factory
     public interface IFactory 
     {
         IGameResources resources { get; }
-        IEntity NewEntity();
+        IEntity NewEntity(PoolSystem pool);
     }
 }
 

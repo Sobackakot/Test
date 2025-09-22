@@ -9,6 +9,7 @@ using EntityAI.Repository;
 using State.Enemys;
 using State.Machine;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace EntityAI
 {
@@ -73,7 +74,15 @@ namespace EntityAI
         { 
             stateMachine?.SetState(StateType.Idle);
         }
-        
+        private void OnEnable()
+        {
+            if (components.agent != null)
+            {
+                components.agent.enabled = false;
+                components.agent.enabled = true;
+                Initializable();
+            }   
+        }
         private void OnDisable()
         {
             Disposable();
@@ -82,6 +91,7 @@ namespace EntityAI
         {
             repositorySubject?.InvokeAction(EntityActionType.EntityReg, config.entityId, this);
             planer?.SubscribeActions(context);
+            
             tree = new BehaviorTreeAI(this); 
         }
 
@@ -93,7 +103,8 @@ namespace EntityAI
         public void Tick()
         {
             stateMachine?.UpdateState();
-            tree.Tick();
+            if (gameObject.activeInHierarchy)
+                tree?.Tick();
         }
         public void LateTick()
         {

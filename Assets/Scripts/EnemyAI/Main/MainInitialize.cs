@@ -1,6 +1,5 @@
 using EntityAI;
 using EntityAI.Behaviour;
-using EntityAI.Context;
 using EntityAI.Planer;
 using EntityAI.React;
 using State.Enemys;
@@ -9,7 +8,7 @@ public class MainInitialize : ObserverContextBase<CreatorActionType>
 {
     public MainInitialize(IActionSubject<CreatorActionType, IObserverContext<CreatorActionType>> subject) : base(subject)
     {
-        Register(CreatorActionType.Creator, (IEntity entity) => OnCreator_InitializeEntity(entity));
+        Register(CreatorActionType.CreatorEntity, (IEntity entity) => OnCreator_InitializeEntity(entity));
         SubscribeAll();
         repositorySubject = new RepositorySubject(); 
     }

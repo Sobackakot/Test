@@ -107,7 +107,7 @@ namespace EntityAI.React
     } 
     public enum CreatorActionType
     {
-        Creator
+        CreatorEntity
     }
 
 }

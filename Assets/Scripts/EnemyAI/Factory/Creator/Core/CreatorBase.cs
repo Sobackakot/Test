@@ -1,6 +1,6 @@
-using EntityAI.Config;
 using EntityAI.Factory;
 using EntityAI.React;
+using UnityEngine;
 
 
 namespace EntityAI.Creator
@@ -11,22 +11,25 @@ namespace EntityAI.Creator
         public CreatorBase(ICreatorEntityAISubject subjectCreator)
         {
             this.subjectCreator = subjectCreator;
+            pool = new(); 
         }
-        private ICreatorEntityAISubject subjectCreator; // Это ваш IActionSubject для CreatorActionType
-
-        // CreatorBase теперь принимает IGameResources
+        private ICreatorEntityAISubject subjectCreator;
+        public PoolSystem pool { get; }
         public void Creating(IFactory factory)
+        { 
+            IEntity entity = factory.NewEntity(pool);  
+
+            subjectCreator.InvokeAction(CreatorActionType.CreatorEntity, entity);
+        }
+        public void CreatingPool(GameObject prefab,EntityType type, int count, Vector3 pos, Quaternion rot)
         {
-            // Фабрика теперь должна получать ресурсы (GameResourcesBase)
-            // Но IFactory.NewEntity не принимает resources, если вы передали их в конструктор FactoryBase.
-            // Если FactoryBase принимает resources в конструкторе, то NewEntity не должно их принимать.
-            // Фабрика NewEntity, вероятно, должна принимать только spawnPoint
-            // А IGameResources передаваться в конструктор самой фабрики (FireFactory, FreezFactory).
-
-            // Давайте упростим, что Factory.NewEntity не принимает ресурсы, т.к. они уже в фабрике.
-            IEntity entity = factory.NewEntity(); // NewEntity теперь не принимает IGameResources напрямую
-
-            subjectCreator.InvokeAction(CreatorActionType.Creator, entity);
+            var entitys = pool.InitializePool(count, prefab, type, pos, rot);
+            foreach(var entity in entitys)
+            {
+                subjectCreator.InvokeAction(CreatorActionType.CreatorEntity, entity);
+                entity.SetActive(false);
+            }
+            
         }
     }
 }

@@ -1,6 +1,5 @@
 using EntityAI;
 using EntityAI.Behaviour;
-using EntityAI.Repository;
 using UnityEngine;
 
 namespace BehaviourFree.Node

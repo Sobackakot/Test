@@ -1,7 +1,6 @@
-﻿using BehaviourFree.Node;
-using BehaviourFree;
+﻿using BehaviourFree;
+using BehaviourFree.Node;
 using UnityEngine;
-using TMPro;
 
 public class NewBehaviourTree : MonoBehaviour
 {
@@ -138,8 +137,7 @@ public class EnergyCondition : ConditionNode
     }
     ContextTest ctx;
     protected override bool CanEvaluate()
-    {
-        Debug.Log("EnergyCondition " + ctx.isHasEnergy);
+    { 
         return ctx.isHasEnergy;
     }
 }
@@ -151,8 +149,7 @@ public class HangerCondition : ConditionNode
     }
     ContextTest ctx;
     protected override bool CanEvaluate()
-    {
-        Debug.Log("HangerCondition " + ctx.isHungry);
+    { 
         return ctx.isHungry;
     }
 }
@@ -164,8 +161,7 @@ public class HasFoodCondition : ConditionNode
     }
     ContextTest ctx;
     protected override bool CanEvaluate()
-    {
-        Debug.Log("HasFoodCondition " + ctx.isHasFood);
+    { 
         return ctx.isHasFood;
     }
 }
@@ -179,12 +175,10 @@ public class SearchFoodNode : NodeBase
     private float timer;
     private float interfalSearch = 3f;
     public override Status Evaluate()
-    {
-        Debug.Log("Searching Food Task");
+    { 
         ctx.SetStateFindFood(Random.value > 0.5f);
         if (ctx.isFoodFound && timer <= Time.time) 
-        {
-            Debug.Log("Search Food Found Success");
+        { 
             timer = Time.time + interfalSearch;
             ctx.AddFood(Random.Range(6, 15)); 
             return Status.Success;
@@ -209,9 +203,7 @@ public class UseFoodTask : NodeBase
             timer = Time.time + interfalUse;
             ctx.RemoveFood(1);
             ctx.AddEnergy(2);
-             
-            Debug.Log("Using Food Task");
-
+               
             return Status.Success;
         }
         else return Status.Running; 
@@ -232,9 +224,7 @@ public class WorkTask : NodeBase
         if (timer <= Time.time)
         { 
             timer = Time.time + interfalWork;
-            ctx.RemoveEnergy(1);  
-            Debug.Log("Working Task");
-
+            ctx.RemoveEnergy(1);   
             return Status.Success;
         }
         else return Status.Running; 
