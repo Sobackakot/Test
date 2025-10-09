@@ -9,6 +9,10 @@ public class CharacterContext : IContext
     public Character character;
     public bool isActive;
     public bool isMove;
+
+    public object CurrentHunger { get; internal set; }
+    public bool HasRawFood { get; internal set; }
+
     public IContext Copy()
     { 
         return new CharacterContext(character)
