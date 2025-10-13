@@ -7,12 +7,10 @@ public class GOAPInstaller : ScriptableObjectInstaller<GOAPInstaller>
     public override void InstallBindings()
     {
         // 1. Привязка AgentContext (Монобехейвиор)
-        // FromComponentInHierarchy() находит компонент в иерархии сцены.
-        Container.Bind<AgentContext>().FromComponentInHierarchy().AsSingle();
+        // FromComponentInHierarchy() находит компонент в иерархии сцены. 
 
         // 2. Привязка Стратегии Выбора Цели (Одиночная)
-        // Предполагаем, что HighestPriorityStrategy чистый POCO и реализует IGoalSelectionStrategy
-        Container.Bind<IGoalSelectionStrategy>().To<HighestPriorityStrategy>().AsSingle();
+        // Предполагаем, что HighestPriorityStrategy чистый POCO и реализует IGoalSelectionStrategy 
 
         // 3. Привязка Базовых Сущностей
         BindSensors();
@@ -31,7 +29,7 @@ public class GOAPInstaller : ScriptableObjectInstaller<GOAPInstaller>
         // Все конкретные сенсоры привязываются к базовому классу WorldFactSensor.
         // AsCached() гарантирует, что Zenject создаст их один раз.
         // Они будут собраны Zenject'ом в List<WorldFactSensor> для инъекции.
-        Container.Bind<WorldFactSensor>().To<HungerSensor>().AsCached();
+         
         // Container.Bind<WorldFactSensor>().To<WoodSensor>().AsCached();
     }
 
