@@ -11,6 +11,6 @@ namespace BehaviourFree.Node
         }
 
         public abstract Status Evaluate();
-    }
+    } 
 }
 

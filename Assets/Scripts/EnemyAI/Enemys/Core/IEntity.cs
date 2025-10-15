@@ -17,7 +17,7 @@ namespace EntityAI
 
         IEntityComponent components { get; }
 
-        IEntityConfig config { get; }
+        IEntityConfig config { get;}
 
         IBehaviourHandler behaviourHandler { get; }
 
@@ -26,7 +26,7 @@ namespace EntityAI
         IPlaner<Context.EntityAI> planer { get; }
 
         IRepositorySubject repositorySubject { get; }
-
+        void SetConfig(EntityConfige config);
     }
     public enum EntityType
     {

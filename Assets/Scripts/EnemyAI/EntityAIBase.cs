@@ -2,14 +2,12 @@ using BehaviourFree;
 using EntityAI.Behaviour;
 using EntityAI.Components;
 using EntityAI.Config;
-using EntityAI.Context;
 using EntityAI.Planer;
 using EntityAI.React;
 using EntityAI.Repository;
 using State.Enemys;
 using State.Machine;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace EntityAI
 {
@@ -22,7 +20,7 @@ namespace EntityAI
         ITargetTransientRepository _repTarTrans;
         public ITargetTransientRepository repTarTrans => _repTarTrans;
 
-        [SerializeField] private EntityConfige _config;
+        private EntityConfige _config;
         public IEntityConfig config => _config;
 
         private IRepositorySubject _repositorySubject;
@@ -47,8 +45,7 @@ namespace EntityAI
 
         private IPlaner<Context.EntityAI> _planer;
         public IPlaner<Context.EntityAI> planer => _planer;
-
-
+         
 
         public void InitializeEntityAI(
 
@@ -77,8 +74,7 @@ namespace EntityAI
         private void OnEnable()
         {
             if (components.agent != null)
-            {
-                components.agent.enabled = false;
+            { 
                 components.agent.enabled = true;
                 Initializable();
             }   
@@ -115,7 +111,11 @@ namespace EntityAI
             stateMachine?.FixedUpdateState();
             planer?.UpdateContext(context);
         }
-         
+
+        public void SetConfig(EntityConfige config)
+        {
+            _config = config;
+        }
     }
 }
 

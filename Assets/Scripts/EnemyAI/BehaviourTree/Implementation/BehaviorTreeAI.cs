@@ -7,17 +7,18 @@ namespace BehaviourFree
 {
     public class BehaviorTreeAI  
     {
-        private NodeBase _rootNode;
-        RaycastBehaviour ray;
-        TargetSearchBehaviour search; 
-        IEntity entity; 
         public BehaviorTreeAI(IEntity entity)
-        { 
-            this.entity = entity; 
+        {
+            this.entity = entity;
             ray = new RaycastBehaviour(entity);
             search = new TargetSearchBehaviour(entity, ray);
             Enter();
         }
+        private NodeBase _rootNode;
+        RaycastBehaviour ray;
+        TargetSearchBehaviour search; 
+        IEntity entity; 
+     
         public void Enter()
         {
             _rootNode = BuildTree();
@@ -33,13 +34,19 @@ namespace BehaviourFree
                     new FindTargetNode(entity, search),
                     new HasTargetCondition(entity, 
                         new MoveToTargetTask(entity)));
-             
-            var patrolTask = new PatrolTask(entity);
+
+            var notHasTarget = new Not(new HasTargetCondition(entity, new Success(entity)));
+
+            var patrulSequence = new SequenceNode
+            (
+                notHasTarget,  
+                new PatrolTask(entity)  
+            ); 
              
             _rootNode = new SelectorNode(
                 attackSequence,
                 chaseEnemySequence,
-                patrolTask);
+                patrulSequence);
 
             return _rootNode;
         }

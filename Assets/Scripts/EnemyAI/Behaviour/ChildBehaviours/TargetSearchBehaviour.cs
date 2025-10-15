@@ -16,7 +16,7 @@ namespace EntityAI.Behaviour
             List<ITargetable> targets = entity.repTarSingl.GetTargets();
             foreach (var target in targets)
             {
-                if (target != null && target.IsAlive() && IsMinRadius(npcPosition, target, visionRadius))
+                if (entity != target && target != null && target.IsAlive() && IsMinRadius(npcPosition, target, visionRadius))
                 {
                     if (IsEnemy(target.TargetType))
                     {

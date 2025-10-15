@@ -1,3 +1,4 @@
+using EntityAI.Config;
 using EntityAI.Factory;
 using EntityAI.React;
 using UnityEngine;
@@ -21,15 +22,9 @@ namespace EntityAI.Creator
 
             subjectCreator.InvokeAction(CreatorActionType.CreatorEntity, entity);
         }
-        public void CreatingPool(GameObject prefab,EntityType type, int count, Vector3 pos, Quaternion rot)
+        public void CreatingPool(int count, EntityConfige config)
         {
-            var entitys = pool.InitializePool(count, prefab, type, pos, rot);
-            foreach(var entity in entitys)
-            {
-                subjectCreator.InvokeAction(CreatorActionType.CreatorEntity, entity);
-                entity.SetActive(false);
-            }
-            
+            var entitys = pool.InitializePool(count, config);  
         }
     }
 }

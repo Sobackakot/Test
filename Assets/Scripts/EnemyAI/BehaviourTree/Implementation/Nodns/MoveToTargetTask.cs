@@ -13,23 +13,32 @@ namespace BehaviourFree.Node
         }
 
         public override Status Evaluate()
-        {  
-            if (entity.components.agent.remainingDistance <= entity.components.agent.stoppingDistance)
-            { 
-                StoppedDestination(); 
-                return Status.Success; 
-            }
+        {
+            // Установка цели 
             entity.components.agent.SetDestination(entity.repTarTrans.currentTarget.targetTr.position);
+
+            // Проверка условия остановки 
+            if (entity.components.agent.remainingDistance <= entity.components.agent.stoppingDistance)
+            {
+                // тут будет логика остановки движения
+                StoppedDestination();
+                Debug.Log("success move");
+                return Status.Success;
+            }
+
+            // тут будет логика продолжения движения
+            Debug.Log("running move");
             return Status.Running;
         }
         public void StoppedDestination()
         {
+            // Эту логику можно оставить, она обеспечивает дополнительную "мягкую" остановку.
             float distance = Vector3.Distance(entity.components.trEntity.position, entity.repTarTrans.currentTarget.targetTr.position);
-            if (distance <= 2)
+            if (distance <= entity.components.agent.stoppingDistance * 1.5f) // Можно использовать stoppingDistance или немного больше
             {
-                entity.components.agent.velocity = Vector3.zero; 
+                entity.components.agent.velocity = Vector3.zero;
             }
         }
-      
+
     }
 }

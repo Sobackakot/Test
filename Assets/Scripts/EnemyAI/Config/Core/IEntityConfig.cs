@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace EntityAI.Config
@@ -7,16 +9,15 @@ namespace EntityAI.Config
         float minDistanceInteract { get; }
         float maxDistanceRaycast { get; } 
         LayerMask targetLayer { get;} 
-        LayerMask raycastLayers { get;} 
-         
-        Vector3[] patrolPoints { get; }
+        LayerMask raycastLayers { get;}
+        Vector3 spawnPoint { get; } 
+        List<Transform> patrolPoints { get; }
         float time { get; }
         float timeAFC { get; set; }
         float interval { get;  } 
 
         EntityType entityType { get; }
          
-        Vector3 spawnPoint { get; }
          
         string entityId { get; }
 
@@ -38,7 +39,9 @@ namespace EntityAI.Config
         float angleRotate { get; }
 
         void SetSpawnPoint(Vector3 point);
-        void SetEntityInstanceId(string id); 
+        void SetEntityId(string id);
+
+        void SetPartolPoints(List<Transform> patrulPoints);
     }
 
 }

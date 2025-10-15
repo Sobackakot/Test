@@ -1,4 +1,4 @@
-namespace EntityAI.Config
+namespace EntityAI.ResoucesGame
 {
     public class GameResources : GameResourcesBase
     {

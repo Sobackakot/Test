@@ -1,8 +1,7 @@
-using BehaviourFree;
-using EntityAI.Config;
 using EntityAI.Creator;
 using EntityAI.Factory;
 using EntityAI.Repository;
+using EntityAI.ResoucesGame;
 using UnityEngine;
 
 public class MainEntityAITick : MonoBehaviour
@@ -21,7 +20,7 @@ public class MainEntityAITick : MonoBehaviour
         entityAIRepository = new EntityRepository(mainInit.repositorySubject);
         creator = new EntityCreator(creatorEntityAISubject);
         resources = FindObjectOfType<GameResources>();
-      
+        ResoursesInst.SetResources(resources);
     }
 
     private void Start()
@@ -30,9 +29,9 @@ public class MainEntityAITick : MonoBehaviour
         var freezConf = resources.GetEntityConfig(EntityAI.EntityType.Freez);
         var ellectrConf = resources.GetEntityConfig(EntityAI.EntityType.Ellectro);
 
-        creator.CreatingPool(fireConf.prefab, fireConf.entityType, 3, fireConf.spawnPoint, Quaternion.identity);
-        creator.CreatingPool(freezConf.prefab, freezConf.entityType, 3, freezConf.spawnPoint, Quaternion.identity);
-        creator.CreatingPool(ellectrConf.prefab, ellectrConf.entityType, 3, ellectrConf.spawnPoint, Quaternion.identity);
+        creator.CreatingPool( 3, fireConf);
+        creator.CreatingPool( 3, freezConf);
+        creator.CreatingPool( 3, ellectrConf);
     }
     private void OnEnable()
     {
@@ -52,15 +51,15 @@ public class MainEntityAITick : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            creator.Creating(new FireFactory(resources));
+            creator.Creating(new FireFactory());
         }
         else if (Input.GetKeyDown(KeyCode.G))
         {
-            creator.Creating(new FreezFactory(resources));
+            creator.Creating(new FreezFactory());
         }
         else if (Input.GetKeyDown(KeyCode.H))
         {
-            creator.Creating(new EllectroFactory(resources));
+            creator.Creating(new EllectroFactory());
         }
     }
     private void LateUpdate()

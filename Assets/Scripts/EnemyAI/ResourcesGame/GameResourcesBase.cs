@@ -1,33 +1,28 @@
+using EntityAI.Config;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace EntityAI.Config
+namespace EntityAI.ResoucesGame
 {
     public abstract class GameResourcesBase : MonoBehaviour, IGameResources
     {
+
         // Теперь храним ссылки на ваши EntityConfige ScriptableObjects
-        [field: SerializeField] private List<EntityConfige> entityConfigs = new();
-        [field: SerializeField] private List<Transform> spawnPoints = new(); // Если spawnPoints хранятся здесь
+        [field: SerializeField] private List<EntityConfige> _entityConfigs = new();
+        [field: SerializeField] private List<Transform> _spawnPoints = new(); // Если spawnPoints хранятся здесь
 
         private Dictionary<EntityType, EntityConfige> _configsMap = new();
 
         public Dictionary<EntityType, EntityConfige> entities => _configsMap;
-         
-        private void Awake()
-        {
-            // Инициализация spawnPoints (если вы их храните здесь и назначаете конфигам)
-            for (int i = 0; i < entityConfigs.Count; i++)
-            {
-                if (i < spawnPoints.Count)
-                {
-                    entityConfigs[i].SetSpawnPoint(spawnPoints[i].position);
-                }
-                // Также сгенерируем уникальный ID для каждого экземпляра, если это нужно
-                // entityConfigs[i].SetEntityInstanceId(Guid.NewGuid().ToString()); // Нет, это для экземпляров
-            }
 
+        List<EntityConfige> IGameResources.entityConfigs => _entityConfigs;
+
+        List<Transform> IGameResources.spawnPoints => _spawnPoints;
+
+        private void Awake()
+        { 
             // Заполняем словарь конфигами
-            foreach (var config in entityConfigs)
+            foreach (var config in _entityConfigs)
             {
                 if (!_configsMap.ContainsKey(config.entityType))
                 {

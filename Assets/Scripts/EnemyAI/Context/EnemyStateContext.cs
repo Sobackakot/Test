@@ -119,6 +119,7 @@ public class EnemyStateContext : EntityAI.Context.EntityAI
         TimerRoutine();
         isRundomMove = !isIdle && !isFollowTarget;
         isRandomRotate = !isLoockTarget;
+        if (!isHasTarget) return;
         isLoockTarget = IsMinDistance(enemy.config.minDistanceLoockTarget);
         isAttackTarget = IsMinDistance(enemy.config.minDistanceAttackTarget);
         isFollowTarget = IsMinDistance(enemy.config.minDistanceFollowTarget);
@@ -127,7 +128,7 @@ public class EnemyStateContext : EntityAI.Context.EntityAI
 
     private bool IsMinDistance(float minDistance)
     { 
-        return Vector3.Distance(enemy.components.trEntity.position, enemy.components.trTarget.position) <= minDistance; 
+        return Vector3.Distance(enemy.components.trEntity.position, enemy.repTarTrans.currentTarget.targetTr.position) <= minDistance; 
     }
     private void TimerRoutine()
     {

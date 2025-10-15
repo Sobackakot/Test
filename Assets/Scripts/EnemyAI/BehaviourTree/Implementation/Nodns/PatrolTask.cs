@@ -15,14 +15,14 @@ namespace BehaviourFree.Node
 
         public override Status Evaluate()
         { 
-            if (entity.config.patrolPoints == null || entity.config.patrolPoints.Length == 0)
+            if (entity.config.patrolPoints == null || entity.config.patrolPoints.Count == 0)
             { 
                 return Status.Failure;
             }  
             if (entity.components.agent.remainingDistance <= entity.components.agent.stoppingDistance)
             { 
-                _currentPointIndex = (_currentPointIndex + 1) % entity.config.patrolPoints.Length; 
-                entity.components.agent.SetDestination(entity.config.patrolPoints[_currentPointIndex]);
+                _currentPointIndex = (_currentPointIndex + 1) % entity.config.patrolPoints.Count; 
+                entity.components.agent.SetDestination(entity.config.patrolPoints[_currentPointIndex].position);
                 return Status.Success;
             } 
             return Status.Running;

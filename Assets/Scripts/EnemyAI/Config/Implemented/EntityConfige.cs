@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -19,9 +20,7 @@ namespace EntityAI.Config
         [SerializeField] LayerMask _raycastLayers;
         public LayerMask raycastLayers => _raycastLayers;
 
-
-        [SerializeField] Vector3[] _patrolPoints;
-        public Vector3[] patrolPoints => _patrolPoints;
+     
 
         float _time;
         public float time=> _time;
@@ -39,8 +38,7 @@ namespace EntityAI.Config
         [SerializeField] private GameObject _prefab;  
         public GameObject prefab => _prefab;  
 
-        [SerializeField] private Vector3 _spawnPoint;  
-        public Vector3 spawnPoint => _spawnPoint;
+       
 
         private string _entityId = Guid.NewGuid().ToString();  
         public string entityId => _entityId;  
@@ -80,9 +78,19 @@ namespace EntityAI.Config
         public float visionRadius => _visionRadius;
 
         [field: Range(90, 160), SerializeField] float _viewAngle =125;
+        
         public float viewAngle => _viewAngle;
-          
+
+
+        private Vector3 _spawnPoint;
+        public Vector3 spawnPoint => _spawnPoint;
+
+        List<Transform> _patrolPoints; 
+        public List<Transform> patrolPoints => _patrolPoints;
+
+
         public void SetSpawnPoint(Vector3 point) => _spawnPoint = point; 
-        public void SetEntityInstanceId(string id) => _entityId = id; 
+        public void SetEntityId(string id) => _entityId = id;
+        public void SetPartolPoints(List<Transform> patrolPoints) => _patrolPoints = patrolPoints;
     }
 }
