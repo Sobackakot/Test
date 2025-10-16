@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System;
+using EntityAI.GOAP.Goal;
 
 // IGoalSelectionStrategy: Интерфейс для инверсии зависимости.
 public interface IGoalSelectionStrategy

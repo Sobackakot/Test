@@ -1,4 +1,6 @@
 // GOAP.Core.Interfaces
+using EntityAI.GOAP.Goal;
+
 public interface IHeuristicStrategy
 {
     // Метод принимает абстрактное состояние (IBlackboard) и абстрактную цель (IGoapGoal).

@@ -1,18 +1,21 @@
 ﻿using System.Collections;
 
-public interface IGOAPAction
+namespace EntityAI.GOAP.Action
 {
-    string Name { get; }
-    float Cost { get;  }
-    float BaseDuration { get; }
-    float BaseFailChance { get; }
-    ItemType[] RequiredItems { get; }   
-    IRandomizerService Randomizer { get; }
+    public interface IGOAPAction
+    {
+        string Name { get; }
+        float Cost { get; }
+        float BaseDuration { get; }
+        float BaseFailChance { get; }
+        ItemType[] RequiredItems { get; }
+        IRandomizerService Randomizer { get; }
 
 
-    bool CheckPreconditions(IBlackboard bb);
-    void ApplyEffects(IBlackboard bb);
-    IEnumerator Perform(IBlackboard bb);
+        bool CheckPreconditions(IBlackboard bb);
+        void ApplyEffects(IBlackboard bb);
+        IEnumerator Perform(IBlackboard bb);
 
-    Item GetRelevantTool(IBlackboard bb);
+        Item GetRelevantTool(IBlackboard bb);
+    }
 }

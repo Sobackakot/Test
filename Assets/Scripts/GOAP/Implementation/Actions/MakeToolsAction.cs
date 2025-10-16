@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using EntityAI.GOAP.Action;
+using System.Collections;
 using UnityEngine;
 // E. Simple Utility Action (Required for Compile)
 public class MakeToolsAction : GOAPAction

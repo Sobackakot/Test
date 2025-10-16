@@ -1,4 +1,6 @@
 // GOAP.Services (Конкретная реализация)
+using EntityAI.GOAP.Goal;
+
 public class GameHeuristicStrategy : IHeuristicStrategy
 {
     public float Calculate(IBlackboard state, IGoapGoal goal)

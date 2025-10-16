@@ -1,20 +1,23 @@
 ﻿using System;
 
-public abstract class WorldProperty<T> : IWorldProperty
+namespace EntityAI.GOAP.WorldState
 {
-    public T Value;
-
-    public WorldProperty() { }
-    public WorldProperty(T v) { Value = v; }
-
-    public virtual IWorldProperty Clone()
+    public abstract class WorldProperty<T> : IWorldProperty
     {
-        // Использует reflection для создания копии и установки значения.
-        var inst = (WorldProperty<T>)Activator.CreateInstance(this.GetType());
-        inst.Value = Value;
-        return inst;
-    }
+        public T Value;
 
-    public object GetValue() => Value;
-    public void SetValue(object v) => Value = (T)v;
+        public WorldProperty() { }
+        public WorldProperty(T v) { Value = v; }
+
+        public virtual IWorldProperty Clone()
+        {
+            // Использует reflection для создания копии и установки значения.
+            var inst = (WorldProperty<T>)Activator.CreateInstance(this.GetType());
+            inst.Value = Value;
+            return inst;
+        }
+
+        public object GetValue() => Value;
+        public void SetValue(object v) => Value = (T)v;
+    }
 }

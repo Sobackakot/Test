@@ -1,18 +1,17 @@
+using EntityAI.GOAP.Action;
+using EntityAI.GOAP.Goal;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IGOAPPlanner : MonoBehaviour
+namespace EntityAI.GOAP.Planer
 {
-    // Start is called before the first frame update
-    void Start()
+    public interface IGOAPPlanner  
     {
-        
+        IHeuristicStrategy heuristicStrategy { get; }
+        IStateHasher hasher { get; }
+
+        List<IGOAPAction> Plan(IBlackboard startState, IGoapGoal goal, List<IGOAPAction> availableActions, int maxBudget = 5000);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

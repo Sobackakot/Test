@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IGoapGoal  
+namespace EntityAI.GOAP.Goal
 {
-    string Name { get; }
-    float Priority { get; }
-    bool IsSatisfied(IBlackboard bb);
+    public interface IGoapGoal
+    {
+        string Name { get; }
+        float Priority { get; }
+        bool IsSatisfied(IBlackboard bb);
+    }
+
 }

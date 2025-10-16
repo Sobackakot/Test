@@ -1,3 +1,4 @@
+using EntityAI.GOAP.WorldState;
 using System;
 using System.Collections;
 using System.Collections.Generic;

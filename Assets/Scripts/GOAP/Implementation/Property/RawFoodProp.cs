@@ -1,4 +1,6 @@
-﻿public class RawFoodProp : WorldProperty<int> 
+﻿using EntityAI.GOAP.WorldState;
+
+public class RawFoodProp : WorldProperty<int> 
 { 
     public RawFoodProp(int v) : base(v) 
     { 

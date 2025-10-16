@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using EntityAI.GOAP.Action;
+using System.Collections;
 using UnityEngine;
 
 // HuntAction: Добывает RawFood, требует оружие (лук/арбалет) и боеприпасы (стрелы/болты).

@@ -1,4 +1,5 @@
 ﻿// Blackboard: Центральное хранилище состояния мира и инвентаря.
+using EntityAI.GOAP.WorldState;
 using System;
 using System.Collections.Generic;
 using System.Linq;

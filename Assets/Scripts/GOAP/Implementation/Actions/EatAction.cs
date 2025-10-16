@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using EntityAI.GOAP.Action;
+using System.Collections;
 using UnityEngine;
 
 // EatAction: Уменьшает Hunger, восстанавливает Energy. 

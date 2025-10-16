@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using EntityAI.GOAP.Action;
+using System.Collections;
 using UnityEngine;
 
 // StoreFoodAction: Переносит еду из инвентаря в запас (FoodReserveProp).

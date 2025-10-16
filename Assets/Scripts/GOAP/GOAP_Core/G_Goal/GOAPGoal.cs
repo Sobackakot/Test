@@ -2,16 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-// GOAPGoal: Класс, описывающий желаемое конечное состояние мира.
-public abstract class GOAPGoal : IGoapGoal
+namespace EntityAI.GOAP.Goal
 {
-    public abstract string Name { get; }
-    public float Priority { get; protected set; }
-
-    public GOAPGoal(float priority)
+    // GOAPGoal: Класс, описывающий желаемое конечное состояние мира.
+    public abstract class GOAPGoal : IGoapGoal
     {
-        Priority = priority;
-    }
+        public abstract string Name { get; }
+        public float Priority { get; protected set; }
 
-    public abstract bool IsSatisfied(IBlackboard bb);
+        public GOAPGoal(float priority)
+        {
+            Priority = priority;
+        }
+
+        public abstract bool IsSatisfied(IBlackboard bb);
+    }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EntityAI.GOAP.Action;
+using System;
 using System.Collections.Generic;
 
 // Node: Узел в графе поиска A*, представляет собой состояние мира и путь к нему.

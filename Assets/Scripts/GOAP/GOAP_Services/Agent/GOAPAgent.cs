@@ -1,3 +1,6 @@
+using EntityAI.GOAP.Action;
+using EntityAI.GOAP.Goal;
+using EntityAI.GOAP.Planer;
 using System;
 using System.Collections;
 using System.Collections.Generic;

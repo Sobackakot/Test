@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿using EntityAI.GOAP.Action;
+using EntityAI.GOAP.Goal;
+using EntityAI.GOAP.Planer;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
