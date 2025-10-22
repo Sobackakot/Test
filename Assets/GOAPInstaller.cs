@@ -1,3 +1,5 @@
+using EntityAI.GOAP.Action;
+using EntityAI.GOAP.Goal;
 using UnityEngine;
 using Zenject;
 
