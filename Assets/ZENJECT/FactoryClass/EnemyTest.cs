@@ -1,29 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class EnemyTestBase  : IEntityPrefab
+public class EnemyTest  : MonoBehaviour, IEntityPrefab
 {
     public IRepoEntitys _repoEntitys { get; private set; }
     public DataEnemy _player { get; private set; }
 
     public GameObject GO { get; private set; }
 
-    public string _id;
-    public EnemyTestBase(string id ,DataEnemy player, IRepoEntitys repoEntitys )
+    public string _id { get; private set; }
+
+    [Inject]
+    public void Construct(string id ,DataEnemy player, IRepoEntitys repoEntitys )
     {
         _id = id;
         _player = player; 
-        _repoEntitys  = repoEntitys;
-        _repoEntitys.ReginsterEntity(id, this);
+        _repoEntitys  = repoEntitys; 
     } 
-    public void SetPoolSystem(PoolSystemEntity pool)
-    { 
-    }
+  
     public void Initialize()
     {
-        _repoEntitys.ReginsterEntity(_id, this);
+        _repoEntitys.ReginsterEntity(_id, this); 
     }
     public void Despawned()
     {
@@ -34,8 +31,9 @@ public class EnemyTestBase  : IEntityPrefab
     {
         _player.ShowDataTest(_id);
     }
-
-  
+    public void SetPoolSystem(PoolSystemEntity pool)
+    {
+    }
 }
 
 public class DataEnemy
