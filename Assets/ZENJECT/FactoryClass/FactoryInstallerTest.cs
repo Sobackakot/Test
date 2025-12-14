@@ -1,10 +1,8 @@
 using UnityEngine;
 using Zenject;
-using Zenject.SpaceFighter;
 
 public class FactoryInstallerTest : MonoInstaller
 {
-
     public GameObject EnemyPrefab;
     public override void InstallBindings()
     {
@@ -13,10 +11,13 @@ public class FactoryInstallerTest : MonoInstaller
        
         Container.Bind<DataEnemy>().AsSingle();
 
-        //Container.BindFactoryCustomInterface<string ,EnemyTest, EnemyFactory, IEnemyFactory>(); 
-        //Container.BindFactory<string,IEntityPrefab, EnemyFactory>().FromFactory<FactoryEnemyTest>(); 
+        Container.BindInterfacesTo<FactoryDelegateEntityMono>().FromNew().AsSingle(); // Bind Delegate Factory Entity MonoBehaviour
+        Container.BindInterfacesTo<FactoryDelegateEntityTest>().FromNew().AsSingle();// Bind Delegate Factory Entity base
 
-        Container.BindInterfacesTo<FactoryEnemyTest>().FromNew().AsSingle();
-        Container.BindFactory<string ,EnemyTest, EnemyFactory>().FromComponentInNewPrefab(EnemyPrefab);
+        //Container.BindFactoryCustomInterface<string ,EnemyTest, EnemyFactory, IEnemyFactory>(); 
+
+        Container.BindFactory<string ,EntityMono, EntityFactoryMono>().FromComponentInNewPrefab(EnemyPrefab); // Bind Factory Entity MonoBehaviour
+
+        Container.BindFactory<string, IEntityPrefab, EnemyFactory>().FromFactory<FactoryEntityTest>();// Bind Factory Entity base
     }
 }

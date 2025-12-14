@@ -4,12 +4,17 @@ using Zenject;
 
 public class TriggerSpawnEnenemy  : ITickable
 {
-    public TriggerSpawnEnenemy(IEnemyFactory enemyFactory,IRepoEntitys repoEntitys)
-    {
-        _repoEntitys = repoEntitys;
+    public TriggerSpawnEnenemy(
+        IFactoryDelegateEntityMono enemyFactoryMono,
+        IFactoryDelegateEntityTest enemyFactory,
+        IRepoEntitys repoEntitys)
+    { 
+        _enemyFactoryMono = enemyFactoryMono;
         _enemyFactory = enemyFactory;
+        _repoEntitys = repoEntitys; 
     }
-    readonly IEnemyFactory _enemyFactory;
+    readonly IFactoryDelegateEntityMono _enemyFactoryMono;
+    readonly IFactoryDelegateEntityTest _enemyFactory;
     public IRepoEntitys _repoEntitys { get; private set; }
      
     public void Tick()
@@ -17,7 +22,7 @@ public class TriggerSpawnEnenemy  : ITickable
         if (Input.GetKeyDown(KeyCode.S))
         {
             string id = Guid.NewGuid().ToString();
-             _enemyFactory.Create(id); 
+            _enemyFactory.Create(id); 
         }
         foreach(var entity in _repoEntitys.GetEntitys())
         {

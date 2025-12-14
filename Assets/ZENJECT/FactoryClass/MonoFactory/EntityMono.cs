@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-public class EnemyTest  : MonoBehaviour, IEntityPrefab
+public class EntityMono  : MonoBehaviour, IEntityPrefab
 {
     public IRepoEntitys _repoEntitys { get; private set; }
     public DataEnemy _player { get; private set; }
